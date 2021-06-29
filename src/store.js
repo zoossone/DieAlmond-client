@@ -1,3 +1,8 @@
 import { createStore } from "redux";
-import {createAction, creatorReduver} from "@reduxjs/toolkit";
+import {createAction, creatorReducer} from "@reduxjs/toolkit";
 
+const reducer = createReducer()
+
+const store = createStore(reducer);
+
+export default store;
