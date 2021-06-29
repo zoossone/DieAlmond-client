@@ -3,6 +3,7 @@ import LoginModal from '../components/LoginModal';
 import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const LandingPage = () => {
     // 모달창 상태 여기서만 필요하니가 리덕스 굳이 안써도될듯 ㅇㅇ
@@ -45,7 +46,7 @@ const LandingPage = () => {
                     null :
                     <LoginModal handleLoginModal={handleLoginModal}/>
                 }
-                <StartBtn>시작하기</StartBtn>
+                <StartBtn><Link to='/main'>시작하기</Link></StartBtn>
             </div>
             <Footer/>
         </div>
