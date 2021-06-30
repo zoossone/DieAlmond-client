@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReverseTimer = () => {
+const Calculate = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const ReverseTimer = () => {
     );
 };
 
-export default ReverseTimer;
+export default Calculate;
