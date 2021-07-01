@@ -69,7 +69,7 @@ const reducer = (state = {nickname:'김코딩', list:[]}, action) => {
 
 const store = createStore(reducer);
 
-export const actionCreator = {
+export const actionCreators = {
     addBucket,
     deleteBucket,
     addInfo

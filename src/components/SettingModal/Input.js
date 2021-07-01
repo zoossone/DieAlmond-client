@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 
 const Input = () => {
 
-    const [text, setText] = useState();
+    const [nickname, setNickname] = useState();
 
     const onChange = (e) => {
-        setText(e.target.value);
+        setNickname(e.target.value);
     };
 
     return (
-        <input type='text' placeholder='닉네임 입력' onChange={onChange} value={text}></input>
+        <>
+        <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
+        </>
     );
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { actionCreator } from '../store';
+import { actionCreators } from '../store';
 
 const MainPage = ({ userInfo, addBucket }) => {
     console.log(userInfo, userInfo.list);
@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addBucket: bucket => dispatch(actionCreator.addBucket(bucket))
+        addBucket: bucket => dispatch(actionCreators.addBucket(bucket))
     };
 }
 

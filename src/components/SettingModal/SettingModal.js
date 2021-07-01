@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar'
 import SleepSlider from './SleepSlider';
@@ -7,76 +7,61 @@ import AlcoholSlider from './AlcoholSlider'
 
 import Input from './Input';
 
+const Modalcontainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00000080;
+    z-index: 10000;
+`
+const Modal = styled.span`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 350px;
+    height: 500px;
+    background: white;
+    z-index: 10000;
+    border-radius: 5px;
+`
+
 const SettingModal =  () => {
-    const Modalcontainer = styled.div`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #00000080;
-        z-index: 10000;
-    `
 
-    const Modal = styled.span`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: fixed;
-        width: 350px;
-        height: 500px;
-        background: white;
-        z-index: 10000;
-        border-radius: 5px;
-    `
+    const [nickname, setNickname] = useState('');
 
-    const [info, setInfo] = useState({
-        nickname: '',
-        gender: '',
-        sleep: 0,
-        smoke: 0,
-        alcohol: 0,
-        list: []
+    useEffect(() => {
+        console.log("did")
     });
 
-    const {nickname, gender, sleep, smoke, alcohol} = info;
-
-    const onSubmit = (e) => {
-        e.preventdefault();
-        setInfo({
-            nickname: nickname
-        })
-    };
-
-    // const onChange = (e) => {
-    //     const {name, value} = e.target;
-
-    //     setInfo({...info, [name]: value});
-    // };
+    const onChange = (e) => {
+        setNickname(e.target.value);
+    }
 
     return (
         <div>
             <Modalcontainer>
                 <Modal>
-                    <form onSubmit={onSubmit}>
+                    <form>
                         {/* input text */}
                         <div>닉네임 입력</div>
-                        {/* <input type='text' name='nickname' placeholder='닉네임 입력' onChange={onChange} value={nickname}
-                        setInfo={setInfo}></input> */}
-                        <Input name='nickname' value={nickname}/>
+                        <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
+                        {/* <Input /> */}
                         <hr/>
 
                         {/* radio : gender */}
                         <div>성별 선택</div>
                         <input type='radio' id='male' name='gender' />
-                        <label for="male" value='male'>남성</label>
+                        <label>남성</label>
                         <input type='radio' id='female' name='gender' />
-                        <label for="female" value='female'>여성</label>
+                        <label>여성</label>
                         <hr/>
 
                         {/* DatePicker : Birth Day */}
