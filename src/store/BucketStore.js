@@ -3,14 +3,18 @@ import { createStore } from 'redux';
 const ADD = 'ADD';
 const DELETE = 'DELETE'
 
-const addBucket = {
-    type: ADD,
-    bucket
+const addBucket = (bucket) => {
+    return {
+        type: ADD,
+        bucket
+    }
 };
 
-const deleteBucket = {
-    type: DELETE,
-    id
+const deleteBucket = (id) => {
+    return {
+        type: DELETE,
+        id
+    }
 };
 
 const reducer = (state = [], action) => {
@@ -25,5 +29,10 @@ const reducer = (state = [], action) => {
 }
 
 const BucketStore = createStore(reducer);
+
+export const actionCreator = {
+    addBucket,
+    deleteBucket
+}
 
 export default BucketStore;

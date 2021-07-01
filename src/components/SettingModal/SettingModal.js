@@ -5,6 +5,8 @@ import SleepSlider from './SleepSlider';
 import SmokingSlider from './SmokingSlider'
 import AlcoholSlider from './AlcoholSlider'
 
+import Input from './Input';
+
 const SettingModal =  () => {
     const Modalcontainer = styled.div`
         display: flex;
@@ -33,22 +35,48 @@ const SettingModal =  () => {
         border-radius: 5px;
     `
 
+    const [info, setInfo] = useState({
+        nickname: '',
+        gender: '',
+        sleep: 0,
+        smoke: 0,
+        alcohol: 0,
+        list: []
+    });
+
+    const {nickname, gender, sleep, smoke, alcohol} = info;
+
+    const onSubmit = (e) => {
+        e.preventdefault();
+        setInfo({
+            nickname: nickname
+        })
+    };
+
+    // const onChange = (e) => {
+    //     const {name, value} = e.target;
+
+    //     setInfo({...info, [name]: value});
+    // };
+
     return (
         <div>
             <Modalcontainer>
                 <Modal>
-                    <form>
+                    <form onSubmit={onSubmit}>
                         {/* input text */}
                         <div>닉네임 입력</div>
-                        <input type='text' placeholder='닉네임 입력'></input>
+                        {/* <input type='text' name='nickname' placeholder='닉네임 입력' onChange={onChange} value={nickname}
+                        setInfo={setInfo}></input> */}
+                        <Input name='nickname' value={nickname}/>
                         <hr/>
 
                         {/* radio : gender */}
                         <div>성별 선택</div>
                         <input type='radio' id='male' name='gender' />
-                        <label for="male">남성</label>
+                        <label for="male" value='male'>남성</label>
                         <input type='radio' id='female' name='gender' />
-                        <label for="female">여성</label>
+                        <label for="female" value='female'>여성</label>
                         <hr/>
 
                         {/* DatePicker : Birth Day */}
