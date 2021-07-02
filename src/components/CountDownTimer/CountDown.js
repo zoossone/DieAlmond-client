@@ -2,19 +2,13 @@
 // useState : Manage State)
 // useEffect : component needs to do something after render
 import React, {useState, useEffect} from 'react'
-// CountDown Component
-// parameter : deadLine
-// deadLine data type : obj 
-// { hours : hours value,  minutes : minutes value,  seconds : seconds value }
-// need more : days & miliSeconds
 
-const CountDown = ({deadLine}) => {
+const CountDown = () => {
     // variable assignment
-    // const { days = 0, hours = 0, minutes = 0, seconds = 0, milliseconds = 99 } = deadLine;
+    // const { days = 0, hours = , minutes = 0, seconds = 0, milliseconds = 99 } = deadLine;
     // set State
-
     // 초기 데이터 필요
-    const [[ds, hrs, mins, secs, mss], setTime] = useState([0, 0, 1, 1, 99]);
+    const [[ds, hrs, mins, secs, mss], setTime] = useState([18000, 0, 0, 0, 0]);
 
     // change State
     const tick = () => {
