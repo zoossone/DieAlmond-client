@@ -23,9 +23,10 @@ export default function SleepSlider({setSleep}) {
     setValue(newValue);
     setSleep(newValue);
   };
-
+  
   const handleInputChange = (event) => {
     setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setSleep(event.target.value);
   };
 
   const handleBlur = () => {

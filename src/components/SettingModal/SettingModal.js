@@ -40,19 +40,10 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [nickName, setNickName] = useState('');
     const [gender, setGender] = useState('');
-    const [birth, setBirth] = useState('');
-    const [sleep, setSleep] = useState('');
-    const [smoking, setSmoking] = useState('');
-    const [alcohol, setAlcohol] = useState('');
-    const [info, setInfo] = useState({
-        nickName: '',
-        gender: '',
-        birth: [],
-        sleep: 0,
-        smoking: 0,
-        alcohol: 0,
-        list: []
-    });
+    const [birth, setBirth] = useState([]);
+    const [sleep, setSleep] = useState(0);
+    const [smoking, setSmoking] = useState(0);
+    const [alcohol, setAlcohol] = useState(0);
 
     const onChange = (e) => {
         setNickName(e.target.value);
@@ -71,8 +62,9 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
             date = date.slice(1, 11).split('-')
             date = date.map(e => parseInt(e))
             const [year, month, day] = date;
+
             setIsOpen(!isOpen);
-    
+
             addUserInfo({
                 nickName: nickName,
                 gender: gender,
@@ -80,9 +72,9 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
                 year: year,
                 month: month,
                 day: day,
-                sleep: sleep,
-                smoking: smoking,
-                alcohol: alcohol,
+                sleep: parseInt(sleep),
+                smoking: parseInt(smoking),
+                alcohol: parseInt(alcohol),
                 list: []
             })
         }

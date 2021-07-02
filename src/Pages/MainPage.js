@@ -28,7 +28,6 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
             sleep: 'sleep',
             smoking: 'smoking',
             alcohol: 'alcohol',
-            list: []
         })
     }
     return (
