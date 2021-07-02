@@ -44,8 +44,8 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
                     })}
                 </ul>
             </form>
-            <button onClick={onClick}>ddd</button>
-            <button onClick={putInfo}>fff</button>
+            <button onClick={onClick}>스토어 조회</button>
+            <button onClick={putInfo}>스토어 state 변경</button>
         </div>
     );
 };

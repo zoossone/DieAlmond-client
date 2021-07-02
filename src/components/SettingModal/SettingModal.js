@@ -70,12 +70,16 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
             let date = JSON.stringify(birth);
             date = date.slice(1, 11).split('-')
             date = date.map(e => parseInt(e))
+            const [year, month, day] = date;
             setIsOpen(!isOpen);
     
             addUserInfo({
                 nickName: nickName,
                 gender: gender,
                 birth: date,
+                year: year,
+                month: month,
+                day: day,
                 sleep: sleep,
                 smoking: smoking,
                 alcohol: alcohol,
