@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import GooLogin from './oauth/GooLogin';
+import KakaoLogin from './oauth/KakaoLogin';
 
 const LoginModal = (props) => {
 
@@ -31,9 +33,8 @@ const LoginModal = (props) => {
     return (
             <Modalcontainer onClick={props.handleLoginModal}>
                 <Modal onClick={(e) => e.stopPropagation()}>
-                <img src="#"/>
-                <button>kakao</button>
-                <div><button>Google</button></div>
+                <GooLogin />
+                <KakaoLogin />
                 </Modal>
             </Modalcontainer>
     );
