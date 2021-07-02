@@ -8,7 +8,7 @@ import ko from 'date-fns/locale/ko';
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
-const Calendar = () => {
+const Calendar = ({setBirth}) => {
     const [startDate, setStartDate] = useState(new Date());
     const years = [] 
     for (let year = new Date().getFullYear(); year >= 1900; year--) {
@@ -18,9 +18,9 @@ const Calendar = () => {
     for (let month = 1; month <= 12; month++) {
         months.push(String(month));        
     }
-
+    
     registerLocale("ko", ko);
-
+    
     return (
         <div>
             <DatePicker
@@ -75,7 +75,10 @@ const Calendar = () => {
                     </div>
                 )}
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                onChange={(date) => {
+                    setStartDate(date)
+                    setBirth(date)
+                }}
                 dateFormat="yyyy.MM.dd"
                 placeholderText="ex) 1999.09.09"
                 />

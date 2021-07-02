@@ -15,12 +15,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AlcoholSlider() {
+export default function AlcoholSlider({setAlcohol}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    setAlcohol(newValue);
   };
 
   const handleInputChange = (event) => {
