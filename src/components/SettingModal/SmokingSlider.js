@@ -26,6 +26,7 @@ export default function SleepSlider({setSmoking}) {
 
   const handleInputChange = (event) => {
     setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setSmoking(event.target.value);
   };
 
   const handleBlur = () => {
