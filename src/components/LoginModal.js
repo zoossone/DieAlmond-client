@@ -31,9 +31,7 @@ const LoginModal = (props) => {
     return (
             <Modalcontainer onClick={props.handleLoginModal}>
                 <Modal onClick={(e) => e.stopPropagation()}>
-                {/* <button onClick={props.handleLoginModal}>취소</button> */}
                 <img src="#"/>
-                {/* 랜딩페이지에서 핸들로그인 가져와서 누를때마다 true/false로 껐다켰다함 */}
                 <button>kakao</button>
                 <div><button>Google</button></div>
                 </Modal>
