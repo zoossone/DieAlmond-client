@@ -4,6 +4,10 @@ import Calendar from './Calendar'
 import SleepSlider from './SleepSlider';
 import SmokingSlider from './SmokingSlider'
 import AlcoholSlider from './AlcoholSlider'
+import {connect} from 'react-redux';
+import { actionCreators } from '../../store';
+import { Route, Router } from 'react-router';
+import MainPage from '../../Pages/MainPage';
 
 const Modalcontainer = styled.div`
     display: flex;
@@ -31,17 +35,18 @@ const Modal = styled.span`
     border-radius: 5px;
 `
 
-const SettingModal =  () => {
+const SettingModal =  ({userInfo, addUserInfo}) => {
 
+    const [isOpen, setIsOpen] = useState(false);
     const [nickName, setNickName] = useState('');
-    const [sex, setSex] = useState('');
+    const [gender, setGender] = useState('');
     const [birth, setBirth] = useState('');
     const [sleep, setSleep] = useState('');
     const [smoking, setSmoking] = useState('');
     const [alcohol, setAlcohol] = useState('');
     const [info, setInfo] = useState({
         nickName: '',
-        sex: '',
+        gender: '',
         birth: [],
         sleep: 0,
         smoking: 0,
@@ -54,15 +59,35 @@ const SettingModal =  () => {
     }
 
     const onChangeSex = (e) => {
-        setSex(e.target.value);
+        setGender(e.target.value);
     }
 
     const onSubmit = () => {
-        
+        console.log(JSON.stringify(birth))
+        if(nickName === '' || gender === '' || birth === [] || sleep === 0){
+            return alert("모든 항목을 빠짐없이 기입해주세요 :)")
+        } else {
+            let date = JSON.stringify(birth);
+            date = date.slice(1, 11).split('-')
+            date = date.map(e => parseInt(e))
+            setIsOpen(!isOpen);
+    
+            addUserInfo({
+                nickName: nickName,
+                gender: gender,
+                birth: date,
+                sleep: sleep,
+                smoking: smoking,
+                alcohol: alcohol,
+                list: []
+            })
+        }
     }
 
     return (
         <div>
+            {console.log(userInfo)}
+            {isOpen === false ?
             <Modalcontainer>
                 <Modal>
                     <form onSubmit={onSubmit}>
@@ -75,12 +100,12 @@ const SettingModal =  () => {
 
                         {/* radio : gender */}
                         <div>성별 선택</div>
-                        <input type='radio' id='male' name='sex' value='male' checked={sex === 'male'} onChange={onChangeSex}/>
+                        <input type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex}/>
                         <label>남성</label>
-                        <input type='radio' id='female' name='sex' value='female' checked={sex === 'female'} onChange={onChangeSex}/>
+                        <input type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex}/>
                         <label>여성</label>
                         <hr/>
-                        {console.log(sex)}
+                        {console.log(gender)}
 
                         {/* DatePicker : Birth Day */}
                         <div>생년월일 입력</div>
@@ -101,12 +126,22 @@ const SettingModal =  () => {
                         <AlcoholSlider setAlcohol={setAlcohol}/>
                         {console.log(alcohol)}
                         <hr/>
-                        <button type="submit">완료</button>
+                        <button>완료</button>
                     </form>
                 </Modal>
             </Modalcontainer>
+            : null
+}
         </div>
     );
 }
 
-export default SettingModal;
+function mapStateToProps(state) {
+    return {userInfo: state}
+}
+
+function mapDispatchToProps(dispatch) {
+    return { addUserInfo: (info) => dispatch(actionCreators.addInfo(info))}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingModal);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
-const MainPage = ({ userInfo, addBucket }) => {
+const MainPage = ({ userInfo, addBucket, addInfo }) => {
     console.log(userInfo, userInfo.list);
     const [bucket, setBucket] = useState('');
 
@@ -16,6 +16,21 @@ const MainPage = ({ userInfo, addBucket }) => {
         setBucket('');
     }
 
+    const onClick = () => {
+        console.log(userInfo)
+    }
+
+    const putInfo = () => {
+        addInfo({
+            nickName: 'nickName',
+            sex: 'sex',
+            birth: 'date',
+            sleep: 'sleep',
+            smoking: 'smoking',
+            alcohol: 'alcohol',
+            list: []
+        })
+    }
     return (
         <div>
             이곳은 메인페이지 입니당
@@ -29,6 +44,8 @@ const MainPage = ({ userInfo, addBucket }) => {
                     })}
                 </ul>
             </form>
+            <button onClick={onClick}>ddd</button>
+            <button onClick={putInfo}>fff</button>
         </div>
     );
 };
@@ -39,7 +56,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addBucket: bucket => dispatch(actionCreators.addBucket(bucket))
+        addBucket: bucket => dispatch(actionCreators.addBucket(bucket)),
+        addInfo: (info) => dispatch(actionCreators.addInfo(info))
     };
 }
 

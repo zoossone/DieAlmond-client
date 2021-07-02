@@ -39,7 +39,7 @@ const addInfo = (info) => {
  */
 
 
-const reducer = (state = {nickname:'김코딩', list:[]}, action) => {
+const reducer = (state = {nickName:'김코딩', list:[]}, action) => {
     switch (action.type) {
         case ADD:
             return {
@@ -57,10 +57,9 @@ const reducer = (state = {nickname:'김코딩', list:[]}, action) => {
                 list: [state.list.map(b => b.id !== action.id)]
             };
         case INFO:
-            const newInfo = action.info;
             return {
                 ...state,
-                ...newInfo
+                ...action.info
             };
         default:
             return state;
