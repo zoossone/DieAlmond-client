@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar'
 import SleepSlider from './SleepSlider';
 import SmokingSlider from './SmokingSlider'
 import AlcoholSlider from './AlcoholSlider'
-
-import Input from './Input';
 
 const Modalcontainer = styled.div`
     display: flex;
@@ -35,34 +33,54 @@ const Modal = styled.span`
 
 const SettingModal =  () => {
 
-    const [nickname, setNickname] = useState('');
-
-    useEffect(() => {
-        console.log("did")
+    const [nickName, setNickName] = useState('');
+    const [sex, setSex] = useState('');
+    const [birth, setBirth] = useState('');
+    const [sleep, setSleep] = useState('');
+    const [smoking, setSmoking] = useState('');
+    const [alcohol, setAlcohol] = useState('');
+    const [info, setInfo] = useState({
+        nickName: '',
+        sex: '',
+        birth: [],
+        sleep: 0,
+        smoking: 0,
+        alcohol: 0,
+        list: []
     });
 
     const onChange = (e) => {
-        setNickname(e.target.value);
+        setNickName(e.target.value);
+    }
+
+    const onChangeSex = (e) => {
+        setSex(e.target.value);
+    }
+
+    const onSubmit = () => {
+        
     }
 
     return (
         <div>
             <Modalcontainer>
                 <Modal>
-                    <form>
+                    <form onSubmit={onSubmit}>
                         {/* input text */}
                         <div>닉네임 입력</div>
-                        <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
+                        <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickName}></input>
                         {/* <Input /> */}
                         <hr/>
+                        {console.log(nickName)}
 
                         {/* radio : gender */}
                         <div>성별 선택</div>
-                        <input type='radio' id='male' name='gender' />
+                        <input type='radio' id='male' name='sex' value='male' checked={sex === 'male'} onChange={onChangeSex}/>
                         <label>남성</label>
-                        <input type='radio' id='female' name='gender' />
+                        <input type='radio' id='female' name='sex' value='female' checked={sex === 'female'} onChange={onChangeSex}/>
                         <label>여성</label>
                         <hr/>
+                        {console.log(sex)}
 
                         {/* DatePicker : Birth Day */}
                         <div>생년월일 입력</div>
@@ -72,13 +90,16 @@ const SettingModal =  () => {
                             dateFormat = "yyyy.MM.dd"
                             
                         /> */}
-                        <Calendar />
-                        
+                        <Calendar setBirth={setBirth} birth={birth}/>
+                        {console.log(birth)}
                         <hr/>
                         {/* Parameter : Sleep, Alchol, Smoking */}
-                        <SleepSlider />
-                        <SmokingSlider />
-                        <AlcoholSlider />
+                        <SleepSlider setSleep={setSleep}/>
+                        {console.log(sleep)}
+                        <SmokingSlider setSmoking={setSmoking}/>
+                        {console.log(smoking)}
+                        <AlcoholSlider setAlcohol={setAlcohol}/>
+                        {console.log(alcohol)}
                         <hr/>
                         <button type="submit">완료</button>
                     </form>

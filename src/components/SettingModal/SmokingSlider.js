@@ -15,12 +15,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SleepSlider() {
+export default function SleepSlider({setSmoking}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    setSmoking(newValue);
   };
 
   const handleInputChange = (event) => {
