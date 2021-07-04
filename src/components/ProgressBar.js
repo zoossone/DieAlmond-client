@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Progress } from 'semantic-ui-react'
 
 const ProgressBar = () => {
+
+    const [ percent, setPercent ] = useState(50);
+    
     return (
-        <div>
-            
-        </div>
+        <Progress percent={percent} active progress color='orange'/>
     );
 };
 
