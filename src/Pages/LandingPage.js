@@ -6,41 +6,41 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import sky from '../img/sky.jpeg'
 
+const LoginModalBtn = styled.button`
+background-color: #00FFFF;
+text-decoration: none;
+border: none;
+padding: 10px;
+color: black;
+border-radius: 30px;
+cursor: grab;
+`;
+
+const StartBtn = styled.button`
+background-color: #00FFFF;
+text-decoration: none;
+border: none;
+padding: 10px;
+color: black;
+border-radius: 30px;
+cursor: grab;
+`;
+const Header = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+const Image = styled.div`
+background: "url("sky")";
+`;
+const Btn = styled.div`
+display: flex;
+justify-content: center;
+`;
+
 const LandingPage = () => {
     // 모달창 상태 여기서만 필요하니가 리덕스 굳이 안써도될듯 ㅇㅇ
     const [login, setLogin] = useState(false)
-
-    const LoginModalBtn = styled.button`
-        background-color: #00FFFF;
-        text-decoration: none;
-        border: none;
-        padding: 10px;
-        color: black;
-        border-radius: 30px;
-        cursor: grab;
-    `;
-
-    const StartBtn = styled.button`
-        background-color: #00FFFF;
-        text-decoration: none;
-        border: none;
-        padding: 10px;
-        color: black;
-        border-radius: 30px;
-        cursor: grab;
-    `;
-    const Header = styled.div`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    `;
-    const Image = styled.div`
-        background: "url("sky")";
-    `;
-    const Btn = styled.div`
-        display: flex;
-        justify-content: center;
-    `;
 
     const handleLoginModal = () => {
         setLogin(!login)
@@ -60,7 +60,7 @@ const LandingPage = () => {
                     null :
                     <LoginModal handleLoginModal={handleLoginModal} />
                 }
-                <StartBtn><Link to='/main'>시작하기</Link></StartBtn>
+                <StartBtn><Link to='/main'>비회원</Link></StartBtn>
             </Btn>
                 <Footer />
         </div>

@@ -3,6 +3,8 @@ import LandingPage from './Pages/LandingPage';
 import { Route, Redirect } from "react-router-dom"
 import StartBtn from './components/StartBtn';
 import MyBucketListPage from './Pages/MyBucketListPage'
+import MainPage from './Pages/MainPage';
+import MyPage from './Pages/MyPage';
 
 function App() {
   return (
@@ -11,12 +13,18 @@ function App() {
         render={() => (
           <LandingPage />
         )} />
-
       <Route path="/my"
         render={() => (
           <MyBucketListPage />
         )} />
-      {/* <SettingModal /> */}
+
+
+<Route exact path="/mymy"
+        render={() => (
+          <MyPage />
+        )} />
+
+
       <StartBtn />
     </div>
   );
