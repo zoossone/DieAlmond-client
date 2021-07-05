@@ -4,11 +4,78 @@
 import React, {useState, useEffect} from 'react'
 
 const CountDown = () => {
-    // variable assignment
-    // const { days = 0, hours = , minutes = 0, seconds = 0, milliseconds = 99 } = deadLine;
-    // set State
-    // 초기 데이터 필요
-    const [[ds, hrs, mins, secs, mss], setTime] = useState([18000, 0, 0, 0, 0]);
+    // 1. Redux에서 데이터 객체 가져오기
+    // Dummy Data
+    let userInfo = { year : 1990, month: 2, day: 17, gender : 'male', sleep : 8, smoking : 10, alcohol : 2}
+    let { year, month, day, gender, sleep, smoking, alcohol  } = userInfo
+
+    // 2. 만 나이 계산
+    let today = new Date();
+    let birthDate = new Date(year, month, day);
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    } 
+
+    console.log(age);
+    
+    // 3. 만 나이, 성별 보내면서 기대 여명 요청 : API 생성 필요?
+    // axios
+    //     .post('http://localhost:4000/setting', {
+    //         gender: gender,
+    //         age: age
+    //     }, {withCredentials: true
+    //     })
+    //     .then((res) => {
+    //          setRestLife(res.life)
+    //          스토어에 보내주기
+    //     })
+    //     .catch((err) => console.log(err))
+
+    // 4. 받아온 기대 여명에서 파라미터(술, 담배, 수면 파라미터에 따라 수명 감소)
+
+    let restLife = 20.5;
+
+    // 4-1. 흡연 : 0 / 1~10 / 11~20 / 21~ 
+
+    if (smoking > 21) {
+        restLife = restLife - 10;
+    } else if (10 < smoking && smoking < 21) {
+        restLife = restLife - 5;
+    } else if (0 < smoking && smoking < 11) {
+        restLife = restLife - 2.5;
+    }
+
+    // 4-2. 술 : 1번 당 3년 단축
+    if (alcohol === 7) {
+        restLife = restLife - 20
+    } else {
+        restLife = restLife - (alcohol * 3)
+    }
+
+    // 4-3. 수면 : 12~10 / 9~7 / 6~4
+    if (sleep > 9) {
+        restLife = restLife - 5
+    } else if (sleep < 7) {
+        restLife = restLife - 5
+    }
+
+    // 상세한 데이터 
+    // const now = new Date ();
+    // 02 2021 16:21:52
+    let dead = {
+        days:  Math.round(restLife * 365), 
+        hours: 0,
+        minutes: 0, 
+        seconds: 0, 
+        milliseconds: 0
+    }
+
+    const { days, hours, minutes, seconds, milliseconds} = dead
+
+    const [[ds, hrs, mins, secs, mss], setTime] = useState([days, hours, minutes, seconds, milliseconds]);
 
     // change State
     const tick = () => {
