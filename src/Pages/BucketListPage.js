@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainPageBtns = () => {
+const BucketListPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const MainPageBtns = () => {
     );
 };
 
-export default MainPageBtns;
+export default BucketListPage;
