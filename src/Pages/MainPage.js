@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
+import SettingModal from '../components/SettingModal/SettingModal';
+import GooLogout from '../components/oauth/GooLogout';
 
 const MainPage = ({ userInfo, addBucket, addInfo }) => {
     console.log(userInfo, userInfo.list);
@@ -32,6 +34,7 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
     }
     return (
         <div>
+            <SettingModal />
             이곳은 메인페이지 입니당
             <form onSubmit={onSubmit}>
                 <input type="text" onChange={onChange} value={bucket} />
@@ -45,6 +48,7 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
             </form>
             <button onClick={onClick}>스토어 조회</button>
             <button onClick={putInfo}>스토어 state 변경</button>
+            <GooLogout />
         </div>
     );
 };
