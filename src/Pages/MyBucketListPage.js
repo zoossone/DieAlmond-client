@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import MyBucketList from '../components/MyBucket/MyBucketList';
+import MyBucketList from '../components/Bucket/MyBucketList';
 
 const MyBucketListPage = () => {
     const [desc, setDesc] = useState('')
