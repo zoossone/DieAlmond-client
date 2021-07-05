@@ -1,10 +1,13 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import MainPage from '../Pages/MainPage'
 
 const StartBtn = () => {
+
     return (
-        <div>
-            
-        </div>
+        <>
+            <Route path='/main' component={MainPage} />
+        </>
     );
 };
 

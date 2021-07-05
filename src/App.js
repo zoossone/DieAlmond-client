@@ -1,23 +1,31 @@
 import React from 'react';
+import LandingPage from './Pages/LandingPage';
 import { Route, Redirect } from "react-router-dom"
-import SettingModal from './components/SettingModal/SettingModal'
-import CountDown from './components/CountDownTimer/CountDown'
-import Today from './components/Aside/Today'
-import Dead from './components/Aside/Dead'
-import BucketLists from './components/Aside/BucketLists'
+import StartBtn from './components/StartBtn';
+import MyBucketListPage from './Pages/MyBucketListPage'
+import MainPage from './Pages/MainPage';
+import MyPage from './Pages/MyPage';
 
 function App() {
   return (
     <div>
-      {/* <SettingModal /> */}
-      <hr />
-      <CountDown />
-      <hr />
-      <Today />
-      <hr />
-      <Dead />
-      <hr />
-      <BucketLists />
+      <Route exact path="/"
+        render={() => (
+          <LandingPage />
+        )} />
+      <Route path="/my"
+        render={() => (
+          <MyBucketListPage />
+        )} />
+
+
+<Route exact path="/mymy"
+        render={() => (
+          <MyPage />
+        )} />
+
+
+      <StartBtn />
     </div>
   );
 }
