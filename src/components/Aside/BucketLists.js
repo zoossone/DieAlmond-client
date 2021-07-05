@@ -14,7 +14,7 @@ const BucketLists = () => {
         })
         .then(res => {
             const myLists = res.data;
-        })
+        }) 
     
     // Dummy Data
     const myLists = ['세계 여행',  '경제적 자유', '제주도 게스트 하우스', '테슬라X', '사이버 트럭', '스타트업', '농부', '바다 낚시', '바다 수영', '프리다이빙', '제주도에서 한달 동안 서핑']
