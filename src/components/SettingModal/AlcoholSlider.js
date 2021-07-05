@@ -26,6 +26,7 @@ export default function AlcoholSlider({setAlcohol}) {
 
   const handleInputChange = (event) => {
     setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setAlcohol(event.target.value);
   };
 
   const handleBlur = () => {
