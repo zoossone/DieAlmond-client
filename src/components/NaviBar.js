@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import LoginModal from './LoginModal';
 
 const Nav = styled.div`
 display: flex;
@@ -16,6 +17,7 @@ const NaviBar = () => {
 
     return (
         <Nav>
+            네비게이션 바
         </Nav>
     );
 };

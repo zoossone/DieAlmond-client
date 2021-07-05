@@ -8,25 +8,9 @@ import MyPage from './Pages/MyPage';
 
 function App() {
   return (
-    <div>
-      <Route exact path="/"
-        render={() => (
-          <LandingPage />
-        )} />
-      <Route path="/my"
-        render={() => (
-          <MyBucketListPage />
-        )} />
-
-
-<Route exact path="/mymy"
-        render={() => (
-          <MyPage />
-        )} />
-
-
-      <StartBtn />
-    </div>
+    <>
+      <MainPage />
+    </>
   );
 }
 
