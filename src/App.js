@@ -11,6 +11,7 @@ import KakaoLogin from './components/oauth/KakaoLogin';
 import KakaoLogout from './components/oauth/KakaoLogout';
 import NaviBar from './components/NaviBar';
 import MainPage from './Pages/MainPage';
+import AllBucketList from './components/AllBucketList';
 
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
           render={() => (
             <LandingPage />
           )} /> */}
-        <SettingModal exact/>
-        <MainPage />
+        {/* <SettingModal exact/> */}
+        {/* <MainPage /> */}
+        <AllBucketList />
         {/* <StartBtn /> */}
       </Route>
     </Provider>
