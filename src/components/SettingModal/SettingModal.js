@@ -21,7 +21,6 @@ const Modalcontainer = styled.div`
     right: 0;
     bottom: 0;
     background: #00000080;
-    z-index: 10000;
 `
 const Modal = styled.span`
     display: flex;
@@ -32,7 +31,6 @@ const Modal = styled.span`
     width: 350px;
     height: 500px;
     background: white;
-    z-index: 10000;
     border-radius: 5px;
 `
 
@@ -57,6 +55,8 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(birth))
+        console.log("타입", typeof(sleep));
+        e.preventDefault()
         if(nickName === '' || gender === '' || birth === [] || sleep === 0){
             alert("모든 항목을 빠짐없이 기입해주세요 :)")
             return ;
@@ -66,7 +66,7 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
             date = date.map(e => parseInt(e))
             const [year, month, day] = date;
 
-            setIsOpen(!isOpen);
+            // setIsOpen(!isOpen);
 
             addUserInfo({
                 nickName: nickName,
@@ -101,12 +101,15 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
 
     }
 
+    const toggleModal = () => {
+        setIsOpen(!isOpen)
+    }
+
     return (
         <div>
-            {console.log(userInfo)}
             {isOpen === false ?
-            <Modalcontainer>
-                <Modal>
+            <Modalcontainer onClick={toggleModal}>
+                <Modal onClick={(e) => e.stopPropagation()}>
                     <form onSubmit={onSubmit}>
                         {/* input text */}
                         <div>닉네임 입력</div>

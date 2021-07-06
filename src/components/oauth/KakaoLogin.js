@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const { Kakao } = window
 
 const KakaoLogin = () => {
     const [data, setData] = useState('') // 요청한 유저 데이터값 저장 위해서
     const [kakaoToken, setKakaoToken] = useState('')
+    const history = useHistory()
 
     const KakaoLog = () => {
         window.Kakao.Auth.login({
@@ -26,6 +28,7 @@ const KakaoLogin = () => {
                         const Kakao_account = res.kakao_account
                         setData(Kakao_account)
                         console.log(Kakao_account);
+                        history.push('/main')
                     }
                 })
             }

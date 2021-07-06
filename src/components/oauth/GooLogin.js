@@ -10,18 +10,18 @@ const GooLogin = () => {
     const history = useHistory()
 
     const onSuccess = (res) => {
-        if(res.accessToken) {
+        if (res.accessToken) {
+            console.log(res.accessToken);
+            console.log('[Login Success] currentUser:', res.profileObj);
             history.push('/main')
         }
-        // console.log(res.accessToken);
-        // console.log('[Login Success] currentUser:', res.profileObj);
         // axios.post('https://localhost:3000/google', {
         //     Headers: {
         //         Authentication: res.accessToken
         //     },
         //     withCredentials: true
         // }).then((res) => {
-        //     history.push('/mainpage')
+        //     history.push('/main')
         // })
     }
 
@@ -31,14 +31,14 @@ const GooLogin = () => {
 
     return (
         <div>
-            <GoogleLogin 
-            clientId={clientId}
-            buttonText='Login'
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={'single_host_origin'}
-            style={{marginTop: '100px'}}
-            isSignedIn={true}
+            <GoogleLogin
+                clientId='709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
+                buttonText='Login'
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                cookiePolicy={'single_host_origin'}
+                style={{ marginTop: '100px' }}
+                isSignedIn={true}
             />
         </div>
     );

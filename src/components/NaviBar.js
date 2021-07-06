@@ -1,6 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import LoginModal from './LoginModal';
 
 const Nav = styled.div`
 display: flex;
@@ -14,10 +14,16 @@ height: 30px;
 `;
 
 const NaviBar = () => {
+    const history = useHistory()
 
     return (
         <Nav>
-            네비게이션 바
+            <button onClick={() => {
+                history.push('/bucket')
+            }}>my bucket</button>
+            <button onClick={() => {
+                history.push('/mymy')
+            }}>setting</button>
         </Nav>
     );
 };
