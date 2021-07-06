@@ -5,6 +5,7 @@ import StartBtn from './components/StartBtn';
 import MyBucketListPage from './Pages/MyBucketListPage'
 import MainPage from './Pages/MainPage';
 import MyPage from './Pages/MyPage';
+import AllBucketList from './components/AllBucketList';
 
 function App() {
   return (

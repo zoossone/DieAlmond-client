@@ -26,7 +26,7 @@ const AllBucketList = () => {
                 "Authentication": "@@@@@@token"
             },
             withCredentials: true,
-            id: e.target.value //?
+            id: e.target.id //어떻게 넣어줄것인가 아이디?
         })
             .then(res => {
                 // setLikes(!likes)
