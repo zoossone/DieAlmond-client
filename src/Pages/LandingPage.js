@@ -4,7 +4,6 @@ import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import sky from '../img/sky.jpeg'
 
 const LoginModalBtn = styled.button`
 background-color: #00FFFF;
@@ -31,7 +30,7 @@ justify-content: center;
 align-items: center;
 `;
 const Image = styled.div`
-background: "url("sky")";
+background: "url("")";
 `;
 const Btn = styled.div`
 display: flex;
