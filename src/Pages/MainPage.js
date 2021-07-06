@@ -34,7 +34,7 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
     }
     return (
         <div>
-            <SettingModal />
+            {/* <SettingModal /> */}
             이곳은 메인페이지 입니당
             <form onSubmit={onSubmit}>
                 <input type="text" onChange={onChange} value={bucket} />
@@ -48,7 +48,6 @@ const MainPage = ({ userInfo, addBucket, addInfo }) => {
             </form>
             <button onClick={onClick}>스토어 조회</button>
             <button onClick={putInfo}>스토어 state 변경</button>
-            <GooLogout />
         </div>
     );
 };
