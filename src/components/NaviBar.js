@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import LoginModal from './LoginModal';
 
 const Nav = styled.div`
 display: flex;
@@ -23,7 +22,7 @@ const NaviBar = () => {
                 history.push('/bucket')
             }}>my bucket</button>
             <button onClick={() => {
-                history.push('/bucket')
+                history.push('/mymy')
             }}>setting</button>
         </Nav>
     );

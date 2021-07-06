@@ -32,10 +32,6 @@ align-items: center;
 color: white;
 background:url(${headerImg}) no-repeat;
 `;
-const Gif = styled.div`
-    height: 60vh;
-    width: 500px;
-`;
 const Btn = styled.div`
 display: flex;
 justify-content: center;
@@ -59,7 +55,6 @@ const LandingPage = () => {
                 <div>
                     <h1>DieAlmond</h1>
                     <h3>Let's value life more</h3>
-                    {/* <Gif /> */}
                 </div>
             </Header>
             <Btn>
