@@ -3,7 +3,6 @@ import LoginModal from '../components/LoginModal';
 import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import headerImg from '../img/sky.jpeg'
 import SettingModal from '../components/SettingModal/SettingModal'
 

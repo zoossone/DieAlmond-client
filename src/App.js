@@ -25,7 +25,6 @@ function App() {
           <BucketListPage />
         )} />
 
-
       <StartBtn />
     </div>
   );

@@ -1,14 +1,32 @@
-import React from 'react';
-import { GoogleLogout } from 'react-google-login';
-import KakaoLogout from '../components/oauth/KakaoLogout'
-import GooLogout from '../components/oauth/GooLogout'
+import React, { useState } from 'react';
+import Today from '../components/Aside/Today';
+import BucketLists from '../components/Aside/BucketLists';
+import CountDown from '../components/CountDownTimer/CountDown';
+import ProgressBar from '../components/ProgressBar'
+import NaviBar from '../components/NaviBar'
+import Footer from '../components/Footer'
+import Almond from '../components/Almond/Almond'
+import WiseSaying from '../components/Almond/WiseSaying'
 
 const MainPage = () => {
+    // Dummy Data
+    const userInfo = {
+        nickName : '아몬드',
+    }
+
     return (
         <div>
-            메인페이지입니다.
-            <GooLogout />
-            <KakaoLogout/>
+            <NaviBar />
+            <Today />
+            <h1> {userInfo.nickName}님의 남은 인생은.. </h1>
+            <CountDown />
+            <BucketLists />
+            <div>
+            <WiseSaying />
+            <Almond />
+            </div>
+            <ProgressBar />
+            <Footer />
         </div>
     );
 };
