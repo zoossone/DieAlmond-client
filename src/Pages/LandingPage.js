@@ -4,7 +4,8 @@ import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import sky from '../img/sky.jpeg'
+import headerImg from '../img/sky.jpeg'
+import SettingModal from '../components/SettingModal/SettingModal'
 
 const LoginModalBtn = styled.button`
 background-color: #00FFFF;
@@ -29,9 +30,12 @@ const Header = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+color: white;
+background:url(${headerImg}) no-repeat;
 `;
-const Image = styled.div`
-background: "url("sky")";
+const Gif = styled.div`
+    height: 60vh;
+    width: 500px;
 `;
 const Btn = styled.div`
 display: flex;
@@ -39,30 +43,39 @@ justify-content: center;
 `;
 
 const LandingPage = () => {
-    // 모달창 상태 여기서만 필요하니가 리덕스 굳이 안써도될듯 ㅇㅇ
     const [login, setLogin] = useState(false)
+    const [trialLogin, setTrialLogin] = useState(false)
 
     const handleLoginModal = () => {
         setLogin(!login)
     }
+
+    const handleSettingLoginModal = () => {
+        setTrialLogin(!trialLogin)
+    }
+
     return (
         <div>
             <Header>
                 <div>
                     <h1>DieAlmond</h1>
-                    <h3>삶을 더 소중하게</h3>
-                    <Image />
+                    <h3>Let's value life more</h3>
+                    {/* <Gif /> */}
                 </div>
             </Header>
             <Btn>
-                <LoginModalBtn onClick={handleLoginModal}>로그인</LoginModalBtn>
+                <LoginModalBtn onClick={handleLoginModal}>Login</LoginModalBtn>
                 {login === false ?
                     null :
                     <LoginModal handleLoginModal={handleLoginModal} />
                 }
-                <StartBtn><Link to='/main'>비회원</Link></StartBtn>
+                <LoginModalBtn onClick={handleSettingLoginModal}>Trial</LoginModalBtn>
+                {trialLogin === false ?
+                    null :
+                    <SettingModal />
+                }
             </Btn>
-                <Footer />
+            <Footer />
         </div>
     );
 };

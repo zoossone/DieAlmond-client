@@ -5,6 +5,7 @@ import StartBtn from './components/StartBtn';
 import MyBucketListPage from './Pages/MyBucketListPage'
 import MainPage from './Pages/MainPage';
 import MyPage from './Pages/MyPage';
+import BucketListPage from './Pages/BucketListPage';
 
 function App() {
   return (
@@ -13,15 +14,15 @@ function App() {
         render={() => (
           <LandingPage />
         )} />
-      <Route path="/my"
-        render={() => (
-          <MyBucketListPage />
-        )} />
 
-
-<Route exact path="/mymy"
+      <Route exact path="/mymy"
         render={() => (
           <MyPage />
+        )} />
+
+      <Route path="/bucket"
+        render={() => (
+          <BucketListPage />
         )} />
 
 

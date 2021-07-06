@@ -15,7 +15,7 @@ const Footer = () => {
 
     return (
         <Foot>
-            <h3>Contact Us</h3>
+            <h3>Die-Almond</h3>
             <div>
                 <a href="https://github.com/habasa/">김성진<i class="fab fa-github-square"></i></a>
                 <a href="https://github.com/kilo718/">박준수<i class="fab fa-github-square"></i></a><br/>
