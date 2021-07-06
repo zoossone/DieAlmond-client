@@ -18,8 +18,6 @@ const CountDown = () => {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     } 
-
-    console.log(age);
     
     // 3. 만 나이, 성별 보내면서 기대 여명 요청 : API 생성 필요?
     // axios
@@ -63,14 +61,15 @@ const CountDown = () => {
     }
 
     // 상세한 데이터 
-    // const now = new Date ();
+    // rest life = 50
     // 02 2021 16:21:52
+    const now = new Date();
     let dead = {
-        days:  Math.round(restLife * 365), 
-        hours: 0,
-        minutes: 0, 
-        seconds: 0, 
-        milliseconds: 0
+        days:  Math.round(restLife * 365) - 1, 
+        hours: 23 - now.getHours(),
+        minutes: 59 - now.getMinutes(), 
+        seconds: 59 - now.getSeconds(), 
+        milliseconds: 99
     }
 
     const { days, hours, minutes, seconds, milliseconds} = dead
