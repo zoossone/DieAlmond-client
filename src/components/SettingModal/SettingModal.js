@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import { actionCreators } from '../../store';
 import { Route, Router } from 'react-router';
 import MainPage from '../../Pages/MainPage';
+import axios from 'axios';
 
 const Modalcontainer = styled.div`
     display: flex;
@@ -52,11 +53,13 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
     }
 
     const onSubmit = (e) => {
+        e.preventDefault();
         console.log(JSON.stringify(birth))
         console.log("타입", typeof(sleep));
         e.preventDefault()
         if(nickName === '' || gender === '' || birth === [] || sleep === 0){
-            return alert("모든 항목을 빠짐없이 기입해주세요 :)")
+            alert("모든 항목을 빠짐없이 기입해주세요 :)")
+            return ;
         } else {
             let date = JSON.stringify(birth);
             date = date.slice(1, 11).split('-')
@@ -74,10 +77,28 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
                 day: day,
                 sleep: parseInt(sleep),
                 smoking: parseInt(smoking),
-                alcohol: parseInt(alcohol),
-                list: []
+                alcohol: parseInt(alcohol)
             })
+
+            axios.patch('http://localhost:4000/mypage', {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authentication": "@@@@@@token"
+                },
+                withCredentials: true,
+                nickName: nickName,
+                gender: gender,
+                birth: date,
+                year: year,
+                month: month,
+                day: day,
+                sleep: parseInt(sleep),
+                smoking: parseInt(smoking),
+                alcohol: parseInt(alcohol)
+            })
+            .catch(e => e)
         }
+
     }
 
     const toggleModal = () => {
