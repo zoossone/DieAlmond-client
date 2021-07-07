@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import GooLogout from '../components/oauth/GooLogout'
-import KakaoLogout from '../components/oauth/KakaoLogout'
 // import styled from 'styled-components';
 import Calendar from '../components/SettingModal/Calendar'
 import SleepSlider from '../components/SettingModal/SleepSlider';
@@ -8,10 +6,6 @@ import SmokingSlider from '../components/SettingModal/SmokingSlider'
 import AlcoholSlider from '../components/SettingModal/AlcoholSlider'
 import {connect} from 'react-redux';
 import { actionCreators } from '../store';
-import { Route, Router } from 'react-router';
-import MainPage from './MainPage';
-import axios from 'axios';
-import { Component } from 'react';
 import {useHistory} from 'react-router-dom';
 
 // const Modalcontainer = styled.div`
@@ -115,8 +109,6 @@ const MyPage = ({userInfo, addUserInfo}) => {
         <>
             <div>
                 <button onClick={onClick}>뒤로가기</button>
-                <GooLogout />
-                <KakaoLogout />
             </div>
             <header>
                 <h2>오래 살고싶으면 정보를 수정해버리세요</h2>

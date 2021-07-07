@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 const INFO = 'INFO';
 const ADD = 'ADD';
@@ -71,7 +71,7 @@ const store = createStore(reducer);
 export const actionCreators = {
     addBucket,
     deleteBucket,
-    addInfo
+    addInfo,
 }
 
 export default store;

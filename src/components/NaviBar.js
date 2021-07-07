@@ -1,6 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import GooLogin from './oauth/GooLogin';
+import KakaoLogin from './oauth/KakaoLogin';
+import {connect} from 'react-redux';
 
 const Nav = styled.div`
 display: flex;
@@ -13,14 +16,15 @@ width: auto;
 height: 30px;
 `;
 
-const NaviBar = () => {
+const NaviBar = ({userInfo}) => {
     const history = useHistory()
-
+    console.log(userInfo);
     return (
         <Nav>
             <button onClick={() => {
                 history.push('/bucket')
             }}>my bucket</button>
+            {userInfo.google ? <GooLogin/> : <KakaoLogin/>}
             <button onClick={() => {
                 history.push('/mymy')
             }}>setting</button>
@@ -28,4 +32,8 @@ const NaviBar = () => {
     );
 };
 
-export default NaviBar;
+function mapStateToProps(state) {
+    return {userInfo: state}
+}
+
+export default connect(mapStateToProps)(NaviBar);
