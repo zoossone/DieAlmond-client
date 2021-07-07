@@ -109,6 +109,18 @@ const MyPage = ({ userInfo, addUserInfo }) => {
         history.push('/main')
     }
 
+    const withdrawl = () => {
+        axios.delete(`url`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            withCredentials: true,
+        }).then(res => {
+            alert('좋은 일만 가득하길 빌게요!')
+        })
+        .catch(e => alert(e))
+    }
+
     return (
         <>
             <header>
@@ -151,7 +163,12 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {console.log(alcohol)}
                 <hr />
                 <button>완료</button>
-                {typeof (userInfo.nickName) === 'string' ? <button onClick={onClick}>메인으로 가기</button> : null}
+                {typeof (userInfo.nickName) === 'string' ? 
+                <div>
+                <button onClick={onClick}>메인으로 가기</button> 
+                <button onClick={withdrawl}>회원탈퇴</button>
+                </div>
+                : null}
             </form>
         </>
     );
