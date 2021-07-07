@@ -9,7 +9,7 @@ const AllBucketList = () => {
     axios.get('http://localhost:4000/bucket/all', {
         headers: {
             "Content-Type": "application/json",
-            "Authentication": "@@@@@@token"
+            // "Authentication": "@@@@@@token"
         },
         withCredentials: true
     })
@@ -24,7 +24,7 @@ const AllBucketList = () => {
         axios.patch('http://localhost:4000/bucket/like', {
             headers: {
                 "Content-Type": "application/json",
-                "Authentication": "@@@@@@token"
+                // "Authentication": "@@@@@@token"
             },
             withCredentials: true,
             id: e.target.id //어떻게 넣어줄것인가 아이디?

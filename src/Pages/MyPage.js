@@ -48,10 +48,6 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     const [alcohol, setAlcohol] = useState(0);
     const history = useHistory();
 
-    if (typeof (userInfo.nickName) === 'string') {
-        history.push('/main')
-    }
-
     const onChange = (e) => {
         setNickName(e.target.value);
     }
@@ -155,7 +151,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {console.log(alcohol)}
                 <hr />
                 <button>완료</button>
-                <button onClick={onClick}>메인으로 가기</button>
+                {typeof (userInfo.nickName) === 'string' ? <button onClick={onClick}>메인으로 가기</button> : null}
             </form>
         </>
     );
