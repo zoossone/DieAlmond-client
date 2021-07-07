@@ -19,12 +19,21 @@ height: 30px;
 const NaviBar = ({userInfo}) => {
     const history = useHistory()
     console.log(userInfo);
+
+    const memberOnly = () => {
+        if(userInfo.google || userInfo.kakao) {
+            history.push('/bucket')
+        } else if(window.confirm('로그인하실래요?'))  {
+            history.push('/')
+        }
+    }
+
     return (
         <Nav>
-            <button onClick={() => {
-                history.push('/bucket')
-            }}>my bucket</button>
-            {userInfo.google ? <GooLogin/> : <KakaoLogin/>}
+            <button onClick={memberOnly}>my bucket</button>
+            {userInfo.google ? <GooLogin/> : null}
+            {userInfo.kakao ? <KakaoLogin/> : null}
+            {/* {!userInfo.google && !userInfo.kakao ? <><GooLogin/><KakaoLogin/></> : null} */}
             <button onClick={() => {
                 history.push('/mymy')
             }}>setting</button>
