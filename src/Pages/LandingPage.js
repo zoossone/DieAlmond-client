@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components';
 import headerImg from '../img/sky.jpeg'
 import SettingModal from '../components/SettingModal/SettingModal'
+import { useHistory } from 'react-router';
 
 const LoginModalBtn = styled.button`
 background-color: #00FFFF;
@@ -40,13 +41,15 @@ justify-content: center;
 const LandingPage = () => {
     const [login, setLogin] = useState(false)
     const [trialLogin, setTrialLogin] = useState(false)
+    const history = useHistory()
 
     const handleLoginModal = () => {
         setLogin(!login)
     }
 
     const handleSettingLoginModal = () => {
-        setTrialLogin(!trialLogin)
+        // setTrialLogin(!trialLogin)
+        history.push('/mymy')
     }
 
     return (
@@ -64,10 +67,10 @@ const LandingPage = () => {
                     <LoginModal handleLoginModal={handleLoginModal} />
                 }
                 <LoginModalBtn onClick={handleSettingLoginModal}>Trial</LoginModalBtn>
-                {trialLogin === false ?
+                {/* {trialLogin === false ?
                     null :
                     <SettingModal />
-                }
+                } */}
             </Btn>
             <Footer />
         </div>

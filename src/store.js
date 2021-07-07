@@ -39,7 +39,7 @@ const addInfo = (info) => {
  */
 
 
-const reducer = (state = {nickName:'김코딩', list:[]}, action) => {
+const reducer = (state = {}, action) => {
     switch (action.type) {
         case ADD:
             return {

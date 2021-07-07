@@ -2,11 +2,12 @@
 // useState : Manage State)
 // useEffect : component needs to do something after render
 import React, {useState, useEffect} from 'react'
+import { useRouteMatch } from 'react-router';
 
-const CountDown = () => {
+const CountDown = ({userInfo}) => {
     // 1. Redux에서 데이터 객체 가져오기
     // Dummy Data
-    let userInfo = { year : 1990, month: 2, day: 17, gender : 'male', sleep : 8, smoking : 10, alcohol : 2}
+    // let userInfo = { year : 1990, month: 2, day: 17, gender : 'male', sleep : 8, smoking : 10, alcohol : 2}
     let { year, month, day, gender, sleep, smoking, alcohol  } = userInfo
 
     // 2. 만 나이 계산
@@ -100,7 +101,7 @@ const CountDown = () => {
         const timer = setInterval(() => tick(), 10);
         return () => clearInterval(timer);
     });
-    
+
     // padStart : 스트링.padStart(스트링의 길이, 채울 스트링)
     return (
         <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Almond = () => {
+const Almond = ({userInfo}) => {
 
     const message = () => {
         const wiseSaying = [
@@ -35,11 +35,11 @@ const Almond = () => {
     `;
 
     // Dummy Data
-    const userInfo = {
-        sleep : 8,
-        smoking : 0,
-        alcohol: 0
-    }
+    // const userInfo = {
+    //     sleep : 8,
+    //     smoking : 0,
+    //     alcohol: 0
+    // }
 
     // 흡연 x 음주 x 수면
     if(userInfo.smoking > 0 && userInfo.alcohol > 0 && (userInfo.sleep > 9 || userInfo.sleep < 7)) {
