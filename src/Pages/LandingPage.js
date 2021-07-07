@@ -64,7 +64,7 @@ const LandingPage = () => {
                 <LoginModalBtn onClick={handleLoginModal}>Login</LoginModalBtn>
                 {login === false ?
                     null :
-                    <LoginModal handleLoginModal={handleLoginModal} />
+                    <LoginModal />
                 }
                 <LoginModalBtn onClick={handleSettingLoginModal}>Trial</LoginModalBtn>
                 {/* {trialLogin === false ?

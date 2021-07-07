@@ -14,22 +14,20 @@ const GooLogin = ({ addUserInfo }) => {
     const history = useHistory()
 
     const onSuccess = (res) => {
+        console.log('토큰:', res)
+        console.log(res.accessToken)
         if (res.accessToken) {
-            console.log(res.mc.access_token);
+            console.log(res.accessToken);
             console.log('[Login Success] currentUser:', res.profileObj);
 
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': res.mc.access_token
-            }
             axios.post('http://localhost:80/google',{
-                'sns': 'google'
             }, {
-                headers:headers,
-            },{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${res.accessToken}`
+                },
                 withCredentials: true
-            }
-            ).then((res) => {
+            }).then((res) => {
                 setIslogin(!isLogin)
                 setToken(res.accessToken)
                 addUserInfo({ google: res.accessToken })
