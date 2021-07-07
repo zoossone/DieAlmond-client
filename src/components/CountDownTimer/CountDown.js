@@ -31,7 +31,7 @@ const CountDown = ({userInfo}) => {
     } else if (sleep < 7) {
         restLife = restLife - 5
     }
-    console.log(restLife);
+    // console.log(restLife);
     // 상세한 데이터 
     // rest life = 50
     // 02 2021 16:21:52
@@ -48,7 +48,7 @@ const CountDown = ({userInfo}) => {
     const { days, hours, minutes, seconds, milliseconds} = dead
 
     const [[day, hrs, mins, secs, mss], setTime] = useState([days, hours, minutes, seconds, milliseconds]);
-    console.log(day, hrs, mins, secs, mss)
+    // console.log(day, hrs, mins, secs, mss)
     // change State
     const tick = () => {
         // Time Over
@@ -74,13 +74,13 @@ const CountDown = ({userInfo}) => {
         return () => clearInterval(timer);
     });
 
-    console.log(day, hrs, mins, secs, mss);
+    // console.log(day, hrs, mins, secs, mss);
     // padaytart : 스트링.padaytart(스트링의 길이, 채울 스트링)
     return (
         <div>
             <h1>
                 { 
-                  `${typeof(day)}일`
+                  `${day}일`
                 }
             </h1>
             <h1>
