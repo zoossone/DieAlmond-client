@@ -3,35 +3,39 @@ import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import KakaoLogin from './KakaoLogin';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 
 const clientId = '709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
 
-const GooLogin = ({addUserInfo}) => {
+const GooLogin = ({ addUserInfo }) => {
     const [token, setToken] = useState('')
     const [isLogin, setIslogin] = useState(false)
     const history = useHistory()
 
     const onSuccess = (res) => {
         if (res.accessToken) {
-            console.log(res.accessToken);
+            console.log(res.mc.access_token);
             console.log('[Login Success] currentUser:', res.profileObj);
-            setIslogin(!isLogin)
-            setToken(res.accessToken)
-            addUserInfo({google: res.accessToken})
-            history.push('/main')
 
-        } 
-        // axios.post('https://localhost:3000/google', {
-        //     Headers: {
-        //         Authentication: res.accessToken
-        //     },
-        //     withCredentials: true
-        // }).then((res) => {
-                // setIslogin(!isLogin)
-        //     history.push('/main')
-        // })
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': res.mc.access_token
+            }
+            axios.post('http://localhost:80/google',{
+                'sns': 'google'
+            }, {
+                headers:headers,
+            },{
+                withCredentials: true
+            }
+            ).then((res) => {
+                setIslogin(!isLogin)
+                setToken(res.accessToken)
+                addUserInfo({ google: res.accessToken })
+                history.push('/main')
+            }).catch((e) => alert(e))
+        }
     }
 
     const onLogoutSuccess = (res) => {
@@ -39,7 +43,7 @@ const GooLogin = ({addUserInfo}) => {
         console.log('Logout made successfully');
         alert('Logout made successfully ✌');
         setIslogin(!isLogin)
-        addUserInfo({google: null})
+        addUserInfo({ google: null })
         history.push('/')
     }
 
@@ -71,14 +75,14 @@ const GooLogin = ({addUserInfo}) => {
                             width: 50,
                             height: 50
                         }} />
-        }
-            
+            }
+
         </div>
     );
 };
 
 function mapDispatchToProps(dispatch) {
-    return {addUserInfo: (googleToken) => dispatch(actionCreators.addInfo(googleToken))}
+    return { addUserInfo: (googleToken) => dispatch(actionCreators.addInfo(googleToken)) }
 }
 
 export default connect(null, mapDispatchToProps)(GooLogin);
