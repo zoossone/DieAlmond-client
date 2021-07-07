@@ -14,6 +14,7 @@ const AllBucketList = () => {
         withCredentials: true
     })
         .then(res => {
+            console.log(res.bucketList);
             setAllList(res.bucketList);
         })
         .catch(e => e);

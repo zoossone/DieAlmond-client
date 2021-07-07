@@ -55,9 +55,7 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(birth))
-        console.log("타입", typeof(sleep));
-        e.preventDefault()
-        if(nickName === '' || gender === '' || birth === [] || sleep === 0){
+        if(nickName === '' || gender === '' || birth.length === 0 || sleep === 0){
             alert("모든 항목을 빠짐없이 기입해주세요 :)")
             return ;
         } else {
@@ -66,12 +64,10 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
             date = date.map(e => parseInt(e))
             const [year, month, day] = date;
 
-            // setIsOpen(!isOpen);
-
             addUserInfo({
                 nickName: nickName,
                 gender: gender,
-                birth: date,
+                // birth: date,
                 year: year,
                 month: month,
                 day: day,
@@ -80,23 +76,23 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
                 alcohol: parseInt(alcohol)
             })
 
-            axios.patch('http://localhost:4000/mypage', {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authentication": "@@@@@@token"
-                },
-                withCredentials: true,
-                nickName: nickName,
-                gender: gender,
-                birth: date,
-                year: year,
-                month: month,
-                day: day,
-                sleep: parseInt(sleep),
-                smoking: parseInt(smoking),
-                alcohol: parseInt(alcohol)
-            })
-            .catch(e => e)
+            // axios.patch('http://localhost:4000/mypage', {
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Authentication": "@@@@@@token"
+            //     },
+            //     withCredentials: true,
+            //     nickName: nickName,
+            //     gender: gender,
+            //     birth: date,
+            //     year: year,
+            //     month: month,
+            //     day: day,
+            //     sleep: parseInt(sleep),
+            //     smoking: parseInt(smoking),
+            //     alcohol: parseInt(alcohol)
+            // })
+            // .catch(e => e)
         }
 
     }
