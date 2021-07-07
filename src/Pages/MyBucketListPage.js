@@ -32,7 +32,7 @@ const MyBucketListPage = () => {
         if (desc.length === 0) {
             return alert("버킷리스트 작성해주세요")
         } else {
-        axios.post("http://localhost:3001/add", {
+        axios.patch("http://localhost:80/bucket/add", {
             id: Date.now(),
             nickName: '세팅모달에서 받아와야함',
             bucketName: desc,

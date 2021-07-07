@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
-const BucketLists = () => {
+const BucketLists = ({userInfo}) => {
     // Dummy Data
     // axios get 요청 (완료되지 않은 버킷리스트만 요청)
     
     axios
-        .get('http://localhost:4000/bucket/cheked', {
+        .get('http://localhost:80/bucket/cheked', {
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${userInfo.google}`
         },
         withCredentials: true
         })
@@ -50,4 +52,8 @@ const BucketLists = () => {
     );
 };
 
-export default BucketLists;
+function mapStateToProps(state) {
+    return {userInfo: state}
+}
+
+export default connect(mapStateToProps)(BucketLists);
