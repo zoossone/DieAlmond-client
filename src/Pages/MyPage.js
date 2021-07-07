@@ -48,6 +48,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     const [alcohol, setAlcohol] = useState(0);
     const history = useHistory();
 
+
     const onChange = (e) => {
         setNickName(e.target.value);
     }
@@ -67,10 +68,20 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             date = date.map(e => parseInt(e))
             const [year, month, day] = date;
 
+            // 2. 만 나이 계산
+            let today = new Date();
+            let birthDate = new Date(year, month, day);
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
             addUserInfo({
                 nickName: nickName,
                 gender: gender,
-                // birth: date,
+                age: age,
                 year: year,
                 month: month,
                 day: day,
@@ -81,26 +92,28 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             alert('입력하신 값에 따른 기대여명을 보여드립니다!')
 
-            // axios.patch('http://localhost:4000/mypage', {
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "Authentication": "@@@@@@token"
-            //     },
-            //     withCredentials: true,
-            //     nickName: nickName,
-            //     gender: gender,
-            //     birth: date,
-            //     year: year,
-            //     month: month,
-            //     day: day,
-            //     sleep: parseInt(sleep),
-            //     smoking: parseInt(smoking),
-            //     alcohol: parseInt(alcohol)
-            // })
-            // .then(res => {
-            //     alert('변경을 완료했습니다 :)')
-            // })
-            // .catch(e => e)
+            axios.post('http://localhost:80/setting', {
+                headers: {
+                    "Content-Type": "application/json",
+                    //"Authentication": "@@@@@@token"
+                },
+                withCredentials: true,
+                nickName: nickName,
+                gender: gender,
+                birth: date,
+                year: year,
+                age: age,
+                month: month,
+                day: day,
+                sleep: parseInt(sleep),
+                smoking: parseInt(smoking),
+                alcohol: parseInt(alcohol)
+            })
+                .then(res => {
+                    alert('변경을 완료했습니다 :)')
+                    addUserInfo({restLife: parseInt(res.data.life)})
+                })
+                .catch(e => e)
         }
         history.push('/main')
     }
@@ -118,7 +131,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
         }).then(res => {
             alert('좋은 일만 가득하길 빌게요!')
         })
-        .catch(e => alert(e))
+            .catch(e => alert(e))
     }
 
     return (
@@ -163,12 +176,12 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {console.log(alcohol)}
                 <hr />
                 <button>완료</button>
-                {typeof (userInfo.nickName) === 'string' ? 
-                <div>
-                <button onClick={onClick}>메인으로 가기</button> 
-                <button onClick={withdrawl}>회원탈퇴</button>
-                </div>
-                : null}
+                {typeof (userInfo.nickName) === 'string' ?
+                    <div>
+                        <button onClick={onClick}>메인으로 가기</button>
+                        <button onClick={withdrawl}>회원탈퇴</button>
+                    </div>
+                    : null}
             </form>
         </>
     );
