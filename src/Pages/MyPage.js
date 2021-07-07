@@ -92,10 +92,36 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             alert('입력하신 값에 따른 기대여명을 보여드립니다!')
 
-            axios.post('http://localhost:80/setting', {
+            if(userInfo.google) {
+                axios.post('http://localhost:80/setting',{
+                    nickName: nickName,
+                gender: gender,
+                birth: date,
+                year: year,
+                age: age,
+                month: month,
+                day: day,
+                sleep: parseInt(sleep),
+                smoking: parseInt(smoking),
+                alcohol: parseInt(alcohol)
+                }, {
+                headers: {
+                    'sns':'google',
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${userInfo.google}`
+                },
+                withCredentials: true,
+            })
+                .then(res => {
+                    alert('변경을 완료했습니다 :)')
+                    console.log(res)
+                    addUserInfo({restLife: parseInt(res.data.life)})
+                })
+                .catch(e => e)   
+            } else {
+                axios.post('http://localhost:80/setting', {
                 headers: {
                     "Content-Type": "application/json",
-                    //"Authentication": "@@@@@@token"
                 },
                 withCredentials: true,
                 nickName: nickName,
@@ -111,9 +137,11 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             })
                 .then(res => {
                     alert('변경을 완료했습니다 :)')
+                    console.log(res)
                     addUserInfo({restLife: parseInt(res.data.life)})
                 })
-                .catch(e => e)
+                .catch(e => e)   
+            }
         }
         history.push('/main')
     }

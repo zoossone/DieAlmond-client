@@ -36,13 +36,7 @@ const KakaoLogin = ({addUserInfo}) => {
             scope: 'profile_nickname, account_email, gender',
             success: function (authObj) {
                 console.log(authObj.access_token);
-                //토큰 보내주기
-                // axios.post('https://localhost:3000/kakao', {
-                //     Headers: {
-                //         Authentication: authObj.access_token
-                //     },
-                //     withCredentials: true
-                // })
+                
                 setKakaoToken(authObj.access_token)
                 addUserInfo({kakao: authObj.access_token})
                 window.Kakao.API.request({

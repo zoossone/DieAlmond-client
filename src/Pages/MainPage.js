@@ -20,25 +20,30 @@ const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
 
-    if (typeof (userInfo.nickName) !== 'string') {
-        history.push('/mymy')
-    }
+    // if (typeof (userInfo.nickName) !== 'string') {
+    //     history.push('/mymy')
+    // }
 
-    // axios.get('http://localhost:4000/main', {
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         // "Authentication": "@@@@@@token"
-    //     },
-    //     withCredentials: true
-    // })
-    //     .then(res => {
-    //         if(typeof(res.userInfo.nickName) === 'string') {
-    //             addInfo(res.userInfo);
-    //         } else {
-    //             history.push('/mymy');
-    //         }
-    //     })
-    //     .catch(e => e);
+    useEffect(() => {
+        axios.get('http://localhost:80/main', {
+        headers: {
+            'sns':'google',
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userInfo.google}`
+        },
+        withCredentials: true
+    })
+        .then(res => {
+            console.log('aifjfewjwj', res)
+            if(typeof(res.data.userinfo.nickname) === 'string') {
+                addInfo(res.data.userinfo);
+            } else {
+                history.push('/mymy');
+            }
+        })
+        .catch(e => e);
+    })
+    
 
     console.log(userInfo)
     
