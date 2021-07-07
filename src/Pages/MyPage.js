@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import GooLogout from '../components/oauth/GooLogout'
-import KakaoLogout from '../components/oauth/KakaoLogout'
 // import styled from 'styled-components';
 import Calendar from '../components/SettingModal/Calendar'
 import SleepSlider from '../components/SettingModal/SleepSlider';
