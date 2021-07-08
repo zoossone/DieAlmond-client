@@ -13,48 +13,51 @@ import {actionCreators} from '../store';
 import { useHistory } from 'react-router';
 
 const MainPage = ({ userInfo, addInfo }) => {
-    // Dummy Data
-    // const userInfo = {
-    //     // nickName : '아몬드'
-    // }
 
     const history = useHistory();
+    
+    // const [nickname, setNickname]=useState('');
+    // const [sleep, setSleep]=useState(0);
+    // const [smoking, setSmoking]=useState(0);
+    // const [alcohol, seyAlcohol]=useState(0);
+    // const [restLife, setRestLife]=useState(0);
 
-    // if (typeof (userInfo.nickName) !== 'string') {
-    //     history.push('/mymy')
-    // }
-
+    
     useEffect(() => {
-        axios.get('http://localhost:80/main', {
-        headers: {
-            'sns':'google',
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${userInfo.google}`
-        },
-        withCredentials: true
-    })
-        .then(res => {
-            console.log(res.data.userifo)
-            if(typeof(res.data.userinfo.nickname) === 'string') {
-                addInfo(res.data.userinfo);
-            } else {
-                history.push('/mymy');
-            }
+        if(userInfo.google){
+            axios.get('http://localhost:80/main', {
+            headers: {
+                'sns':'google',
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userInfo.google}`
+            },
+            withCredentials: true
         })
-        .catch(e => e);
+            .then((res) => {
+                console.log(res.data.userinfo)
+                if(typeof(res.data.userinfo.nickname) === 'string') {
+                    addInfo(res.data.userinfo);
+                    console.log(res.data.userinfo, userInfo)
+                } else {
+                    history.push('/mymy');
+                }
+            })
+            .catch(e => e);
+        }
     }, []) 
     
 
-    console.log(userInfo)
+    // console.log(userInfo)
     
 
     // 삼항 연산자 추가
     return (
         <div>
+            {console.log(userInfo)}
             <NaviBar />
             <Today />
-            <h1> '{userInfo.nickName}'님의 남은 인생은.. </h1>
-            <CountDown userInfo={userInfo}/>
+            <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
+            <CountDown />
             <BucketLists />
             <div>
             <WiseSaying />

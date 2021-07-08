@@ -40,7 +40,7 @@ import { useHistory } from 'react-router-dom';
 
 const MyPage = ({ userInfo, addUserInfo }) => {
 
-    const [nickName, setNickName] = useState('');
+    const [nickname, setNickName] = useState('');
     const [gender, setGender] = useState('');
     const [birth, setBirth] = useState([]);
     const [sleep, setSleep] = useState(0);
@@ -57,10 +57,10 @@ const MyPage = ({ userInfo, addUserInfo }) => {
         setGender(e.target.value);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         console.log(JSON.stringify(birth))
-        if (nickName === '' || gender === '' || birth.length === 0 || sleep === 0) {
+        if (nickname === '' || gender === '' || birth.length === 0 || sleep === 0) {
             return alert("모든 항목을 빠짐없이 기입해주세요 :)")
         } else {
             let date = JSON.stringify(birth);
@@ -79,7 +79,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             }
 
             addUserInfo({
-                nickName: nickName,
+                nickname: nickname,
                 gender: gender,
                 age: age,
                 year: year,
@@ -94,7 +94,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             if(userInfo.google) {
                 axios.post('http://localhost:80/setting',{
-                    nickName: nickName,
+                    nickName: nickname,
                 gender: gender,
                 birth: date,
                 year: year,
@@ -104,46 +104,54 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 sleep: parseInt(sleep),
                 smoking: parseInt(smoking),
                 alcohol: parseInt(alcohol)
-                }, {
-                headers: {
-                    'sns':'google',
-                    "Content-Type": "application/json",
-                    "authorization": `Bearer ${userInfo.google}`
-                },
-                withCredentials: true,
-            })
-                .then(res => {
+                },{
+                    headers: {
+                        'sns':'google',
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${userInfo.google}`
+                    },
+                    withCredentials: true
+                })
+                .then((res) => {
+                    addUserInfo({restLife: parseInt(res.data.life)})
                     alert('변경을 완료했습니다 :)')
                     console.log(res)
-                    addUserInfo({restLife: parseInt(res.data.life)})
+                    console.log(userInfo)
+                })
+                .then((res) => {
+                    history.push('/main')
                 })
                 .catch(e => e)   
             } else {
                 axios.post('http://localhost:80/setting', {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-                nickName: nickName,
-                gender: gender,
-                birth: date,
-                year: year,
-                age: age,
-                month: month,
-                day: day,
-                sleep: parseInt(sleep),
-                smoking: parseInt(smoking),
-                alcohol: parseInt(alcohol)
-            })
-                .then(res => {
-                    alert('변경을 완료했습니다 :)')
-                    console.log(res)
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                    nickname: nickname,
+                    gender: gender,
+                    birth: date,
+                    year: year,
+                    age: age,
+                    month: month,
+                    day: day,
+                    sleep: parseInt(sleep),
+                    smoking: parseInt(smoking),
+                    alcohol: parseInt(alcohol)
+                })
+                .then((res) => {
                     addUserInfo({restLife: parseInt(res.data.life)})
+                    alert('변경을 완료했습니다 :)')
+                    // console.log(res)
+                    // console.log(userInfo)
+                })
+                .then((res) => {
+                    history.push('/main')
                 })
                 .catch(e => e)   
             }
         }
-        history.push('/main')
+        // history.push('/main')
     }
 
     const onClick = () => {
@@ -173,10 +181,11 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             <form onSubmit={onSubmit}>
                 {/* input text */}
                 <div>닉네임 입력</div>
-                <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickName}></input>
+                <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
                 {/* <Input /> */}
                 <hr />
-                {console.log(nickName)}
+                {console.log(userInfo)}
+                {console.log(nickname)}
 
                 {/* radio : gender */}
                 <div>성별 선택</div>
@@ -207,10 +216,10 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {console.log(alcohol)}
                 <hr />
                 <button>완료</button>
-                {typeof (userInfo.nickName) === 'string' ?
+                {typeof (userInfo.nickname) === 'string' ?
                     <div>
                         <button onClick={onClick}>메인으로 가기</button>
-                        <button onClick={withdrawal}>회원탈퇴</button>
+                        {typeof(userInfo.google) === 'string' ? <button onClick={withdrawal}>회원탈퇴</button> : null}
                     </div>
                     : null}
             </form>
