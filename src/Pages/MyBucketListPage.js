@@ -7,6 +7,7 @@ const MyBucketListPage = ({userInfo}) => {
     const [desc, setDesc] = useState('')
     const [objlist, setObjList] = useState([{}])
     const [isChecked, setIsChecked] = useState(false)
+    const [render, setRender] = useState(true)
 
     console.log(userInfo);
     // 기존에 있던 리스트를 요청. 왜냐면 사용자의 버킷리스트를 화면에 흩뿌려줘야하니까..
@@ -14,7 +15,7 @@ const MyBucketListPage = ({userInfo}) => {
     // get요청
     useEffect(() => {
         if(objlist[0] !== undefined) {
-        axios.get("http://localhost:80/bucket", {
+         axios.get("http://localhost:80/bucket", {
             headers: {
                 "sns":"google",
                 "Content-Type": "application/json",
@@ -23,15 +24,15 @@ const MyBucketListPage = ({userInfo}) => {
             withCredentials: true
         }).then(res => {
             console.log('resresres', res)
-            const newObjlist = [...objlist]
-            {
-                res.data.user.bucketlist.map(el => {
+            console.log(objlist)
+            const newObjlist = []
+            res.data.user.bucketlist.map(el => {
                     newObjlist.push(el)
-                })
-            }
+            })
+            
             setObjList(newObjlist)
         })}
-    }, [])
+    }, [render])
 
     const addBucketListBtn = () => {
         if (desc.length === 0) {
@@ -54,6 +55,7 @@ const MyBucketListPage = ({userInfo}) => {
             bb.push(res.data)
             setObjList(bb)
             setDesc('')
+            setRender(!render)
             document.querySelector('input').value = ''
         })
         }

@@ -21,10 +21,9 @@ const AllBucketList = ({userInfo}) => {
             setAllList([...res.data.bucketList]);
         })
         .catch(e => e);
-    }, [])
+    }, [likes])
 
     const handleLike = (e) => {
-        setLikes(!likes)
         axios.patch('http://localhost:80/bucket/like',{
             bucketid: e.target.id
         }, {
@@ -37,7 +36,7 @@ const AllBucketList = ({userInfo}) => {
         })
             .then(res => {
                 console.log(res)
-                // setLikes(!likes)
+                setLikes(!likes)
             })
             .catch(e => e);
     }
