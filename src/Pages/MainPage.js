@@ -34,7 +34,7 @@ const MainPage = ({ userInfo, addInfo }) => {
         withCredentials: true
     })
         .then(res => {
-            console.log(res.data.userifo)
+            console.log(res.data.userinfo)
             if(typeof(res.data.userinfo.nickname) === 'string') {
                 addInfo(res.data.userinfo);
             } else {
@@ -42,7 +42,7 @@ const MainPage = ({ userInfo, addInfo }) => {
             }
         })
         .catch(e => e);
-    }, []) 
+    }, [userInfo.nickname]) 
     
 
     console.log(userInfo)
@@ -53,7 +53,7 @@ const MainPage = ({ userInfo, addInfo }) => {
         <div>
             <NaviBar />
             <Today />
-            <h1> '{userInfo.nickName}'님의 남은 인생은.. </h1>
+            <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
             <CountDown userInfo={userInfo}/>
             <BucketLists />
             <div>

@@ -40,7 +40,7 @@ import { useHistory } from 'react-router-dom';
 
 const MyPage = ({ userInfo, addUserInfo }) => {
 
-    const [nickName, setNickName] = useState('');
+    const [nickname, setnickname] = useState('');
     const [gender, setGender] = useState('');
     const [birth, setBirth] = useState([]);
     const [sleep, setSleep] = useState(0);
@@ -50,7 +50,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
 
     const onChange = (e) => {
-        setNickName(e.target.value);
+        setnickname(e.target.value);
     }
 
     const onChangeSex = (e) => {
@@ -60,7 +60,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(birth))
-        if (nickName === '' || gender === '' || birth.length === 0 || sleep === 0) {
+        if (nickname === '' || gender === '' || birth.length === 0 || sleep === 0) {
             return alert("모든 항목을 빠짐없이 기입해주세요 :)")
         } else {
             let date = JSON.stringify(birth);
@@ -79,7 +79,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             }
 
             addUserInfo({
-                nickName: nickName,
+                nickname: nickname,
                 gender: gender,
                 age: age,
                 year: year,
@@ -94,7 +94,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             if(userInfo.google) {
                 axios.post('http://localhost:80/setting',{
-                    nickName: nickName,
+                    nickName: nickname,
                 gender: gender,
                 birth: date,
                 year: year,
@@ -124,7 +124,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                     "Content-Type": "application/json",
                 },
                 withCredentials: true,
-                nickName: nickName,
+                nickname: nickname,
                 gender: gender,
                 birth: date,
                 year: year,
@@ -173,10 +173,10 @@ const MyPage = ({ userInfo, addUserInfo }) => {
             <form onSubmit={onSubmit}>
                 {/* input text */}
                 <div>닉네임 입력</div>
-                <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickName}></input>
+                <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
                 {/* <Input /> */}
                 <hr />
-                {console.log(nickName)}
+                {console.log(nickname)}
 
                 {/* radio : gender */}
                 <div>성별 선택</div>
@@ -207,7 +207,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {console.log(alcohol)}
                 <hr />
                 <button>완료</button>
-                {typeof (userInfo.nickName) === 'string' ?
+                {typeof (userInfo.nickname) === 'string' ?
                     <div>
                         <button onClick={onClick}>메인으로 가기</button>
                         <button onClick={withdrawal}>회원탈퇴</button>
