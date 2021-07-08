@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import headerImg from '../img/sky.jpeg'
 import SettingModal from '../components/SettingModal/SettingModal'
 import { useHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { actionCreators } from '../store';
 
 const LoginModalBtn = styled.button`
 background-color: #00FFFF;
@@ -38,11 +40,13 @@ display: flex;
 justify-content: center;
 `;
 
-const LandingPage = () => {
+const LandingPage = ({resetStore}) => {
     const [login, setLogin] = useState(false)
     const [trialLogin, setTrialLogin] = useState(false)
     const history = useHistory()
 
+    resetStore()
+    
     const handleLoginModal = () => {
         setLogin(!login)
     }
@@ -64,7 +68,7 @@ const LandingPage = () => {
                 <LoginModalBtn onClick={handleLoginModal}>Login</LoginModalBtn>
                 {login === false ?
                     null :
-                    <LoginModal handleLoginModal={handleLoginModal} />
+                    <LoginModal />
                 }
                 <LoginModalBtn onClick={handleSettingLoginModal}>Trial</LoginModalBtn>
                 {/* {trialLogin === false ?
@@ -77,4 +81,8 @@ const LandingPage = () => {
     );
 };
 
-export default LandingPage;
+const mapDispatchToProps = (dispatch) => {
+    return { resetStore: () => dispatch(actionCreators.resetInfo())}
+}
+
+export default connect(null,mapDispatchToProps)(LandingPage);

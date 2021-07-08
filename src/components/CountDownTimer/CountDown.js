@@ -5,10 +5,7 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux';
 
 const CountDown = ({userInfo}) => {
-
     let { sleep, smoking, alcohol, restLife  } = userInfo
-
-
 
     if (smoking > 21) {
         restLife = restLife - 10;
@@ -38,7 +35,7 @@ const CountDown = ({userInfo}) => {
 
     const now = new Date();
     let dead = {
-        days:  Math.round (restLife * 365) - 1, 
+        days:  Math.round(restLife * 365) - 1, 
         hours: 23 - now.getHours(),
         minutes: 59 - now.getMinutes(), 
         seconds: 59 - now.getSeconds(), 
@@ -48,6 +45,7 @@ const CountDown = ({userInfo}) => {
     const { days, hours, minutes, seconds, milliseconds} = dead
 
     const [[day, hrs, mins, secs, mss], setTime] = useState([days, hours, minutes, seconds, milliseconds]);
+    // console.log(days, hours, minutes, seconds, milliseconds)
     // console.log(day, hrs, mins, secs, mss)
     // change State
     const tick = () => {
