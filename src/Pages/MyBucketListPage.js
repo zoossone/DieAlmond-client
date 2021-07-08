@@ -40,7 +40,7 @@ const MyBucketListPage = ({userInfo}) => {
         } else {
         axios.patch("http://localhost:80/bucket/add", {
             id: Date.now(),
-            nickName: '세팅모달에서 받아와야함',
+            nickName: userInfo.nickname,
             bucketName: desc,
             isChecked: isChecked
         }, {

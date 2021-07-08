@@ -16,12 +16,12 @@ const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
     
-    // const [nickname, setNickname]=useState('');
-    // const [sleep, setSleep]=useState(0);
-    // const [smoking, setSmoking]=useState(0);
-    // const [alcohol, seyAlcohol]=useState(0);
-    // const [restLife, setRestLife]=useState(0);
-
+    const [nickname, setNickname]=useState('');
+    const [sleep, setSleep]=useState(0);
+    const [smoking, setSmoking]=useState(0);
+    const [alcohol, seyAlcohol]=useState(0);
+    const [restLife, setRestLife]=useState(0);
+    const [reren, setReren] = useState({});
     
     useEffect(() => {
         if(userInfo.google){
@@ -57,13 +57,13 @@ const MainPage = ({ userInfo, addInfo }) => {
             <NaviBar />
             <Today />
             <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
-            <CountDown />
-            <BucketLists />
+            <CountDown userInfo={userInfo}/>
+            <BucketLists userInfo={userInfo}/>
             <div>
             <WiseSaying />
             <Almond userInfo={userInfo}/>
             </div>
-            <ProgressBar />
+            <ProgressBar userInfo={userInfo}/>
             <Footer />
         </div>
     );

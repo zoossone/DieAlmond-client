@@ -21,7 +21,14 @@ const Almond = ({userInfo}) => {
     }
    
     // Dummy Data. 라이프 퍼센티지 데이터 필요
-    const life = 33;
+    let {age, restLife} = userInfo
+
+    const percentOfLife = (age, restLife) => {
+        const total = age + restLife;
+        return age/total*100
+    }
+
+    const per = percentOfLife(age, restLife);
 
     const Img = styled.img`
         max-width: 50px;
@@ -30,7 +37,7 @@ const Almond = ({userInfo}) => {
         padding: 0px;
         position: relative;
         /* 변수로 지정 필요 수명 퍼센티지 - 3 */
-        left: ${life - 3}%;
+        left: ${per - 3}%;
         cursor: pointer;
     `;
 

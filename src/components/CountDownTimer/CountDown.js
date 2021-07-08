@@ -50,27 +50,27 @@ const CountDown = ({userInfo}) => {
     // change State
     const tick = () => {
         // Time Over
-         if (day === 0 && hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
+         if (days === 0 && hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
             alert('끝')
         }
         else if ( hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
-            setTime([day - 1, 23, 59, 59, 99]);
+            setTime([days - 1, 23, 59, 59, 99]);
         }
         else if (mins === 0 && secs === 0 && mss === 0) {
-            setTime([day, hrs - 1, 59, 59, 99]);
+            setTime([days, hrs - 1, 59, 59, 99]);
         } else if (secs === 0 && mss === 0) {
-            setTime([day, hrs, mins - 1, 59, 99]);
+            setTime([days, hrs, mins - 1, 59, 99]);
         } else if (mss === 0) {
-            setTime([day, hrs, mins, secs - 1, 99]);
+            setTime([days, hrs, mins, secs - 1, 99]);
         } else {
-            setTime([day, hrs, mins, secs, mss - 1]);
+            setTime([days, hrs, mins, secs, mss - 1]);
         }
     };
    
     useEffect(() => {
         const timer = setInterval(() => tick(), 10);
         return () => clearInterval(timer);
-    });
+    },);
 
     // console.log(day, hrs, mins, secs, mss);
     // padaytart : 스트링.padaytart(스트링의 길이, 채울 스트링)
@@ -78,7 +78,7 @@ const CountDown = ({userInfo}) => {
         <div>
             <h1>
                 { 
-                  `${day}일`
+                  `${day.toString()}일`
                 }
             </h1>
             <h1>
@@ -95,10 +95,10 @@ const CountDown = ({userInfo}) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userInfo : state
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         userInfo : state
+//     }
+// }
 
-export default connect(mapStateToProps)(CountDown);
+export default CountDown;
