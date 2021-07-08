@@ -150,14 +150,17 @@ const MyPage = ({ userInfo, addUserInfo }) => {
         history.push('/main')
     }
 
-    const withdrawl = () => {
-        axios.delete(`url`, {
+    const withdrawal = () => {
+        axios.delete('http://localhost:80/withdrawal', {
             headers: {
-                "Content-Type": "application/json"
+                "sns":"google",
+            "Content-Type": "application/json",
+            "authorization": `Bearer ${userInfo.google}`
             },
             withCredentials: true,
         }).then(res => {
             alert('좋은 일만 가득하길 빌게요!')
+            history.push('/')
         })
             .catch(e => alert(e))
     }
@@ -207,7 +210,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 {typeof (userInfo.nickName) === 'string' ?
                     <div>
                         <button onClick={onClick}>메인으로 가기</button>
-                        <button onClick={withdrawl}>회원탈퇴</button>
+                        <button onClick={withdrawal}>회원탈퇴</button>
                     </div>
                     : null}
             </form>

@@ -34,7 +34,7 @@ const MainPage = ({ userInfo, addInfo }) => {
         withCredentials: true
     })
         .then(res => {
-            console.log('aifjfewjwj', res)
+            console.log(res.data.userifo)
             if(typeof(res.data.userinfo.nickname) === 'string') {
                 addInfo(res.data.userinfo);
             } else {
@@ -42,7 +42,7 @@ const MainPage = ({ userInfo, addInfo }) => {
             }
         })
         .catch(e => e);
-    })
+    }, []) 
     
 
     console.log(userInfo)
