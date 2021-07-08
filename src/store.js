@@ -3,6 +3,7 @@ import { combineReducers, createStore } from "redux";
 const INFO = 'INFO';
 const ADD = 'ADD';
 const DELETE = 'DELETE';
+const RESET = 'RESET';
 
 const addBucket = (bucket) => {
     return {
@@ -24,6 +25,12 @@ const addInfo = (info) => {
         info
     }
 };
+
+const resetInfo = () => {
+    return {
+        type: RESET,
+    }
+}
 
 
 /**
@@ -61,6 +68,8 @@ const reducer = (state = {}, action) => {
                 ...state,
                 ...action.info
             };
+        case RESET:
+            return {}
         default:
             return state;
     }
@@ -72,6 +81,7 @@ export const actionCreators = {
     addBucket,
     deleteBucket,
     addInfo,
+    resetInfo
 }
 
 export default store;

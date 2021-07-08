@@ -18,7 +18,6 @@ height: 30px;
 
 const NaviBar = ({userInfo}) => {
     const history = useHistory()
-    console.log(userInfo);
 
     const memberOnly = () => {
         if(userInfo.google || userInfo.kakao) {
