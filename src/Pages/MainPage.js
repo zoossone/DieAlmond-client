@@ -35,7 +35,7 @@ const MainPage = ({ userInfo, addInfo }) => {
         })
             .then((res) => {
                 console.log(res.data.userinfo)
-                if(typeof(res.data.userinfo.email) === 'string') {
+                if(typeof(res.data.userinfo.nickname) === 'string') {
                     addInfo(res.data.userinfo);
                     console.log(res.data.userinfo, userInfo)
                 } else {

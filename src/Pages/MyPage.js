@@ -94,13 +94,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             if(userInfo.google) {
                 axios.post('http://localhost:80/setting',{
-                    headers: {
-                        'sns':'google',
-                        "Content-Type": "application/json",
-                        "authorization": `Bearer ${userInfo.google}`
-                    },
-                    withCredentials: true,
-                    nickname: nickname,
+                    nickName: nickname,
                 gender: gender,
                 birth: date,
                 year: year,
@@ -110,6 +104,13 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 sleep: parseInt(sleep),
                 smoking: parseInt(smoking),
                 alcohol: parseInt(alcohol)
+                },{
+                    headers: {
+                        'sns':'google',
+                        "Content-Type": "application/json",
+                        "authorization": `Bearer ${userInfo.google}`
+                    },
+                    withCredentials: true
                 })
                 .then((res) => {
                     addUserInfo({restLife: parseInt(res.data.life)})
