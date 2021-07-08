@@ -50,7 +50,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
 
     const onChange = (e) => {
-        setnickname(e.target.value);
+        setNickName(e.target.value);
     }
 
     const onChangeSex = (e) => {

@@ -57,11 +57,7 @@ const MainPage = ({ userInfo, addInfo }) => {
             <NaviBar />
             <Today />
             <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
-<<<<<<< HEAD
-            <CountDown userInfo={userInfo}/>
-=======
             <CountDown />
->>>>>>> dev
             <BucketLists />
             <div>
             <WiseSaying />
