@@ -6,16 +6,23 @@ const MyBucketList = (props) => {
     const [propsId, setPropsId] = useState(props)
     const [isDone, setIsDone] = useState(props.isChecked)
 
-    const Flex = styled.div`
+    const Flex = styled.span`
         display:flex;
         justify-content: space-between;
         border: 1px solid black;
         margin-top:5px;
+        // margin-right: 40px;
+        width: 100%;
+        align-items: center;
+
     `;
 
-    console.log(props)
     const LineToText = styled.div`
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
+        
     `;
     const DeleteBucketList = () => {
         if (window.confirm("인생은 짧습니다.")) {
@@ -31,6 +38,7 @@ const MyBucketList = (props) => {
         data: {id: props.id}
         }).then(res => {
             setPropsId({id:0})
+            props.renderDelete()
         })
         .catch(e => alert("fucking..."))
     }}
@@ -49,6 +57,7 @@ const MyBucketList = (props) => {
             withCredentials: true,
         }).then(res => {
             setIsDone(!isDone)
+            
         })
     }
 
@@ -59,9 +68,11 @@ const MyBucketList = (props) => {
     return (
         <Flex>
             {/* checked로 설정하면 안에 뭔값이 들어가든 체크가 유지된다. 눌렀을때 */}
+            {/* <input type="checkbox" checked={isDone} onChange={toggleCheckBox} /> */}
+            <LineToText>
             <input type="checkbox" checked={isDone} onChange={toggleCheckBox} />
-            <LineToText>게시물 이름 : {props.description}</LineToText>
-            <span>아이디 : {props.id}</span>
+                {props.description}</LineToText>
+            {/* <span>아이디 : {props.id}</span> */}
             <button onClick={DeleteBucketList}>리스트 삭제</button>
         </Flex>
     );
