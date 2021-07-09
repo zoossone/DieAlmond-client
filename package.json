@@ -28,6 +28,7 @@
     "react-rangeslider": "^2.2.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
+    "react-script-tag": "^1.1.2",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
     "redux": "^4.1.0",
@@ -61,6 +62,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://www.worldometers.info/"
+  }
 }
