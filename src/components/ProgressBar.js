@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import { Progress } from 'semantic-ui-react'
 
-const ProgressBar = () => {
+const ProgressBar = ({userInfo}) => {
     //props로 수명을 받아서 스테이트로 표시해줌
 
-    const [ percent, setPercent ] = useState(33);
+    let {age, restLife} = userInfo
+
+    const percentOfLife = (age, restLife) => {
+        const total = age + restLife;
+        return age/total*100
+    }
+
+    const per = percentOfLife(age, restLife);
     
     return (
-        <Progress percent={percent} active progress color='black'/>
+        <Progress percent={per} active progress color='black'/>
     );
 };
 
