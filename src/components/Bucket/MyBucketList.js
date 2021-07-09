@@ -13,20 +13,22 @@ const MyBucketList = (props) => {
         margin-top:5px;
     `;
 
+    console.log(props)
     const LineToText = styled.div`
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
     `;
-
     const DeleteBucketList = () => {
         if (window.confirm("인생은 짧습니다.")) {
-        axios.delete(`http://localhost:3001/add/${props.id}`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            withCredentials: true,
-            // data:{
-            //     id: props.id
-            // }
+        axios.delete(`http://localhost:80/bucket`,{
+            
+                headers: {
+                    "sns":"google",
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${props.userInfo.google}`
+                },
+                withCredentials: true,
+                
+        data: {id: props.id}
         }).then(res => {
             setPropsId({id:0})
         })
@@ -34,12 +36,15 @@ const MyBucketList = (props) => {
     }}
 
     const toggleCheckBox = () => {
-        axios.patch(`http://localhost:3001/add/${props.id}`, {
+        axios.patch(`http://localhost:80/bucket/check`, {
+            id: props.id,
             isChecked: !isDone
-            // 백으로 보내줄때 id값도 보내주기??
+            // 백으로 보내줄때 id값도 보내주기?? 아이디랑 ischecked
         },{
             headers: {
-                "Content-Type": "application/json"
+                "sns":"google",
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${props.userInfo.google}`
             },
             withCredentials: true,
         }).then(res => {

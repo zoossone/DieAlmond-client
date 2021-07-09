@@ -1,8 +1,9 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 const INFO = 'INFO';
 const ADD = 'ADD';
 const DELETE = 'DELETE';
+const RESET = 'RESET';
 
 const addBucket = (bucket) => {
     return {
@@ -25,6 +26,12 @@ const addInfo = (info) => {
     }
 };
 
+const resetInfo = () => {
+    return {
+        type: RESET,
+    }
+}
+
 
 /**
  * 닉네임: nickname
@@ -39,7 +46,7 @@ const addInfo = (info) => {
  */
 
 
-const reducer = (state = {nickName:'김코딩', list:[]}, action) => {
+const reducer = (state = {}, action) => {
     switch (action.type) {
         case ADD:
             return {
@@ -61,6 +68,8 @@ const reducer = (state = {nickName:'김코딩', list:[]}, action) => {
                 ...state,
                 ...action.info
             };
+        case RESET:
+            return {}
         default:
             return state;
     }
@@ -71,7 +80,8 @@ const store = createStore(reducer);
 export const actionCreators = {
     addBucket,
     deleteBucket,
-    addInfo
+    addInfo,
+    resetInfo
 }
 
 export default store;
