@@ -9,11 +9,33 @@ const Almond = ({userInfo}) => {
     }
    
     // Dummy Data. 라이프 퍼센티지 데이터 필요
-    let {age, restLife} = userInfo
+    let { age, sleep, smoking, alcohol, restLife  } = userInfo
 
     const percentOfLife = (age, restLife) => {
         const total = age + restLife;
         return age/total*100
+    }
+
+    if (smoking > 21) {
+        restLife = restLife - 10;
+    } else if (10 < smoking && smoking < 21) {
+        restLife = restLife - 5;
+    } else if (0 < smoking && smoking < 11) {
+        restLife = restLife - 2.5;
+    }
+
+    // 4-2. 술 : 1번 당 3년 단축
+    if (alcohol === 7) {
+        restLife = restLife - 20
+    } else {
+        restLife = restLife - (alcohol * 3)
+    }
+
+    // 4-3. 수면 : 12~10 / 9~7 / 6~4
+    if (sleep > 9) {
+        restLife = restLife - 5
+    } else if (sleep < 7) {
+        restLife = restLife - 5
     }
 
     const per = percentOfLife(age, restLife);

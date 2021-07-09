@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-const AllBucketList = ({userInfo}) => {
+const AllBucketList = ({render,userInfo}) => {
 
     const [allList, setAllList] = useState([]);
     const [likes, setLikes] = useState(false);
@@ -17,11 +17,10 @@ const AllBucketList = ({userInfo}) => {
         withCredentials: true
     })
         .then(res => {
-            console.log(res.data.bucketList);
             setAllList([...res.data.bucketList]);
         })
         .catch(e => e);
-    }, [likes])
+    }, [likes, render])
 
     const handleLike = (e) => {
         axios.patch('http://localhost:80/bucket/like',{
@@ -40,8 +39,6 @@ const AllBucketList = ({userInfo}) => {
             })
             .catch(e => e);
     }
-
-    console.log(allList)
 
     return (
         <ul>

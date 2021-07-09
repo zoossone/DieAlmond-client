@@ -2,17 +2,26 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import MyBucketList from '../components/Bucket/MyBucketList';
 import { connect } from 'react-redux';
+import AllBucketList from '../components/AllBucketList';
+import styled from 'styled-components';
+
+const MyPage = styled.span`
+        display:flex;
+        justify-content: space-between;
+        margin-top:5px;
+        width: 100%;
+        align-items: center;
+        border: 1px solid black;
+    `;
 
 const MyBucketListPage = ({userInfo}) => {
     const [desc, setDesc] = useState('')
     const [objlist, setObjList] = useState([{}])
     const [isChecked, setIsChecked] = useState(false)
     const [render, setRender] = useState(true)
+    const [allBucket, setAllbucket] = useState(true)
+    const [test, setTest] = useState(true)
 
-    console.log(userInfo);
-    // 기존에 있던 리스트를 요청. 왜냐면 사용자의 버킷리스트를 화면에 흩뿌려줘야하니까..
-    // useEffect 두번째인자에 빈배열을 넣어줘서 무조건 한번 렌더링되게 만들어줌.
-    // get요청
     useEffect(() => {
         if(objlist[0] !== undefined) {
          axios.get("http://localhost:80/bucket", {
@@ -33,6 +42,27 @@ const MyBucketListPage = ({userInfo}) => {
             setObjList(newObjlist)
         })}
     }, [render])
+
+    useEffect(() => {
+        if(objlist[0] !== undefined) {
+         axios.get("http://localhost:80/bucket", {
+            headers: {
+                "sns":"google",
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.google}`
+            },
+            withCredentials: true
+        }).then(res => {
+            console.log('resresres', res)
+            console.log(objlist)
+            const newObjlist = []
+            res.data.user.bucketlist.map(el => {
+                    newObjlist.push(el)
+            })
+            
+            setObjList(newObjlist)
+        })}
+    }, [])
 
     const addBucketListBtn = () => {
         if (desc.length === 0) {
@@ -56,18 +86,30 @@ const MyBucketListPage = ({userInfo}) => {
             setObjList(bb)
             setDesc('')
             setRender(!render)
+            setAllbucket(!allBucket)
             document.querySelector('input').value = ''
         })
         }
     }
+
+    const renderDelete = () => {
+        setRender(!render)
+    }
+
     return (
-        <div>
-            <input onChange={(e) => setDesc(e.target.value)} />
-            <button onClick={addBucketListBtn}>버킷추가버튼</button>
+        <>
+        <input onChange={(e) => setDesc(e.target.value)} />
+        <button onClick={addBucketListBtn}>버킷추가버튼</button>
+        <MyPage>
+            <div>
             <ul>{objlist.filter(el => el.id !== undefined)
-            .map((list, i) => <MyBucketList key={i} description={list.bucketName} id={list.id} isChecked={list.isChecked} userInfo={userInfo} />)}
+            .map((list, i) => <MyBucketList key={i} description={list.bucketName} 
+            id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete}/>)}
             </ul>
-        </div>
+            </div>
+            <div><AllBucketList render={render}/></div>
+        </MyPage>
+        </>
     );
 };
 
