@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const AllList = styled.li`
+    font-size: medium;
+`;
 
 const AllBucketList = ({render,userInfo}) => {
 
@@ -44,11 +49,11 @@ const AllBucketList = ({render,userInfo}) => {
         <ul>
             {allList.map((li) => {
                 return (
-                    <li key={li.id} id={li.id} onClick={handleLike}>
+                    <AllList key={li.id} id={li.id} onClick={handleLike}>
                         {li.content} 
                         {li.like.length} 
                                              
-                    </li>
+                    </AllList>
                 )
             })}
 

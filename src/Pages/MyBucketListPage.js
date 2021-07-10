@@ -8,11 +8,46 @@ import styled from 'styled-components';
 const MyPage = styled.span`
         display:flex;
         justify-content: space-between;
-        margin-top:5px;
+        margin-top:10px;
         width: 100%;
-        align-items: center;
         border: 1px solid black;
     `;
+
+const AllBucket = styled.div`
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top:5px;
+        width: 50%;
+        align-items: center;
+        margin: auto;
+`;
+
+const BucketList = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center
+        width: 50%;
+        margin: auto;
+        padding: 0px;
+`;
+
+const AddButton = styled.button`
+        position: relative;
+        font-size: medium;
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid black;
+        transition: all 0.5s ;
+        
+        :hover {
+            background-color: lightblue;
+        }
+`;
+
+const BucketUl = styled.ul`
+        padding:0px;
+`;
 
 const MyBucketListPage = ({userInfo}) => {
     const [desc, setDesc] = useState('')
@@ -98,15 +133,20 @@ const MyBucketListPage = ({userInfo}) => {
     return (
         <>
         <input onChange={(e) => setDesc(e.target.value)} />
-        <button onClick={addBucketListBtn}>버킷추가버튼</button>
+        <AddButton onClick={addBucketListBtn}>버킷추가버튼</AddButton>
         <MyPage>
-            <div>
-            <ul>{objlist.filter(el => el.id !== 'undefined')
+
+            <BucketList>
+            <BucketUl>{objlist.filter(el => el.id !== 'undefined')
             .map((list, i) => <MyBucketList key={i} description={list.bucketName} 
             id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete}/>)}
-            </ul>
-            </div>
-            <div><AllBucketList render={render}/></div>
+            </BucketUl>
+            </BucketList>
+
+            <AllBucket>
+            <h1><i class="fas fa-hands-helping"></i> Other's Bucket List</h1>
+                <AllBucketList render={render}/>
+            </AllBucket>
         </MyPage>
         </>
     );
