@@ -61,10 +61,6 @@ const MyBucketList = (props) => {
         })
     }
 
-    // if(propsId.id === 0) {
-    //     return null
-    // }
-
     return (
         <Flex>
             {/* checked로 설정하면 안에 뭔값이 들어가든 체크가 유지된다. 눌렀을때 */}
