@@ -22,8 +22,8 @@ const MyBucketList = (props) => {
         align-items: center;
         justify-content: space-between;
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
-        
     `;
+
     const DeleteBucketList = () => {
         if (window.confirm("인생은 짧습니다.")) {
         axios.delete(`http://localhost:80/bucket`,{
@@ -59,10 +59,6 @@ const MyBucketList = (props) => {
             setIsDone(!isDone)
             
         })
-    }
-
-    if(propsId.id === 0) {
-        return null
     }
 
     return (

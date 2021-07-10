@@ -20,7 +20,6 @@ const MyBucketListPage = ({userInfo}) => {
     const [isChecked, setIsChecked] = useState(false)
     const [render, setRender] = useState(true)
     const [allBucket, setAllbucket] = useState(true)
-    const [test, setTest] = useState(true)
 
     useEffect(() => {
         if(objlist[0] !== undefined) {
@@ -38,7 +37,6 @@ const MyBucketListPage = ({userInfo}) => {
             res.data.user.bucketlist.map(el => {
                     newObjlist.push(el)
             })
-            
             setObjList(newObjlist)
         })}
     }, [render])
@@ -82,6 +80,7 @@ const MyBucketListPage = ({userInfo}) => {
             withCredentials: true
         }).then(res => {
             const bb = [...objlist]
+            console.log(res.data)
             bb.push(res.data)
             setObjList(bb)
             setDesc('')
@@ -102,7 +101,7 @@ const MyBucketListPage = ({userInfo}) => {
         <button onClick={addBucketListBtn}>버킷추가버튼</button>
         <MyPage>
             <div>
-            <ul>{objlist.filter(el => el.id !== undefined)
+            <ul>{objlist.filter(el => el.id !== 'undefined')
             .map((list, i) => <MyBucketList key={i} description={list.bucketName} 
             id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete}/>)}
             </ul>
