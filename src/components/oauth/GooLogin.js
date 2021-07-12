@@ -13,11 +13,11 @@ const GooLogin = ({ addUserInfo }) => {
     const [isLogin, setIslogin] = useState(false)
     const history = useHistory()
 
-    const onSuccess = (res) => {
+    const onSuccess = async(res) => {
         if(res.accessToken) {
             console.log(res.accessToken);
             console.log('[Login Success] currentUser:', res.profileObj);
-            axios.post('http://localhost:80/google',{
+            await axios.post('http://localhost:80/google',{
               
             }, {
                 headers: {
@@ -59,6 +59,8 @@ const GooLogin = ({ addUserInfo }) => {
                     <GoogleLogin
                         clientId={clientId}
                         buttonText='Login'
+                        uxMode= 'redirect'
+                        redirectUri="https://d2lm80kfny81un.cloudfront.net/"
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}

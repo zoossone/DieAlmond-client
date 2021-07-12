@@ -8,17 +8,31 @@ const MyBucketList = (props) => {
 
     const Flex = styled.span`
         display:flex;
-        justify-content: space-between;
-        border: 1px solid black;
-        margin-top:5px;
-        // margin-right: 40px;
-        width: 100%;
         align-items: center;
+        background-color: #31326f;
+        height: 40px;
+        width: 300px;
+        margin: 7px;
+        justify-content: space-between;
+        border-radius: 4px;
 
+        @media only screen and (max-width: 473px) {
+            transform: translateY(15px);
+            margin-top: -23px;            
+            border: 1px solid white;
+            transition: all 0.5s ease-in;
+
+            :hover {
+                transform: translateY(0px)
+            }
+        }
     `;
 
     const LineToText = styled.div`
         display:flex;
+        height:30px;
+        margin: 5px;
+        color: white;
         align-items: center;
         justify-content: space-between;
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
@@ -63,13 +77,10 @@ const MyBucketList = (props) => {
 
     return (
         <Flex>
-            {/* checked로 설정하면 안에 뭔값이 들어가든 체크가 유지된다. 눌렀을때 */}
-            {/* <input type="checkbox" checked={isDone} onChange={toggleCheckBox} /> */}
             <LineToText>
             <input type="checkbox" checked={isDone} onChange={toggleCheckBox} />
                 {props.description}</LineToText>
-            {/* <span>아이디 : {props.id}</span> */}
-            <button onClick={DeleteBucketList}>리스트 삭제</button>
+            <button onClick={DeleteBucketList}>Del</button>
         </Flex>
     );
 };
