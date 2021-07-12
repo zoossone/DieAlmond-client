@@ -9,18 +9,30 @@ const MyBucketList = (props) => {
     const Flex = styled.span`
         display:flex;
         align-items: center;
+        background-color: #31326f;
         height: 40px;
-        width: 200px;
+        width: 300px;
         margin: 7px;
-        border: 1px solid black;
         justify-content: space-between;
+        border-radius: 4px;
 
+        @media only screen and (max-width: 473px) {
+            transform: translateY(15px);
+            margin-top: -23px;            
+            border: 1px solid white;
+            transition: all 0.5s ease-in;
+
+            :hover {
+                transform: translateY(0px)
+            }
+        }
     `;
 
     const LineToText = styled.div`
         display:flex;
         height:30px;
         margin: 5px;
+        color: white;
         align-items: center;
         justify-content: space-between;
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
@@ -68,7 +80,7 @@ const MyBucketList = (props) => {
             <LineToText>
             <input type="checkbox" checked={isDone} onChange={toggleCheckBox} />
                 {props.description}</LineToText>
-            <button onClick={DeleteBucketList}>리스트 삭제</button>
+            <button onClick={DeleteBucketList}>Del</button>
         </Flex>
     );
 };
