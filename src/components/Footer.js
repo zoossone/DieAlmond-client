@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import font from '../font.css'
 
 const Foot = styled.footer`
         display: flex;
@@ -7,21 +8,32 @@ const Foot = styled.footer`
         width: 100%;
         flex-direction: column;
         align-items: center;
-        background-color: #D9E5FF;
+        background-color: pink;
     `;
 
-const Footer = () => {
+    const FooterText = styled.div`
+        font-family: 'CookieRun-Regular';
+        color: white;
+    `
 
+    const A = styled.a`
+        font-family: 'CookieRun-Regular';
+    color : white;
+    text-decoration: none;
+    margin: 5px;
+    `
+
+const Footer = () => {
     return (
         <Foot>
-            <h3>Die-Almond</h3>
-            <div>
-                <a href="https://github.com/habasa/">김성진<i class="fab fa-github-square"></i></a>
-                <a href="https://github.com/kilo718/">박준수<i class="fab fa-github-square"></i></a><br/>
-                <a href="https://github.com/creamereos/">이진태<i class="fab fa-github-square"></i></a>
-                <a href="https://github.com/zoossone/">주상원<i class="fab fa-github-square"></i></a><br/>
-            </div>
-            <p>2021 DieAlmond - All rights reserved</p>
+            <FooterText>DieAlmond</FooterText>
+            <FooterText>
+                <A href="https://github.com/habasa/" target="_blank">김성진 <i class="fab fa-github-square"></i></A>
+                <A href="https://github.com/kilo718/" target="_blank">박준수 <i class="fab fa-github-square"></i></A>
+                <A href="https://github.com/creamereos/" target="_blank">이진태 <i class="fab fa-github-square"></i></A>
+                <A href="https://github.com/zoossone/" target="_blank">주상원 <i class="fab fa-github-square"></i></A>
+            </FooterText>
+            <FooterText>2021 DieAlmond - All rights reserved</FooterText>
         </Foot>
     );
 };
