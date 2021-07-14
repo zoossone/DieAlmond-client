@@ -76,9 +76,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     if(typeof(userInfo.nickname) !== 'string') {
         addInfo(JSON.parse(localStorage.getItem("info")))
     }
-    console.log(userInfo)
     useEffect(() => {
-        // if (objlist[0] !== undefined) {
             axios.get("http://localhost:80/bucket", {
                 headers: {
                     "sns": "google",
@@ -87,19 +85,15 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                 },
                 withCredentials: true
             }).then(res => {
-                console.log('resresres', res)
-                console.log(objlist)
                 const newObjlist = []
                 res.data.user.bucketlist.map(el => {
                     newObjlist.push(el)
                 })
                 setObjList(newObjlist)
             })
-        // }
     }, [render])
 
     useEffect(() => {
-        // if (objlist[0] !== undefined) {
             axios.get("http://localhost:80/bucket", {
                 headers: {
                     "sns": "google",
@@ -108,8 +102,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                 },
                 withCredentials: true
             }).then(res => {
-                console.log('resresres', res)
-                console.log(objlist)
                 const newObjlist = []
                 res.data.user.bucketlist.map(el => {
                     newObjlist.push(el)
@@ -117,7 +109,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
                 setObjList(newObjlist)
             })
-        // }
     }, [])
 
     const addBucketListBtn = () => {
@@ -138,7 +129,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                 withCredentials: true
             }).then(res => {
                 const bb = [...objlist]
-                console.log(res.data)
                 bb.push(res.data)
                 setObjList(bb)
                 setDesc('')
@@ -164,7 +154,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                 <BucketList>
                     <BucketUl>
                         <h1>My Bucket List</h1>
-                        {objlist.filter(el => el.id !== 'undefined')
+                        {objlist.filter(el => el.id !== undefined)
                             .map((list, i) => <MyBucketList key={i} description={list.bucketName}
                                 id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
                     </BucketUl>

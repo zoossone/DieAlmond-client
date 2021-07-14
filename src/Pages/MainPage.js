@@ -13,6 +13,45 @@ import {actionCreators} from '../store';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
+const Title = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 10px;
+    
+    // border: 1px solid black;
+
+    @media only screen and (max-width: 480px) {
+        flex-direction: column;
+`;
+
+const Aside1 = styled.div`
+    font-size: 20px;
+`;
+
+const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const Nickname = styled.div`
+        margin: 0 0 50px 0;
+        font-size: 3rem;
+        color: #1565c0;
+        line-height: 3.2rem;
+`;
+
+const Aside2 = styled.div`
+    font-size: 20px;
+`;
+
+const Section = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
@@ -70,17 +109,32 @@ const MainPage = ({ userInfo, addInfo }) => {
     // 삼항 연산자 추가
     return (
         <div>
-            {console.log(userInfo)}
             <NaviBar />
-            <Today />
-            <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
-            <CountDown userInfo={userInfo}/>
-            <BucketLists userInfo={userInfo}/>
-            <div>
-            <WiseSaying />
+
+            <Title>
+
+                <Aside1>
+                    <Today />
+                </Aside1>
+
+                <Header> 
+                    <Nickname>'{userInfo.nickname}'님의 남은 인생은.. </Nickname>
+                    <CountDown userInfo={userInfo}></CountDown>
+                </Header>
+
+                <Aside2>
+                    My Bucket List..
+                <BucketLists userInfo={userInfo}/>
+                </Aside2>
+
+            </Title>
+
+            <Section>
+                <WiseSaying />
             <Almond userInfo={userInfo}/>
-            </div>
             <ProgressBar userInfo={userInfo}/>
+            </Section>
+
             <Footer />
         </div>
     );

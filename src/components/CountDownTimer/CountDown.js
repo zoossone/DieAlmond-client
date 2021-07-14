@@ -1,11 +1,48 @@
 // [React Hooks] 
 // useState : Manage State)
 // useEffect : component needs to do something after render
-import React, {useState, useEffect} from 'react'
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
+import styled, { keyframes } from 'styled-components';
 
-const CountDown = ({userInfo}) => {
-    let { sleep, smoking, alcohol, restLife  } = userInfo
+const ReverseTimer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+// const WiseBiggerSmaller = keyframes`
+// from {
+//     width: 20px;
+//     height: 20px;
+// }
+// to {
+//     width: 200px;
+//     height: 200px;
+// }
+// `;
+
+// const Wiseman = styled.div`
+//        margin: 30px auto;
+//        width: 20px;
+//        height: 20px;
+//        background-color: orange;
+//        animation-name: ${WiseBiggerSmaller};
+//        animation-duration: 1.5s;
+//        animation-timing-function: linear;
+//        animation-delay: 2s;
+//        animation-iteration-count: 2;
+//        animation-direction: alternate;
+//        animation-fill-mode: none;
+//        animation-play-state: running;
+// `;
+
+const Wisemans = styled.div`
+    font-size: 50px;
+`;
+
+const CountDown = ({ userInfo }) => {
+    let { sleep, smoking, alcohol, restLife } = userInfo
 
     if (smoking > 21) {
         restLife = restLife - 10;
@@ -35,14 +72,14 @@ const CountDown = ({userInfo}) => {
 
     const now = new Date();
     let dead = {
-        days:  Math.round(restLife * 365) - 1, 
+        days: Math.round(restLife * 365) - 1,
         hours: 23 - now.getHours(),
-        minutes: 59 - now.getMinutes(), 
-        seconds: 59 - now.getSeconds(), 
+        minutes: 59 - now.getMinutes(),
+        seconds: 59 - now.getSeconds(),
         milliseconds: 99
     }
 
-    const { days, hours, minutes, seconds, milliseconds} = dead
+    const { days, hours, minutes, seconds, milliseconds } = dead
 
     const [[day, hrs, mins, secs, mss], setTime] = useState([days, hours, minutes, seconds, milliseconds]);
     // console.log(days, hours, minutes, seconds, milliseconds)
@@ -50,10 +87,10 @@ const CountDown = ({userInfo}) => {
     // change State
     const tick = () => {
         // Time Over
-         if (days === 0 && hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
+        if (days === 0 && hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
             alert('끝')
         }
-        else if ( hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
+        else if (hrs === 0 && mins === 0 && secs === 0 && mss === 0) {
             setTime([days - 1, 23, 59, 59, 99]);
         }
         else if (mins === 0 && secs === 0 && mss === 0) {
@@ -66,21 +103,21 @@ const CountDown = ({userInfo}) => {
             setTime([days, hrs, mins, secs, mss - 1]);
         }
     };
-   
+
     useEffect(() => {
         const timer = setInterval(() => tick(), 10);
         return () => clearInterval(timer);
-    },);
+    });
 
     // console.log(day, hrs, mins, secs, mss);
     // padaytart : 스트링.padaytart(스트링의 길이, 채울 스트링)
     return (
-        <div>
-            <h1>
-                { 
-                  `${day.toString()}일`
+        <ReverseTimer>
+            <Wisemans>
+                {
+                    `${day.toString()}일..`
                 }
-            </h1>
+            </Wisemans>
             <h1>
                 {
                     `
@@ -90,8 +127,8 @@ const CountDown = ({userInfo}) => {
                     ${mss.toString().padStart(2, '0')} 
                     `
                 }
-            </h1> 
-        </div>
+            </h1>
+        </ReverseTimer>
     );
 }
 
