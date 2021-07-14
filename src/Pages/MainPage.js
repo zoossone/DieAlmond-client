@@ -22,7 +22,7 @@ const Title = styled.div`
     
     // border: 1px solid black;
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 600px) {
         flex-direction: column;
 `;
 

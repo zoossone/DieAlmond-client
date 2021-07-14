@@ -14,6 +14,7 @@ const Text = styled.div`
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
+    text-align: center;
 `
 
 const MyPage = styled.span`
@@ -23,7 +24,7 @@ const MyPage = styled.span`
         background-color: white;
         font-family: 'CookieRun-Regular';
 
-        @media only screen and (max-width: 480px) {
+        @media only screen and (max-width: 600px) {
             flex-direction: column;
         }
     `;
@@ -31,6 +32,7 @@ const MyPage = styled.span`
 const AllBucket = styled.div`
         display:flex;
         flex-direction: column;
+        margin-top: 20px;
         justify-content: center;
         width: 100%;
         align-items: center;
@@ -39,9 +41,9 @@ const AllBucket = styled.div`
 
 const BucketList = styled.div`
         display: flex;
+        flex-direction: row;
         justify-content: center;
         width: 100%;
-        padding: 0px;
         font-family: 'CookieRun-Regular';
 `;
 
@@ -96,42 +98,42 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [render, setRender] = useState(true)
     const [allBucket, setAllbucket] = useState(true)
 
-    if(typeof(userInfo.nickname) !== 'string') {
+    if (typeof (userInfo.nickname) !== 'string') {
         addInfo(JSON.parse(localStorage.getItem("info")))
     }
     useEffect(() => {
-            axios.get("http://localhost:80/bucket", {
-                headers: {
-                    "sns": "google",
-                    "Content-Type": "application/json",
-                    "authorization": `Bearer ${userInfo.google}`
-                },
-                withCredentials: true
-            }).then(res => {
-                const newObjlist = []
-                res.data.user.bucketlist.map(el => {
-                    newObjlist.push(el)
-                })
-                setObjList(newObjlist)
+        axios.get("http://localhost:80/bucket", {
+            headers: {
+                "sns": "google",
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.google}`
+            },
+            withCredentials: true
+        }).then(res => {
+            const newObjlist = []
+            res.data.user.bucketlist.map(el => {
+                newObjlist.push(el)
             })
+            setObjList(newObjlist)
+        })
     }, [render])
 
     useEffect(() => {
-            axios.get("http://localhost:80/bucket", {
-                headers: {
-                    "sns": "google",
-                    "Content-Type": "application/json",
-                    "authorization": `Bearer ${userInfo.google}`
-                },
-                withCredentials: true
-            }).then(res => {
-                const newObjlist = []
-                res.data.user.bucketlist.map(el => {
-                    newObjlist.push(el)
-                })
-
-                setObjList(newObjlist)
+        axios.get("http://localhost:80/bucket", {
+            headers: {
+                "sns": "google",
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.google}`
+            },
+            withCredentials: true
+        }).then(res => {
+            const newObjlist = []
+            res.data.user.bucketlist.map(el => {
+                newObjlist.push(el)
             })
+
+            setObjList(newObjlist)
+        })
     }, [])
 
     const addBucketListBtn = () => {
@@ -168,20 +170,16 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
     return (
         <>
-        <Inputform>
-            <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-            <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
-        </Inputform>    
+            <Inputform>
+                <Input type='text' onChange={(e) => setDesc(e.target.value)} />
+                <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
+            </Inputform>
+
             <MyPage>
                 <BucketList>
                     <BucketUl>
-<<<<<<< HEAD
-                        <h1>My Bucket List</h1>
+                    <Text>나의 버킷리스트</Text>
                         {objlist.filter(el => el.id !== undefined)
-=======
-                        <Text>나의 버킷리스트</Text>
-                        {objlist.filter(el => el.id !== 'undefined')
->>>>>>> dev
                             .map((list, i) => <MyBucketList key={i} description={list.bucketName}
                                 id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
                     </BucketUl>
@@ -192,7 +190,8 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                     <AllBucketList render={render} />
                 </AllBucket>
             </MyPage>
-            <Footer/>
+
+            <Footer />
         </>
     );
 };
@@ -202,7 +201,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {addInfo: (info) => {dispatch(actionCreators.addInfo(info))}}
+    return { addInfo: (info) => { dispatch(actionCreators.addInfo(info)) } }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyBucketListPage);

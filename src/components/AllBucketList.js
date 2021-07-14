@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import styled, {keyframes} from 'styled-components';
-import { slideInTop } from '../keyframes/keyframes';
 
 const AllList = styled.div`
     font-size: medium;
