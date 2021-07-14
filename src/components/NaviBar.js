@@ -6,14 +6,37 @@ import KakaoLogin from './oauth/KakaoLogin';
 import {connect} from 'react-redux';
 
 const Nav = styled.div`
-display: flex;
-justify-content: space-between;
-height: 60px;
-border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    background-color: #9ddfd3;
+    padding: 10px;
 `;
-const NavBtn = styled.button`
-width: auto;
-height: 30px;
+
+const BucketBtn = styled.button`
+    -webkit-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    max-width: 120px;
+    border-radius: 4px;
+    
+    :hover {
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+    }
+`;
+
+const SettingBtn = styled.button`
+    -webkit-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    max-width: 120px;
+    border-radius: 4px;
+    
+    :hover {
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
 `;
 
 const NaviBar = ({userInfo}) => {
@@ -29,13 +52,13 @@ const NaviBar = ({userInfo}) => {
 
     return (
         <Nav>
-            <button onClick={memberOnly}>my bucket</button>
+            <BucketBtn onClick={memberOnly}>my bucket</BucketBtn>
             {userInfo.snsLogin ? <GooLogin/> : null}
-            {userInfo.kakao ? <KakaoLogin/> : null}
+            {/* {userInfo.kakao ? <KakaoLogin/> : null} */}
             {/* {!userInfo.google && !userInfo.kakao ? <><GooLogin/><KakaoLogin/></> : null} */}
-            <button onClick={() => {
+            <SettingBtn onClick={() => {
                 history.push('/mymy')
-            }}>setting</button>
+            }}>setting</SettingBtn>
         </Nav>
     );
 };

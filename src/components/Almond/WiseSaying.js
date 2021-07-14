@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Wise = styled.div`
+    display: flex;
+    justify-content: center;
+    font-size: 2.4rem;
+    margin: 40px;
+    contents: 180px;
+    line-height: 2.5rem;
+`;
+
 const WiseSaying = () => {
 
     const wiseSaying = [
@@ -17,9 +26,9 @@ const WiseSaying = () => {
     ]
 
     return (
-        <div>
+        <Wise>
             {wiseSaying[Math.floor(Math.random() * 10)]}
-        </div>
+        </Wise>
     )
 }
 
