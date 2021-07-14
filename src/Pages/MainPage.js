@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import {actionCreators} from '../store';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 
 const MainPage = ({ userInfo, addInfo }) => {
 
@@ -59,6 +60,13 @@ const MainPage = ({ userInfo, addInfo }) => {
     // console.log(userInfo)
     
 
+    const Gravestone = styled.img`
+        width: 40px;
+        position: fixed;
+        top: 53.25%;
+        right: 0%;
+    `
+    
     // 삼항 연산자 추가
     return (
         <div>
