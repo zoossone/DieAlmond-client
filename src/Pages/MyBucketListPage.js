@@ -4,6 +4,7 @@ import MyBucketList from '../components/Bucket/MyBucketList';
 import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
+import Footer from '../components/Footer'
 
 const MyPage = styled.span`
         display:flex;
@@ -11,7 +12,7 @@ const MyPage = styled.span`
         width: 100%;
         background-color: #9ddfd3;
 
-        @media only screen and (max-width: 473px) {
+        @media only screen and (max-width: 480px) {
             flex-direction: column;
         }
     `;
@@ -22,7 +23,6 @@ const AllBucket = styled.div`
         justify-content: center;
         width: 100%;
         align-items: center;
-        margin: auto;
 `;
 
 const BucketList = styled.div`
@@ -32,21 +32,32 @@ const BucketList = styled.div`
         padding: 0px;
 `;
 
-const AddButton = styled.button`
-        margin: 10px;
-        font-size: medium;
-        cursor: pointer;
-        background-color: white;
-        border: 1px solid black;
-        transition: all 0.5s;
-        
-        :hover {
-            background-color: lightblue;
-        }
-`;
-
 const Inputform = styled.div`
         background-color: #dbf6e9;
+`;
+
+const Input = styled.input`
+        width: 200px;
+        margin: 10px;
+        height: 30px;
+        border-radius: 4px;
+        border: 2px solid palevioletred;
+`;
+
+const AddButton = styled.button`
+        height: 30px;
+        margin: 10px;
+        font-size: 1.3rem;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: white;
+        border: 1px solid black;
+        transition: all 0.5s ease;
+        
+        :hover {
+            transform: scale(1.2);
+            background-color: lightblue;
+        }
 `;
 
 const BucketUl = styled.ul`
@@ -139,7 +150,7 @@ const MyBucketListPage = ({ userInfo }) => {
     return (
         <>
         <Inputform>
-            <input onChange={(e) => setDesc(e.target.value)} />
+            <Input type='text' onChange={(e) => setDesc(e.target.value)} />
             <AddButton onClick={addBucketListBtn}>Add BucketList</AddButton>
         </Inputform>    
             <MyPage>
@@ -158,6 +169,7 @@ const MyBucketListPage = ({ userInfo }) => {
                     <AllBucketList render={render} />
                 </AllBucket>
             </MyPage>
+            <Footer/>
         </>
     );
 };
