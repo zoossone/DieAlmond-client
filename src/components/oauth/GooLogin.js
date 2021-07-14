@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
-import KakaoLogin from './KakaoLogin';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 
