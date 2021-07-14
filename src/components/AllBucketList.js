@@ -7,6 +7,7 @@ const AllList = styled.div`
     font-size: medium;
     margin: 25px;
     width: 500px;
+    justify-content: center;
     height: 75px;
     font-size: 1.3em;
     padding: 8px;

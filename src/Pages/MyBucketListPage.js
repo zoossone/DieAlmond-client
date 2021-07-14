@@ -5,12 +5,10 @@ import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
 import Footer from '../components/Footer'
-import { dispatch } from 'd3-dispatch';
 import { actionCreators } from '../store';
-import font from '../font.css'
 
 const Text = styled.div`
-    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
@@ -20,6 +18,7 @@ const Text = styled.div`
 const MyPage = styled.span`
         display:flex;
         justify-content: space-between;
+        flex-direction: row;
         width: 100%;
         background-color: white;
         font-family: 'CookieRun-Regular';
@@ -31,11 +30,9 @@ const MyPage = styled.span`
 
 const AllBucket = styled.div`
         display:flex;
-        flex-direction: column;
-        margin-top: 20px;
+        flex-direction: row;
         justify-content: center;
         width: 100%;
-        align-items: center;
         font-family: 'CookieRun-Regular';
 `;
 
@@ -43,6 +40,7 @@ const BucketList = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: center;
+        margin-bottom: 10px;
         width: 100%;
         font-family: 'CookieRun-Regular';
 `;
@@ -50,6 +48,7 @@ const BucketList = styled.div`
 const Inputform = styled.div`
         display: flex;
         justify-content: center;
+        margin-bottom: 10px;
         font-family: 'CookieRun-Regular';
 `;
 
@@ -89,6 +88,17 @@ const AddButton = styled.button`
 
 const BucketUl = styled.ul`
         padding:10px;
+`;
+
+const ScrollBar = styled.div`
+        width: 100%;
+        height:600px;
+
+        overflow: scroll;
+        -webkit-overflow-style: none;
+        &::-webkit-scrollbar {
+            display: none
+        }
 `;
 
 const MyBucketListPage = ({ userInfo, addInfo }) => {
@@ -177,17 +187,21 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
             <MyPage>
                 <BucketList>
-                    <BucketUl>
-                    <Text>나의 버킷리스트</Text>
-                        {objlist.filter(el => el.id !== undefined)
-                            .map((list, i) => <MyBucketList key={i} description={list.bucketName}
-                                id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
-                    </BucketUl>
+                    <div>
+                        <Text>나의 버킷리스트</Text>
+                        <ScrollBar>
+                            {objlist.filter(el => el.id !== undefined)
+                                .map((list, i) => <MyBucketList key={i} description={list.bucketName}
+                                    id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
+                        </ScrollBar>
+                    </div>
                 </BucketList>
 
                 <AllBucket>
+                <div>
                     <Text>모든 사용자들의 버킷리스트</Text>
-                    <AllBucketList render={render} />
+                    <ScrollBar><AllBucketList render={render} /></ScrollBar>
+                    </div>
                 </AllBucket>
             </MyPage>
 
