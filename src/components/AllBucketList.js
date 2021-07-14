@@ -6,21 +6,22 @@ import { slideInTop } from '../keyframes/keyframes';
 
 const AllList = styled.div`
     font-size: medium;
-    margin-top: 7px;
-    color: white;
-    width: 400px;
+    margin: 25px;
+    width: 500px;
+    height: 75px;
     font-size: 1.3em;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
-    background: #31326f;
-    border: 1px solid black;
+    background: pink;
+    color: white;
+    border: 2.5px solid pink;
 
     :hover {
-        color: black;
+        color: pink;
         transform: scale(1.05);
         transition: all 0.8s ease-out;
-        background: #ffc93c;
+        background: white;
     }
 `;
 
