@@ -8,6 +8,11 @@ import ko from 'date-fns/locale/ko';
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
+const Div = styled.div`
+
+margin: 1rem;
+`
+
 const Calendar = ({setBirth}) => {
     const [startDate, setStartDate] = useState(new Date());
     const years = [] 
@@ -22,7 +27,7 @@ const Calendar = ({setBirth}) => {
     registerLocale("ko", ko);
     
     return (
-        <div>
+        <Div>
             <DatePicker
                 renderCustomHeader={({
                     date,
@@ -82,7 +87,7 @@ const Calendar = ({setBirth}) => {
                 dateFormat="yyyy.MM.dd"
                 placeholderText="ex) 1999.09.09"
                 />
-        </div>
+        </Div>
     );
 };
 

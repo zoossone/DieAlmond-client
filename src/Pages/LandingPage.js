@@ -176,6 +176,7 @@ const LandingPage = ({resetStore}) => {
     const [trialLogin, setTrialLogin] = useState(false)
     const history = useHistory()
 
+    localStorage.clear()
     resetStore()
 
     const handleLoginModal = () => {
@@ -218,7 +219,7 @@ const LandingPage = ({resetStore}) => {
                             <LoginModalBtn1 onClick={handleLoginModal}>회원가입 / <br/>로그인</LoginModalBtn1>
                                 {login === false ?
                                     null :
-                                    <LoginModal />
+                                    <LoginModal handleLoginModal={handleLoginModal}/>
                                 }
                                 <LoginModalBtn2 onClick={handleSettingLoginModal}>비회원</LoginModalBtn2>
                                 {/* {trialLogin === false ?
@@ -238,6 +239,7 @@ const LandingPage = ({resetStore}) => {
             <Landing3>
                 랜딩페이지3
             </Landing3>
+
             <Footer />
         </div>
     );

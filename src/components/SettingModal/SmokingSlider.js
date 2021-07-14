@@ -5,6 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
+import styled from 'styled-components';
+
+const Div = styled.div`
+text-align: center;
+justify-content: center;
+align-items: center;
+margin: auto;
+color: palevioletred;
+`
 
 const useStyles = makeStyles({
   root: {
@@ -42,7 +51,7 @@ export default function SleepSlider({setSmoking}) {
   }
 
   return (
-    <div className={classes.root}>
+    <Div className={classes.root}>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <SmokingRoomsIcon />
@@ -81,6 +90,6 @@ export default function SleepSlider({setSmoking}) {
           />
         </Grid>
       </Grid>
-    </div>
+    </Div>
   );
 }

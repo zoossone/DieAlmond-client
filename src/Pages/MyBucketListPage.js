@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
 import Footer from '../components/Footer'
+import { dispatch } from 'd3-dispatch';
+import { actionCreators } from '../store';
 
 const MyPage = styled.span`
         display:flex;
@@ -64,15 +66,19 @@ const BucketUl = styled.ul`
         padding:0px;
 `;
 
-const MyBucketListPage = ({ userInfo }) => {
+const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [desc, setDesc] = useState('')
     const [objlist, setObjList] = useState([{}])
     const [isChecked, setIsChecked] = useState(false)
     const [render, setRender] = useState(true)
     const [allBucket, setAllbucket] = useState(true)
 
+    if(typeof(userInfo.nickname) !== 'string') {
+        addInfo(JSON.parse(localStorage.getItem("info")))
+    }
+    console.log(userInfo)
     useEffect(() => {
-        if (objlist[0] !== undefined) {
+        // if (objlist[0] !== undefined) {
             axios.get("http://localhost:80/bucket", {
                 headers: {
                     "sns": "google",
@@ -89,11 +95,11 @@ const MyBucketListPage = ({ userInfo }) => {
                 })
                 setObjList(newObjlist)
             })
-        }
+        // }
     }, [render])
 
     useEffect(() => {
-        if (objlist[0] !== undefined) {
+        // if (objlist[0] !== undefined) {
             axios.get("http://localhost:80/bucket", {
                 headers: {
                     "sns": "google",
@@ -111,7 +117,7 @@ const MyBucketListPage = ({ userInfo }) => {
 
                 setObjList(newObjlist)
             })
-        }
+        // }
     }, [])
 
     const addBucketListBtn = () => {
@@ -178,4 +184,8 @@ function mapStateToProps(state) {
     return { userInfo: state }
 }
 
-export default connect(mapStateToProps)(MyBucketListPage);
+function mapDispatchToProps(dispatch) {
+    return {addInfo: (info) => {dispatch(actionCreators.addInfo(info))}}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyBucketListPage);
