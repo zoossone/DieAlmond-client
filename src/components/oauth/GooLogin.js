@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
-import KakaoLogin from './KakaoLogin';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 
@@ -13,11 +12,11 @@ const GooLogin = ({ addUserInfo }) => {
     const [isLogin, setIslogin] = useState(false)
     const history = useHistory()
 
-    const onSuccess = (res) => {
+    const onSuccess = async(res) => {
         if(res.accessToken) {
             console.log(res.accessToken);
             console.log('[Login Success] currentUser:', res.profileObj);
-            axios.post('http://localhost:80/google',{
+            await axios.post('http://localhost:80/google',{
               
             }, {
                 headers: {
@@ -30,6 +29,7 @@ const GooLogin = ({ addUserInfo }) => {
                 setIslogin(!isLogin)
                 const realToken = res.data.access_token
                 addUserInfo({ google: realToken.slice(7) })
+                localStorage.setItem("isLogin", "login");
                 history.push('/main')
             }).catch((e) => alert(e))
         }
@@ -56,7 +56,7 @@ const GooLogin = ({ addUserInfo }) => {
         <div>
             {
                 isLogin === false ?
-                    <GoogleLogin
+                        <GoogleLogin
                         clientId={clientId}
                         buttonText='Login'
                         onSuccess={onSuccess}

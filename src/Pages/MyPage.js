@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import Calendar from '../components/SettingModal/Calendar'
 import SleepSlider from '../components/SettingModal/SleepSlider';
 import SmokingSlider from '../components/SettingModal/SmokingSlider'
@@ -37,6 +37,60 @@ import { useHistory } from 'react-router-dom';
 //     z-index: 10000;
 //     border-radius: 5px;
 // `
+
+const Container = styled.div`
+display: flex;
+text-align: center;
+justify-content: center;
+align-items: center;
+font-size: 1.2rem;
+vertical-align: middle;
+margin-top: 11rem;
+`
+
+const Title = styled.h1`
+  font-size: 2rem;
+  text-align: center;
+  color: palevioletred;
+`;
+
+const Input = styled.input`
+margin: 1rem
+`
+
+const Div = styled.div`
+font-weight: bold;
+color: palevioletred;
+`
+
+const Button = styled.button`
+text-align:center;
+background:#db7093;
+color:#fff;
+border:none;
+position:relative;
+height:60px;
+font-size:1.3rem;
+padding:0 1rem;
+cursor:pointer;
+transition:300ms ease all;
+outline:none;
+border-radius: 20px;
+margin: 0.5rem;
+
+:hover{
+    background:#fff;
+    color:#db7093;
+}
+`
+
+const Form = styled.form`
+border: 3px solid #db7093;
+padding: 3rem;
+border-radius: 60px;
+`
+
+
 
 const MyPage = ({ userInfo, addUserInfo }) => {
 
@@ -92,36 +146,49 @@ const MyPage = ({ userInfo, addUserInfo }) => {
 
             alert('입력하신 값에 따른 기대여명을 보여드립니다!')
 
-            if(userInfo.google) {
-                axios.post('http://localhost:80/setting',{
+            if (userInfo.google) {
+                axios.post('http://localhost:80/setting', {
                     nickName: nickname,
-                gender: gender,
-                birth: date,
-                year: year,
-                age: age,
-                month: month,
-                day: day,
-                sleep: parseInt(sleep),
-                smoking: parseInt(smoking),
-                alcohol: parseInt(alcohol)
-                },{
+                    gender: gender,
+                    birth: date,
+                    year: year,
+                    age: age,
+                    month: month,
+                    day: day,
+                    sleep: parseInt(sleep),
+                    smoking: parseInt(smoking),
+                    alcohol: parseInt(alcohol)
+                }, {
                     headers: {
-                        'sns':'google',
+                        'sns': 'google',
                         "Content-Type": "application/json",
                         "authorization": `Bearer ${userInfo.google}`
                     },
                     withCredentials: true
                 })
-                .then((res) => {
-                    addUserInfo({restLife: parseInt(res.data.life)})
-                    alert('변경을 완료했습니다 :)')
-                    console.log(res)
-                    console.log(userInfo)
-                })
-                .then((res) => {
-                    history.push('/main')
-                })
-                .catch(e => e)   
+                    .then((res) => {
+                        addUserInfo({ restLife: parseInt(res.data.life) })
+                        alert('변경을 완료했습니다 :)')
+                        // console.log(res)
+                        // console.log(userInfo)
+                        localStorage.setItem("info", JSON.stringify({
+                            'nickname': nickname,
+                            'gender': gender,
+                            'birth': date,
+                            'year': year,
+                            'age': age,
+                            'month': month,
+                            'day': day,
+                            'sleep': parseInt(sleep),
+                            'smoking': parseInt(smoking),
+                            'alcohol': parseInt(alcohol),
+                            'restLife': parseInt(res.data.life)
+                        }))
+                    })
+                    .then((res) => {
+                        history.push('/main')
+                    })
+                    .catch(e => e)
             } else {
                 axios.post('http://localhost:80/setting', {
                     headers: {
@@ -139,19 +206,31 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                     smoking: parseInt(smoking),
                     alcohol: parseInt(alcohol)
                 })
-                .then((res) => {
-                    addUserInfo({restLife: parseInt(res.data.life)})
-                    alert('변경을 완료했습니다 :)')
-                    // console.log(res)
-                    // console.log(userInfo)
-                })
-                .then((res) => {
-                    history.push('/main')
-                })
-                .catch(e => e)   
+                    .then((res) => {
+                        addUserInfo({ restLife: parseInt(res.data.life) })
+                        alert('변경을 완료했습니다 :)')
+                        // console.log(res)
+                        localStorage.setItem("info", JSON.stringify({
+                            'nickname': nickname,
+                            'gender': gender,
+                            'birth': date,
+                            'year': year,
+                            'age': age,
+                            'month': month,
+                            'day': day,
+                            'sleep': parseInt(sleep),
+                            'smoking': parseInt(smoking),
+                            'alcohol': parseInt(alcohol),
+                            'restLife': parseInt(res.data.life)
+                        }))
+                    })
+                    .then((res) => {
+                        history.push('/main')
+                    })
+                    .catch(e => e)
             }
         }
-        // history.push('/main')
+
     }
 
     const onClick = () => {
@@ -161,9 +240,9 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     const withdrawal = () => {
         axios.delete('http://localhost:80/withdrawal', {
             headers: {
-                "sns":"google",
-            "Content-Type": "application/json",
-            "authorization": `Bearer ${userInfo.google}`
+                "sns": "google",
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${userInfo.google}`
             },
             withCredentials: true,
         }).then(res => {
@@ -174,30 +253,28 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     }
 
     return (
-        <>
-            <header>
-                <h2>오래 살고싶으면 정보를 수정해버리세요</h2>
-            </header>
-            <form onSubmit={onSubmit}>
+        <Container>
+            <Form onSubmit={onSubmit}>
+            <Title>정보를 입력해서 기대 수명을 확인해보세요 🙌</Title>
                 {/* input text */}
-                <div>닉네임 입력</div>
-                <input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></input>
+                <Div>닉네임 입력</Div>
+                <Input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></Input>
                 {/* <Input /> */}
                 <hr />
                 {console.log(userInfo)}
                 {console.log(nickname)}
 
                 {/* radio : gender */}
-                <div>성별 선택</div>
-                <input type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex} />
+                <Div>성별 선택</Div>
+                <Input type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex} />
                 <label>남성</label>
-                <input type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex} />
+                <Input type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex} />
                 <label>여성</label>
                 <hr />
                 {console.log(gender)}
 
                 {/* DatePicker : Birth Day */}
-                <div>생년월일 입력</div>
+                <Div>생년월일 입력</Div>
                 {/* <DatePicker 
                             selected={startDate} 
                             onChange={(date) => setStartDate(date)} 
@@ -215,15 +292,15 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 <AlcoholSlider setAlcohol={setAlcohol} />
                 {console.log(alcohol)}
                 <hr />
-                <button>완료</button>
+                <Button>완료</Button>
                 {typeof (userInfo.nickname) === 'string' ?
                     <div>
-                        <button onClick={onClick}>메인으로 가기</button>
-                        {typeof(userInfo.google) === 'string' ? <button onClick={withdrawal}>회원탈퇴</button> : null}
+                        <Button onClick={onClick}>메인으로 가기</Button>
+                        {typeof (userInfo.google) === 'string' ? <Button onClick={withdrawal}>회원탈퇴</Button> : null}
                     </div>
                     : null}
-            </form>
-        </>
+            </Form>
+        </Container>
     );
 };
 

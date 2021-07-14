@@ -11,20 +11,23 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import {actionCreators} from '../store';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 
 const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
-    
-    const [nickname, setNickname]=useState('');
-    const [sleep, setSleep]=useState(0);
-    const [smoking, setSmoking]=useState(0);
-    const [alcohol, seyAlcohol]=useState(0);
-    const [restLife, setRestLife]=useState(0);
-    const [reren, setReren] = useState({});
+
+    // let userSrc = JSON.parse(localStorage.getItem("state"))
+
+    // console.log(userSrc)
+
+    // if (typeof(userInfo.nickname) !== 'string') {
+    //     addInfo(userSrc)
+    // }
     
     useEffect(() => {
-        if(userInfo.google){
+
+        if(localStorage.getItem("isLogin") === 'login'){
             axios.get('http://localhost:80/main', {
             headers: {
                 'sns':'google',
@@ -38,11 +41,18 @@ const MainPage = ({ userInfo, addInfo }) => {
                 if(typeof(res.data.userinfo.nickname) === 'string') {
                     addInfo(res.data.userinfo);
                     console.log(res.data.userinfo, userInfo)
+                    localStorage.setItem("info", JSON.stringify(res.data.userinfo))
                 } else {
                     history.push('/mymy');
                 }
             })
             .catch(e => e);
+        } 
+        
+        if (localStorage.getItem("isLogin") === 'login' && localStorage.getItem("info")) {
+            addInfo(JSON.parse(localStorage.getItem("info")))
+        } else {
+            addInfo(JSON.parse(localStorage.getItem("info")))
         }
     }, []) 
     
