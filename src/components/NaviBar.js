@@ -20,7 +20,7 @@ const NaviBar = ({userInfo}) => {
     const history = useHistory()
 
     const memberOnly = () => {
-        if(userInfo.google || userInfo.kakao) {
+        if(userInfo.snsLogin || userInfo.kakao) {
             history.push('/bucket')
         } else if(window.confirm('로그인하실래요?'))  {
             history.push('/')
@@ -30,7 +30,7 @@ const NaviBar = ({userInfo}) => {
     return (
         <Nav>
             <button onClick={memberOnly}>my bucket</button>
-            {userInfo.google ? <GooLogin/> : null}
+            {userInfo.snsLogin ? <GooLogin/> : null}
             {userInfo.kakao ? <KakaoLogin/> : null}
             {/* {!userInfo.google && !userInfo.kakao ? <><GooLogin/><KakaoLogin/></> : null} */}
             <button onClick={() => {
