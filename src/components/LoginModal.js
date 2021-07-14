@@ -26,15 +26,20 @@ width: 180px;
 height: 300px;
 background: white;
 border-radius: 4px;
+border: 4px solid #db7093;
 `;
+
+const Div = styled.div`
+color: #db7093;
+`
 
 const LoginModal = (props) => {
 
     return (
-            <Modalcontainer onClick={props.handleLoginModal}>
+            <Modalcontainer onClick={() => props.handleLoginModal()}>
                 <Modal onClick={(e) => e.stopPropagation()}>
+                    <Div>로그인/회원가입</Div>
                 <GooLogin />
-                <KakaoLogin />
                 </Modal>
             </Modalcontainer>
     );

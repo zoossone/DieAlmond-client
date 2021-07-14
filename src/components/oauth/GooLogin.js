@@ -30,6 +30,7 @@ const GooLogin = ({ addUserInfo }) => {
                 setIslogin(!isLogin)
                 const realToken = res.data.access_token
                 addUserInfo({ google: realToken.slice(7) })
+                localStorage.setItem("isLogin", "login");
                 history.push('/main')
             }).catch((e) => alert(e))
         }
@@ -56,11 +57,9 @@ const GooLogin = ({ addUserInfo }) => {
         <div>
             {
                 isLogin === false ?
-                    <GoogleLogin
+                        <GoogleLogin
                         clientId={clientId}
                         buttonText='Login'
-                        uxMode= 'redirect'
-                        redirectUri="https://d2lm80kfny81un.cloudfront.net/"
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}

@@ -45,6 +45,7 @@ const LandingPage = ({resetStore}) => {
     const [trialLogin, setTrialLogin] = useState(false)
     const history = useHistory()
 
+    localStorage.clear()
     resetStore()
     
     const handleLoginModal = () => {
@@ -68,7 +69,7 @@ const LandingPage = ({resetStore}) => {
                 <LoginModalBtn onClick={handleLoginModal}>Login</LoginModalBtn>
                 {login === false ?
                     null :
-                    <LoginModal />
+                    <LoginModal handleLoginModal={handleLoginModal}/>
                 }
                 <LoginModalBtn onClick={handleSettingLoginModal}>Trial</LoginModalBtn>
                 {/* {trialLogin === false ?
