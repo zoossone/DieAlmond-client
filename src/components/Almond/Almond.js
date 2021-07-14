@@ -4,6 +4,8 @@ import EasterEgg from '../EasterEgg/EasterEgg'
 
 const Almond = ({userInfo}) => {
 
+    const [start, setStart] = useState(false);
+
     const handleEasterEgg = () => {
         setStart(!start)
     }
