@@ -13,9 +13,41 @@ import {actionCreators} from '../store';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
+const Loader = styled.div`
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 1;
+width: 120px;
+height: 120px;
+margin: -76px 0 0 -76px;
+border: 16px solid #f3f3f3;
+border-radius: 50%;
+border-top: 16px solid #35A88E;
+-webkit-animation: spin 2s linear infinite;
+animation: spin 2s linear infinite;
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`
+
+const Div = styled.div`
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 1;
+width: 120px;
+height: 120px;
+margin: 80px 0 0 -76px;
+font-weight: bold;
+`
+
 const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
+    const [isLoading, setIsLoading] = useState(true);
 
     // let userSrc = JSON.parse(localStorage.getItem("state"))
 
@@ -42,6 +74,7 @@ const MainPage = ({ userInfo, addInfo }) => {
                     addInfo(res.data.userinfo);
                     console.log(res.data.userinfo, userInfo)
                     localStorage.setItem("info", JSON.stringify(res.data.userinfo))
+                    setIsLoading(false);
                 } else {
                     history.push('/mymy');
                 }
@@ -51,10 +84,12 @@ const MainPage = ({ userInfo, addInfo }) => {
         
         if (localStorage.getItem("isLogin") === 'login' && localStorage.getItem("info")) {
             addInfo(JSON.parse(localStorage.getItem("info")))
+            setIsLoading(false);
         } else {
             addInfo(JSON.parse(localStorage.getItem("info")))
+            setIsLoading(false);
         }
-    }, []) 
+    }, [isLoading]) 
     
 
     // console.log(userInfo)
@@ -71,6 +106,7 @@ const MainPage = ({ userInfo, addInfo }) => {
     return (
         <div>
             {console.log(userInfo)}
+            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
             <NaviBar />
             <Today />
             <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
@@ -82,6 +118,7 @@ const MainPage = ({ userInfo, addInfo }) => {
             </div>
             <ProgressBar userInfo={userInfo}/>
             <Footer />
+            </>}
         </div>
     );
 };

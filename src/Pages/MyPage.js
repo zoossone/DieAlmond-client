@@ -238,18 +238,20 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     }
 
     const withdrawal = () => {
-        axios.delete('http://localhost:80/withdrawal', {
-            headers: {
-                "sns": "google",
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${userInfo.google}`
-            },
-            withCredentials: true,
-        }).then(res => {
-            alert('좋은 일만 가득하길 빌게요!')
-            history.push('/')
-        })
-            .catch(e => alert(e))
+        if(window.confirm("정말 탈퇴 하시겠어요?")) {
+            axios.delete('http://localhost:80/withdrawal', {
+                headers: {
+                    "sns": "google",
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${userInfo.google}`
+                },
+                withCredentials: true,
+            }).then(res => {
+                alert('좋은 일만 가득하길 빌게요!')
+                history.push('/')
+            })
+                .catch(e => alert(e))
+        }
     }
 
     return (
