@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 import StartBtn from './components/StartBtn';
 import MyPage from './Pages/MyPage';
 import BucketListPage from './Pages/BucketListPage';
+import EasterEgg2 from './components/EasterEgg/EasterEgg2';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         )} />
 
       <StartBtn />
+      <EasterEgg2 />
     </div>
   );
 }
