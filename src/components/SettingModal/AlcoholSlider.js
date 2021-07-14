@@ -6,13 +6,18 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import styled from 'styled-components';
+import font from '../../font.css'
 
 const Div = styled.div`
-text-align: center;
-justify-content: center;
-align-items: center;
-margin: auto;
-color: palevioletred;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  color: pink;
+`
+
+const Text = styled.div`
+    font-family: 'CookieRun-Regular';
 `
 
 const useStyles = makeStyles({
@@ -58,7 +63,7 @@ export default function AlcoholSlider({setAlcohol}) {
         </Grid>
         <Grid item xs>
           <Typography id="discrete-slider" gutterBottom>
-            일주일 음주 횟수
+            <Text>일주일 음주 횟수</Text>
           </Typography>
           <Slider
             defaultValue={0}

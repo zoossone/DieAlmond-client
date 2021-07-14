@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import font from '../../font.css'
 
 const MyBucketList = (props) => {
     const [propsId, setPropsId] = useState(props)
@@ -9,13 +10,22 @@ const MyBucketList = (props) => {
     const Flex = styled.span`
         display:flex;
         align-items: center;
-        background-color: #31326f;
-        height: 50px;
-        font-size: 1.3rem;
-        width: 400px;
-        margin: 7px;
-        justify-content: space-between;
-        border-radius: 4px;
+        font-size: medium;
+        margin: 25px;
+        width: 500px;
+        height: 75px;
+        font-size: 1.3em;
+        padding: 8px;
+        border-radius: 15px;
+        cursor: pointer;
+        color: black;
+        border: 2.5px solid pink;
+
+        :hover {
+        transform: scale(1.05);
+        transition: all 0.8s ease-out;
+        background: white;
+        }
 
         @media only screen and (max-width: 480px) {
             transform: translateY(15px);
@@ -34,24 +44,22 @@ const MyBucketList = (props) => {
             border-radius: 0.25rem;
             font-size: 1rem;
             line-height: 1.5;
-            border: 1px solid lightgray;
-            color: black;
-            backgroud: white;
+            border: 1px solid pink;
+            background-color: white;
+            color: pink;
+            border-radius: 20px;
+            font-family: 'CookieRun-Regular';
             -webkit-transition: all 1s cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-moz-transition: all 1s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	        -moz-transition: all 1s cubic-bezier(0.390, 0.500, 0.150, 1.360);
             transition: all 1s cubic-bezier(0.390, 0.500, 0.150, 1.360);
 
-            :hover {
-                color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
-            }
     `;
 
     const LineToText = styled.div`
         display:flex;
         height:30px;
         margin: 5px;
-        color: white;
+        color: pink;
         align-items: center;
         justify-content: space-between;
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
@@ -99,8 +107,9 @@ const MyBucketList = (props) => {
         <Flex>
             <LineToText>
                 <input type="checkbox" checked={isDone} onChange={toggleCheckBox} />
-                {props.description}</LineToText>
-            <DeleteBtn onClick={DeleteBucketList}>Del</DeleteBtn>
+                {props.description}
+            </LineToText>
+            <DeleteBtn onClick={DeleteBucketList}>삭제</DeleteBtn>
         </Flex>
     );
 };

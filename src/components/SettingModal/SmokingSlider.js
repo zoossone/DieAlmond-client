@@ -6,14 +6,20 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import SmokingRoomsIcon from '@material-ui/icons/SmokingRooms';
 import styled from 'styled-components';
+import font from '../../font.css'
 
 const Div = styled.div`
 text-align: center;
 justify-content: center;
 align-items: center;
 margin: auto;
-color: palevioletred;
+color: pink;
 `
+
+const Text = styled.div`
+    font-family: 'CookieRun-Regular';
+`
+
 
 const useStyles = makeStyles({
   root: {
@@ -58,7 +64,7 @@ export default function SleepSlider({setSmoking}) {
         </Grid>
         <Grid item xs>
           <Typography id="discrete-slider" gutterBottom>
-            하루 흡연량
+            <Text>하루 흡연량</Text>
           </Typography>
           <Slider
             defaultValue={0}
@@ -68,7 +74,7 @@ export default function SleepSlider({setSmoking}) {
             step={1}
             marks
             min={0}
-            max={20}
+            max={40}
             onChange={handleSliderChange}
             value={typeof value === 'number' ? value : 0}
           />
