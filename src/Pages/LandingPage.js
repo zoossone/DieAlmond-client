@@ -239,7 +239,7 @@ const LandingPage = ({resetStore}) => {
             <Landing3>
                 랜딩페이지3
             </Landing3>
->>>>>>> dev
+
             <Footer />
         </div>
     );
