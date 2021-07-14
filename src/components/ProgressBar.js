@@ -23,7 +23,7 @@ const ProgressBar = ({userInfo}) => {
     if (alcohol === 7) {
         restLife = restLife - 20
     } else {
-        restLife = restLife - (alcohol * 3)
+        restLife = restLife - (alcohol * 2)
     }
 
     // 4-3. 수면 : 12~10 / 9~7 / 6~4

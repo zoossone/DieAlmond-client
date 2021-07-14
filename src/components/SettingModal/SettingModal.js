@@ -9,13 +9,14 @@ import { actionCreators } from '../../store';
 import { Route, Router } from 'react-router';
 import MainPage from '../../Pages/MainPage';
 import axios from 'axios';
+import font from '../../font.css'
 
 const Modalcontainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -32,6 +33,10 @@ const Modal = styled.span`
     height: 500px;
     background: white;
     border-radius: 5px;
+`
+
+const Label = styled.div`
+    color: pink;
 `
 
 const SettingModal =  ({userInfo, addUserInfo}) => {
