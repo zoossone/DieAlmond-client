@@ -11,6 +11,7 @@ import MainPage from './MainPage';
 import axios from 'axios';
 import { Component } from 'react';
 import { useHistory } from 'react-router-dom';
+import font from '../font.css'
 
 // const Modalcontainer = styled.div`
 //     display: flex;
@@ -39,19 +40,21 @@ import { useHistory } from 'react-router-dom';
 // `
 
 const Container = styled.div`
-display: flex;
-text-align: center;
-justify-content: center;
-align-items: center;
-font-size: 1.2rem;
-vertical-align: middle;
-margin-top: 11rem;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    font-family: 'CookieRun-Regular';
 `
 
 const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: palevioletred;
+    font-size: 2rem;
+    text-align: center;
+    color: pink;
+    font-family: 'CookieRun-Regular';
 `;
 
 const Input = styled.input`
@@ -59,35 +62,39 @@ margin: 1rem
 `
 
 const Div = styled.div`
-font-weight: bold;
-color: palevioletred;
+    font-weight: bold;
+    color: pink;
 `
 
 const Button = styled.button`
-text-align:center;
-background:#db7093;
-color:#fff;
-border:none;
-position:relative;
-height:60px;
-font-size:1.3rem;
-padding:0 1rem;
-cursor:pointer;
-transition:300ms ease all;
-outline:none;
-border-radius: 20px;
-margin: 0.5rem;
+    margin: 30px;
+    text-align:center;
+    background:pink;
+    color:white;
+    border:none;
+    position:relative;
+    height:40px;
+    width: 110px;
+    font-size:1.3rem;
+    padding:0 1rem;
+    cursor:pointer;
+    transition:300ms ease all;
+    outline:none;
+    border-radius: 30px;
+    margin: 0.5rem;
+    font-family: 'CookieRun-Regular';
 
-:hover{
-    background:#fff;
-    color:#db7093;
+    :hover{
+        background: white;
+        color: pink;
+        border: solid 2px pink;
 }
 `
 
 const Form = styled.form`
-border: 3px solid #db7093;
-padding: 3rem;
-border-radius: 60px;
+    border: 3px solid pink;
+    padding: 3rem;
+    border-radius: 60px;
 `
 
 
@@ -295,7 +302,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 <Button>완료</Button>
                 {typeof (userInfo.nickname) === 'string' ?
                     <div>
-                        <Button onClick={onClick}>메인으로 가기</Button>
+                        <Button onClick={onClick}>메인 화면</Button>
                         {typeof (userInfo.google) === 'string' ? <Button onClick={withdrawal}>회원탈퇴</Button> : null}
                     </div>
                     : null}

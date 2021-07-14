@@ -7,12 +7,21 @@ import styled from 'styled-components';
 import Footer from '../components/Footer'
 import { dispatch } from 'd3-dispatch';
 import { actionCreators } from '../store';
+import font from '../font.css'
+
+const Text = styled.div`
+    margin-top: 10px;
+    font-size: 2.5rem;
+    font-family: 'CookieRun-Regular';
+    color: pink;
+`
 
 const MyPage = styled.span`
         display:flex;
         justify-content: space-between;
         width: 100%;
-        background-color: #9ddfd3;
+        background-color: white;
+        font-family: 'CookieRun-Regular';
 
         @media only screen and (max-width: 480px) {
             flex-direction: column;
@@ -25,6 +34,7 @@ const AllBucket = styled.div`
         justify-content: center;
         width: 100%;
         align-items: center;
+        font-family: 'CookieRun-Regular';
 `;
 
 const BucketList = styled.div`
@@ -32,38 +42,51 @@ const BucketList = styled.div`
         justify-content: center;
         width: 100%;
         padding: 0px;
+        font-family: 'CookieRun-Regular';
 `;
 
 const Inputform = styled.div`
-        background-color: #dbf6e9;
+        display: flex;
+        justify-content: center;
+        font-family: 'CookieRun-Regular';
 `;
 
 const Input = styled.input`
-        width: 200px;
+        width: 500px;
+        height: 50px;
         margin: 10px;
-        height: 30px;
         border-radius: 4px;
-        border: 2px solid palevioletred;
+        border: 2px solid pink;
+        font-size: 2rem;
+        font-family: 'CookieRun-Regular';
+        color: pink;
+        :focus {
+            outline: none;
+        }
 `;
 
 const AddButton = styled.button`
-        height: 30px;
+        width: 100px;
+        height: 50px;
         margin: 10px;
         font-size: 1.3rem;
         cursor: pointer;
         border-radius: 4px;
-        background-color: white;
-        border: 1px solid black;
+        background-color: pink;
+        border: 2px solid pink;
         transition: all 0.5s ease;
+        font-family: 'CookieRun-Regular';
+        color: white;
         
         :hover {
             transform: scale(1.2);
-            background-color: lightblue;
+            color:pink;
+            background-color: white;
         }
 `;
 
 const BucketUl = styled.ul`
-        padding:0px;
+        padding:10px;
 `;
 
 const MyBucketListPage = ({ userInfo, addInfo }) => {
@@ -147,21 +170,25 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
         <>
         <Inputform>
             <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-            <AddButton onClick={addBucketListBtn}>Add BucketList</AddButton>
+            <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
         </Inputform>    
             <MyPage>
-
                 <BucketList>
                     <BucketUl>
+<<<<<<< HEAD
                         <h1>My Bucket List</h1>
                         {objlist.filter(el => el.id !== undefined)
+=======
+                        <Text>나의 버킷리스트</Text>
+                        {objlist.filter(el => el.id !== 'undefined')
+>>>>>>> dev
                             .map((list, i) => <MyBucketList key={i} description={list.bucketName}
                                 id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
                     </BucketUl>
                 </BucketList>
 
                 <AllBucket>
-                    <h1><i class="fas fa-hands-helping"></i> Other's Bucket List</h1>
+                    <Text>모든 사용자들의 버킷리스트</Text>
                     <AllBucketList render={render} />
                 </AllBucket>
             </MyPage>

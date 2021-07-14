@@ -6,13 +6,18 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import HotelIcon from '@material-ui/icons/Hotel';
 import styled from 'styled-components';
+import font from '../../font.css'
 
 const Div = styled.div`
 text-align: center;
 justify-content: center;
 align-items: center;
 margin: auto;
-color: palevioletred;
+color: pink;
+`
+
+const Text = styled.div`
+    font-family: 'CookieRun-Regular';
 `
 
 const useStyles = makeStyles({
@@ -58,7 +63,7 @@ export default function SleepSlider({setSleep}) {
         </Grid>
         <Grid item xs>
           <Typography id="discrete-slider" gutterBottom>
-            하루 수면 시간
+            <Text>하루 수면 시간</Text>
           </Typography>
           <Slider
             defaultValue={0}
