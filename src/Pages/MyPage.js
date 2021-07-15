@@ -14,7 +14,6 @@ import { useHistory } from 'react-router-dom';
 import font from '../font.css'
 import { GoogleLogin, GoogleLogout, useGoogleLogout } from 'react-google-login';
 
-
 // const Modalcontainer = styled.div`
 //     display: flex;
 //     justify-content: center;
@@ -57,15 +56,50 @@ const Title = styled.h1`
     text-align: center;
     color: pink;
     font-family: 'CookieRun-Regular';
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 `;
 
 const Input = styled.input`
-margin: 1rem
+    width: 200px;
+    height: 3rem;
+    color: pink;
+    margin: 1rem;
+    font-size: 1.5rem;
+    text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+    border: solid 5px pink;
+    border-radius: 5px;
+
+    :focus {
+        outline: none;
+    }
+
+    ::placeholder {
+        color: white;
+        font-size: 1.25rem;
+    }
+`
+
+const Radio = styled.input`
+
+    margin: 10px;
+    width:20px;
+    height:20px;
+
+    :focus {
+        outline: none;
+    }
 `
 
 const Div = styled.div`
     font-weight: bold;
     color: pink;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+`
+
+const Span = styled.span`
+    font-weight: bold;
+    color: pink;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `
 
 const Button = styled.button`
@@ -85,6 +119,7 @@ const Button = styled.button`
     border-radius: 30px;
     margin: 0.5rem;
     font-family: 'CookieRun-Regular';
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     :hover{
         background: white;
@@ -153,8 +188,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 alcohol: parseInt(alcohol)
             })
 
-            alert('입력하신 값에 따른 기대여명을 보여드립니다!')
-
             if (userInfo.google) {
                 axios.post('http://localhost:80/setting', {
                     nickName: nickname,
@@ -177,7 +210,7 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 })
                     .then((res) => {
                         addUserInfo({ restLife: parseInt(res.data.life) })
-                        alert('변경을 완료했습니다 :)')
+                        alert('변경 완료 :)')
                         // console.log(res)
                         // console.log(userInfo)
                         localStorage.setItem("info", JSON.stringify({
@@ -272,7 +305,7 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 <Title>정보를 입력해서 기대 수명을 확인해보세요 🙌</Title>
                 {/* input text */}
                 <Div>닉네임 입력</Div>
-                <Input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></Input>
+                <Input type='text' placeholder='닉네임을 입력하세요.' onChange={onChange} value={nickname}></Input>
                 {/* <Input /> */}
                 <hr />
                 {console.log(userInfo)}
@@ -280,10 +313,10 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
 
                 {/* radio : gender */}
                 <Div>성별 선택</Div>
-                <Input type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex} />
-                <label>남성</label>
-                <Input type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex} />
-                <label>여성</label>
+                <Radio type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex} />
+                <Span>남성</Span>
+                <Radio type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex} />
+                <Span>여성</Span>
                 <hr />
                 {console.log(gender)}
 

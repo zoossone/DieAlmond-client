@@ -5,8 +5,37 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
 const ShowRandom = styled.div`
+    max-width: 15rem;
     line-height: 1.8rem;
+    padding: 2px;
+    background-color: pink;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `;
+
+const BucketAdd = styled.button`
+    margin-right: 20px;
+    border-radius: 4px;
+    background-color: white;
+    border: outset 4px pink;
+    color: pink;
+    cursor: pointer;
+    width: 15rem;
+    height: 50px;
+    font-family: 'CookieRunOTF-Bold';
+    font-size: 15px;
+    font-weight: 900;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    
+    &:hover {
+        border: inset 4px white;
+        color: white;
+        background-color: pink;
+    }
+`
 
 const BucketLists = ({userInfo}) => {
     const history = useHistory();
@@ -34,12 +63,14 @@ const BucketLists = ({userInfo}) => {
     return (
         <div>
             <br/>
-            {userInfo.list === undefined || userInfo.list.length === 0 ? 
-            <button onClick={onClick}>버킷리스트 가기</button>
-            :
-            <div>
-                {showRandomList(userInfo.list.filter(e => e.isChecked === false).map(e => <ShowRandom key={e.id}>{e.bucketName}</ShowRandom>))}
-            </div>}
+                {userInfo.list === undefined || userInfo.list.length === 0 ? 
+                    <div></div>
+                    :
+                    <div>
+                        {showRandomList(userInfo.list.filter(e => e.isChecked === false).map(e => <ShowRandom key={e.id}>{e.bucketName}</ShowRandom>))}
+                    </div>
+                }
+            <BucketAdd onClick={onClick}>버킷리스트 추가</BucketAdd>
         </div>
     );
 };

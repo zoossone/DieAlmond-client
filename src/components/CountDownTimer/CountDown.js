@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import font from '../../font.css'
 
 const ReverseTimer = styled.div`
     display: flex;
@@ -39,7 +40,19 @@ const ReverseTimer = styled.div`
 
 const Wisemans = styled.div`
     font-size: 50px;
+    color: hotpink;
+    margin-top: 2rem;
+    text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
 `;
+
+const Timer = styled.div `
+    font-family: CookieRunOTF-Black;
+    font-size: 5rem;
+    margin-top: 5rem;
+    color: hotpink;
+    margin-top: 5rem;
+    text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+`
 
 const CountDown = ({ userInfo }) => {
     let { sleep, smoking, alcohol, restLife } = userInfo
@@ -118,16 +131,16 @@ const CountDown = ({ userInfo }) => {
                     `${day.toString()}일..`
                 }
             </Wisemans>
-            <h1>
+            <Timer>
                 {
                     `
-                    ${hrs.toString().padStart(2, '0')} :
-                    ${mins.toString().padStart(2, '0')} :
-                    ${secs.toString().padStart(2, '0')} :
-                    ${mss.toString().padStart(2, '0')} 
+                        ${hrs.toString().padStart(2, '0')} 시간        
+                        ${mins.toString().padStart(2, '0')} 분        
+                        ${secs.toString().padStart(2, '0')} 초        
+                        ${mss.toString().padStart(2, '0')}
                     `
                 }
-            </h1>
+            </Timer>
         </ReverseTimer>
     );
 }

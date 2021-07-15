@@ -9,18 +9,25 @@ const Foot = styled.footer`
         flex-direction: column;
         align-items: center;
         background-color: pink;
+        text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
     `;
 
     const FooterText = styled.div`
         font-family: 'CookieRun-Regular';
         color: white;
+        text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
     `
 
     const A = styled.a`
         font-family: 'CookieRun-Regular';
-    color : white;
-    text-decoration: none;
-    margin: 5px;
+        color : white;
+        text-decoration: none;
+        margin: 5px;
+        text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+
+        :hover {
+            color: hotpink;
+        }
     `
 
 const Footer = () => {
