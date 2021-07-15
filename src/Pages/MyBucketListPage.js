@@ -90,7 +90,6 @@ const BucketUl = styled.ul`
         padding:10px;
 `;
 
-<<<<<<< HEAD
 const ScrollBar = styled.div`
         width: 100%;
         height:600px;
@@ -101,7 +100,6 @@ const ScrollBar = styled.div`
             display: none
         }
 `;
-=======
 const Loader = styled.div`
 position: absolute;
 left: 50%;
@@ -132,7 +130,6 @@ height: 120px;
 margin: 80px 0 0 -76px;
 font-weight: bold;
 `
->>>>>>> dev
 
 const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [desc, setDesc] = useState('')
