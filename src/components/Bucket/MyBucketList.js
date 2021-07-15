@@ -27,10 +27,10 @@ const MyBucketList = (props) => {
         background: white;
         }
 
-        @media only screen and (max-width: 480px) {
+        @media only screen and (max-width: 600px) {
             transform: translateY(15px);
-            margin-top: -23px;            
-            border: 1px solid white;
+            margin-top: 30px;            
+            border: 1px solid blue;
             transition: all 0.5s ease-in;
 
             :hover {

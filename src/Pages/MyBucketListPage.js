@@ -14,6 +14,7 @@ const Text = styled.div`
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
+    text-align: center;
 `
 
 const MyPage = styled.span`
@@ -23,7 +24,7 @@ const MyPage = styled.span`
         background-color: white;
         font-family: 'CookieRun-Regular';
 
-        @media only screen and (max-width: 480px) {
+        @media only screen and (max-width: 600px) {
             flex-direction: column;
         }
     `;
@@ -31,6 +32,7 @@ const MyPage = styled.span`
 const AllBucket = styled.div`
         display:flex;
         flex-direction: column;
+        margin-top: 20px;
         justify-content: center;
         width: 100%;
         align-items: center;
@@ -39,9 +41,9 @@ const AllBucket = styled.div`
 
 const BucketList = styled.div`
         display: flex;
+        flex-direction: row;
         justify-content: center;
         width: 100%;
-        padding: 0px;
         font-family: 'CookieRun-Regular';
 `;
 
@@ -131,7 +133,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     if (typeof (userInfo.nickname) !== 'string') {
         addInfo(JSON.parse(localStorage.getItem("info")))
     }
-    console.log(userInfo)
     useEffect(() => {
         axios.get("http://localhost:80/bucket", {
             headers: {
@@ -141,8 +142,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
             },
             withCredentials: true
         }).then(res => {
-            console.log('resresres', res)
-            console.log(objlist)
             const newObjlist = []
             res.data.user.bucketlist.map(el => {
                 newObjlist.push(el)
@@ -160,8 +159,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
             },
             withCredentials: true
         }).then(res => {
-            console.log('resresres', res)
-            console.log(objlist)
             const newObjlist = []
             res.data.user.bucketlist.map(el => {
                 newObjlist.push(el)
@@ -190,7 +187,6 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                 withCredentials: true
             }).then(res => {
                 const bb = [...objlist]
-                console.log(res.data)
                 bb.push(res.data)
                 setObjList(bb)
                 setDesc('')
@@ -207,27 +203,28 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
     return (
         <>
-            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
-                <Inputform>
-                    <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-                    <AddButton onClick={addBucketListBtn}>Add BucketList</AddButton>
-                </Inputform>
-                <MyPage>
+        {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
+            <Inputform>
+                <Input type='text' onChange={(e) => setDesc(e.target.value)} />
+                <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
+            </Inputform>
 
-                    <BucketList>
-                        <BucketUl>
-                            <h1>My Bucket List</h1>
-                            {objlist.filter(el => el.id !== undefined)
-                                .map((list, i) => <MyBucketList key={i} description={list.bucketName}
-                                    id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
-                        </BucketUl>
-                    </BucketList>
+            <MyPage>
+                <BucketList>
+                    <BucketUl>
+                    <Text>나의 버킷리스트</Text>
+                        {objlist.filter(el => el.id !== undefined)
+                            .map((list, i) => <MyBucketList key={i} description={list.bucketName}
+                                id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
+                    </BucketUl>
+                </BucketList>
 
-                    <AllBucket>
-                        <h1><i class="fas fa-hands-helping"></i> Other's Bucket List</h1>
-                        <AllBucketList render={render} />
-                    </AllBucket>
-                </MyPage>
+                <AllBucket>
+                    <Text>모든 사용자들의 버킷리스트</Text>
+                    <AllBucketList render={render} />
+                </AllBucket>
+            </MyPage>
+
             <Footer />
             </>}
         </>
