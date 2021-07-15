@@ -91,12 +91,44 @@ const BucketUl = styled.ul`
         padding:10px;
 `;
 
+const Loader = styled.div`
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 1;
+width: 120px;
+height: 120px;
+margin: -76px 0 0 -76px;
+border: 16px solid #f3f3f3;
+border-radius: 50%;
+border-top: 16px solid #35A88E;
+-webkit-animation: spin 2s linear infinite;
+animation: spin 2s linear infinite;
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`
+
+const Div = styled.div`
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 1;
+width: 120px;
+height: 120px;
+margin: 80px 0 0 -76px;
+font-weight: bold;
+`
+
 const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [desc, setDesc] = useState('')
     const [objlist, setObjList] = useState([{}])
     const [isChecked, setIsChecked] = useState(false)
     const [render, setRender] = useState(true)
     const [allBucket, setAllbucket] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
 
     if (typeof (userInfo.nickname) !== 'string') {
         addInfo(JSON.parse(localStorage.getItem("info")))
@@ -133,6 +165,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
             })
 
             setObjList(newObjlist)
+            setIsLoading(false)
         })
     }, [])
 
@@ -170,6 +203,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
     return (
         <>
+        {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
             <Inputform>
                 <Input type='text' onChange={(e) => setDesc(e.target.value)} />
                 <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
@@ -192,6 +226,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
             </MyPage>
 
             <Footer />
+            </>}
         </>
     );
 };
