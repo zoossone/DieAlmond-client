@@ -78,7 +78,7 @@ const AllBucketList = ({ render, userInfo }) => {
                         {li.like[1] ?
                             `${li.like[0].id}님 외 ${li.like.length - 1}명이 좋아합니다.` :
                             `${li.like[0] ?
-                                `${li.like[0].id}님이 좋아합니다.` : '관심 좀 주십쇼'}`
+                                ` ${li.like[0].id}님이 좋아합니다.` : ' 좋아요를 눌러 주세요'}`
                         }
 
                     </AllList>

@@ -4,6 +4,28 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
+import styled from 'styled-components';
+
+const Button = styled.div`
+    margin-right: 20px;
+    border-radius: 4px;
+    background-color: pink;
+    border: outset 2px pink;
+    color: white;
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    font-family: 'CookieRunOTF-Bold';
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 50px;
+    
+    &:hover {
+        border: inset 2px white;
+        color: pink;
+        background-color: white;
+    }
+`
 
 const clientId = '709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
 
@@ -43,7 +65,7 @@ const GooLogin = ({ addUserInfo }) => {
     const onLogoutSuccess = (res) => {
         console.log(res);
         console.log('Logout made successfully');
-        alert('Logout made successfully ✌');
+        alert('로그아웃이 완료!');
         setIslogin(!isLogin)
         addUserInfo({ google: null })
         localStorage.clear()
@@ -54,12 +76,12 @@ const GooLogin = ({ addUserInfo }) => {
     // 카카오로 들어갔으면 카카오 로그아웃버튼 뜨게
 
     return (
-        <div>
+        <Button>
             {
                 isLogin === false ?
                         <GoogleLogin
                         clientId={clientId}
-                        buttonText='Login'
+                        buttonText='로그인'
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
@@ -68,14 +90,14 @@ const GooLogin = ({ addUserInfo }) => {
                     <GoogleLogout
                         clientId={clientId}
                         icon={false}
-                        buttonText="Logout"
+                        buttonText="로그아웃"
                         onLogoutSuccess={onLogoutSuccess}
                         style={{
                             width: 50,
                             height: 50
                         }} />
             }
-        </div>
+        </Button>
     );
 };
 

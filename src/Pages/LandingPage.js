@@ -15,7 +15,7 @@ import font from '../font.css'
 const Landing1 = styled.div`
     width: 100vw;
     height: 100vh;
-
+    
     @media screen and (max-width: 780px) {
         display: flex;
         flex-direction: column;
@@ -42,6 +42,7 @@ const Title = styled.div`
     font-family: 'CookieRunOTF-Black';
     text-align: center;
     color: pink;
+    text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
 
     @media screen and (max-width: 780px) {
         flex-direction: column;
@@ -76,6 +77,7 @@ const IntroTitle = styled.div`
     text-align: right;
 
     color: pink;
+    text-shadow: -3.5px 0 black, 0 3.5px black, 3.5px 0 black, 0 -3.5px black;
 
     @media screen and (max-width: 780px) {
         top: 75px;
@@ -94,7 +96,8 @@ const IntroSubTitle = styled.div`
     font-size: 25px;
     line-height: 40px;
     text-align: right;
-    color: grey;
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     @media screen and (max-width: 780px) {
         top: 100px;
@@ -103,6 +106,10 @@ const IntroSubTitle = styled.div`
         line-height: 20px;
         text-align: center;
     }
+`
+
+const B = styled.b`
+    color: pink;
 `
 
 const NavBtn = styled.div`
@@ -130,9 +137,11 @@ const LoginModalBtn1 = styled.button`
     font-family: 'CookieRunOTF-Bold';
     font-size: 15px;
     font-weight: 900;
+    text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+
     
     &:hover {
-        color: grey;
+        color: white;
         background-color: pink;
     }
 
@@ -153,9 +162,10 @@ const LoginModalBtn2 = styled.button`
     font-family: 'CookieRunOTF-Bold';
     font-size: 15px;
     font-weight: 900;
+    text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
     
     &:hover {
-        color: grey;
+        color: white;
         background-color: pink;
     }
 
@@ -217,7 +227,7 @@ const LandingPage = ({resetStore}) => {
                             <br/>
                             더 진실 된 삶을 살 수 있습니다.
                             <br/>
-                            <b>여러분의 남은 수명을 확인해보세요!</b>
+                            <B>지금 바로 남은 수명을 확인해보세요!</B>
                         </IntroSubTitle>
 
                         <NavBtn>
