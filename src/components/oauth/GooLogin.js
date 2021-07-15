@@ -46,6 +46,7 @@ const GooLogin = ({ addUserInfo }) => {
         alert('Logout made successfully ✌');
         setIslogin(!isLogin)
         addUserInfo({ google: null })
+        localStorage.clear()
         history.push('/')
     }
 
@@ -74,7 +75,6 @@ const GooLogin = ({ addUserInfo }) => {
                             height: 50
                         }} />
             }
-
         </div>
     );
 };

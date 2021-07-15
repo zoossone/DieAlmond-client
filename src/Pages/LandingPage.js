@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginModal from '../components/LoginModal';
 import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
@@ -176,8 +176,11 @@ const LandingPage = ({resetStore}) => {
     const [trialLogin, setTrialLogin] = useState(false)
     const history = useHistory()
 
-    localStorage.clear()
-    resetStore()
+    useEffect(() => {
+        localStorage.clear()
+        resetStore()
+    })
+
 
     const handleLoginModal = () => {
         setLogin(!login)
