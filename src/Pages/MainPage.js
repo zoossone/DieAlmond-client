@@ -92,9 +92,6 @@ const MainPage = ({ userInfo, addInfo }) => {
     }, [isLoading]) 
     
 
-    // console.log(userInfo)
-    
-
     const Gravestone = styled.img`
         width: 40px;
         position: fixed;
@@ -106,11 +103,11 @@ const MainPage = ({ userInfo, addInfo }) => {
     return (
         <div>
             {console.log(userInfo)}
-            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
+            {isLoading === true ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
             <NaviBar />
             <Today />
             <h1> '{userInfo.nickname}'님의 남은 인생은.. </h1>
-            <CountDown userInfo={userInfo}/>
+            <CountDown userInfo={userInfo} />
             <BucketLists userInfo={userInfo}/>
             <div>
             <WiseSaying />

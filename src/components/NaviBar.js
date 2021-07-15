@@ -30,8 +30,8 @@ const NaviBar = ({userInfo}) => {
     return (
         <Nav>
             <button onClick={memberOnly}>my bucket</button>
-            {userInfo.snsLogin ? <GooLogin/> : null}
-            {userInfo.kakao ? <KakaoLogin/> : null}
+            {userInfo.snsLogin ? <GooLogin /> : null}
+            {/* {userInfo.kakao ? <KakaoLogin/> : null} */}
             {/* {!userInfo.google && !userInfo.kakao ? <><GooLogin/><KakaoLogin/></> : null} */}
             <button onClick={() => {
                 history.push('/mymy')

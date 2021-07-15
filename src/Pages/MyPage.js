@@ -12,6 +12,8 @@ import axios from 'axios';
 import { Component } from 'react';
 import { useHistory } from 'react-router-dom';
 import font from '../font.css'
+import { GoogleLogin, GoogleLogout, useGoogleLogout } from 'react-google-login';
+
 
 // const Modalcontainer = styled.div`
 //     display: flex;
@@ -99,7 +101,7 @@ const Form = styled.form`
 
 
 
-const MyPage = ({ userInfo, addUserInfo }) => {
+const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
 
     const [nickname, setNickName] = useState('');
     const [gender, setGender] = useState('');
@@ -245,7 +247,7 @@ const MyPage = ({ userInfo, addUserInfo }) => {
     }
 
     const withdrawal = () => {
-        if(window.confirm("정말 탈퇴 하시겠어요?")) {
+        if (window.confirm("정말 탈퇴 하시겠어요?")) {
             axios.delete('http://localhost:80/withdrawal', {
                 headers: {
                     "sns": "google",
@@ -255,16 +257,19 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                 withCredentials: true,
             }).then(res => {
                 alert('좋은 일만 가득하길 빌게요!')
+                localStorage.clear()
+                resetStore()
                 history.push('/')
             })
                 .catch(e => alert(e))
         }
+
     }
 
     return (
         <Container>
             <Form onSubmit={onSubmit}>
-            <Title>정보를 입력해서 기대 수명을 확인해보세요 🙌</Title>
+                <Title>정보를 입력해서 기대 수명을 확인해보세요 🙌</Title>
                 {/* input text */}
                 <Div>닉네임 입력</Div>
                 <Input type='text' placeholder='닉네임 입력' onChange={onChange} value={nickname}></Input>
@@ -288,7 +293,6 @@ const MyPage = ({ userInfo, addUserInfo }) => {
                             selected={startDate} 
                             onChange={(date) => setStartDate(date)} 
                             dateFormat = "yyyy.MM.dd"
-                            
                         /> */}
                 <Calendar setBirth={setBirth} birth={birth} />
                 {console.log(birth)}
@@ -318,7 +322,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return { addUserInfo: (info) => dispatch(actionCreators.addInfo(info)) }
+    return { 
+        addUserInfo: (info) => dispatch(actionCreators.addInfo(info)),
+        resetStore: () => dispatch(actionCreators.resetInfo())
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPage);

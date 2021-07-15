@@ -89,7 +89,7 @@ export default function SleepSlider({setSmoking}) {
             inputProps={{
               step: 1,
               min: 0,
-              max: 20,
+              max: 40,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
