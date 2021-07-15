@@ -45,7 +45,7 @@ const BucketLists = ({userInfo}) => {
         let index = 0
         let copyArr = arr
         for(let i=0; i<6; i++) {
-            index = Math.floor(Math.random()*copyArr.length)
+            index = Math.ceil(Math.random()*copyArr.length)
             result.push(copyArr[index])
             copyArr.splice(index, index+1)
         }

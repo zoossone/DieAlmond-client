@@ -19,6 +19,9 @@ const Button = styled.div`
     font-size: 15px;
     font-weight: 900;
     border-radius: 50px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-align: center;
+    padding-top: 10px;
     
     &:hover {
         border: inset 2px white;
@@ -65,7 +68,7 @@ const GooLogin = ({ addUserInfo }) => {
     const onLogoutSuccess = (res) => {
         console.log(res);
         console.log('Logout made successfully');
-        alert('로그아웃이 완료!');
+        alert('로그아웃이 완료되었습니다!');
         setIslogin(!isLogin)
         addUserInfo({ google: null })
         localStorage.clear()
@@ -76,28 +79,36 @@ const GooLogin = ({ addUserInfo }) => {
     // 카카오로 들어갔으면 카카오 로그아웃버튼 뜨게
 
     return (
-        <Button>
+        <>
             {
                 isLogin === false ?
                         <GoogleLogin
                         clientId={clientId}
-                        buttonText='로그인'
+                        // buttonText='로그인'
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
-                        isSignedIn={true} />
+                        isSignedIn={true} 
+                        render={renderProps => (
+                            <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>로그인</Button>
+                          )}
+                        />
                     :
                     <GoogleLogout
                         clientId={clientId}
                         icon={false}
-                        buttonText="로그아웃"
+                        // buttonText="로그아웃"
                         onLogoutSuccess={onLogoutSuccess}
-                        style={{
-                            width: 50,
-                            height: 50
-                        }} />
+                        render={renderProps => (
+                            <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>로그아웃</Button>
+                          )}
+                        // style={{
+                        //     width: 50,
+                        //     height: 50
+                        // }} 
+                        />
             }
-        </Button>
+        </>
     );
 };
 
