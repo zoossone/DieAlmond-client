@@ -1,0 +1,71 @@
+* body {
+    text-align: center;
+}
+
+#title {
+    color: white;
+}
+
+#game {
+    width: 600px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+    /* background-image: url(img/parallaxsample.gif) */
+}
+
+#almond {
+    width: 40px;
+    height: 50px;
+    background-image: url(img/almond.gif);
+    background-size: 40px 50px;
+    position: relative;
+    top: 145px;
+}
+
+.jump {
+    animation: jump 0.4s linear;
+}
+
+@keyframes jump {
+    0% {
+        top: 150px;
+    }
+
+    25% {
+        top: 100px;
+    }
+
+    50% {
+        top: 50px;
+    }
+
+    75% {
+        top: 100px;
+    }
+
+    100% {
+        top: 150px;
+    }
+}
+
+#death {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 110px;
+    left: 570px;
+    background-image: url(img/devil.png);
+    background-size: 35px 35px;
+    animation: block 2s infinite linear;
+} 
+
+@keyframes block {
+    0% {
+        left: 570px;
+    }
+    
+    100% {
+        left: -40px;
+    }
+}
