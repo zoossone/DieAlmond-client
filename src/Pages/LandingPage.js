@@ -4,6 +4,8 @@ import NaviBar from '../components/NaviBar'
 import Footer from '../components/Footer'
 import styled from 'styled-components';
 import landingImg from '../img/imgTest.png'
+import img1 from '../img/gameover.jpg'
+import img2 from '../img/end.jpg'
 import SettingModal from '../components/SettingModal/SettingModal'
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -199,7 +201,7 @@ const LandingPage = ({resetStore}) => {
                 
 
                 <Flex>
-                    <Img src={landingImg}></Img>   
+                    <Img src={img1}></Img>   
                     <div>
                         <IntroTitle>
                             죽음은 지금 이 순간에도 
