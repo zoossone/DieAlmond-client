@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import font from '../../font.css'
 
 const Wise = styled.p`
     margin-top: 20px;
-    position: relative;
-    display: block;
     color: pink;
     border : solid 3px pink;
     border-radius: 5px;
@@ -16,6 +13,10 @@ const Wise = styled.p`
     font-family: 'CookieRunOTF-Black';
     text-align: center;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+    @media only screen and (max-width: 600px) {
+        margin: 20px 0 0 75px;
+    }
 `;
 
 const WiseSaying = () => {
