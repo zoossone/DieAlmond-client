@@ -9,8 +9,7 @@ import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
 const Div = styled.div`
-
-margin: 1rem;
+    margin: 1rem;
 `
 
 const Calendar = ({setBirth}) => {

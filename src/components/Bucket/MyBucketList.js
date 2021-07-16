@@ -67,8 +67,14 @@ const MyBucketList = (props) => {
         text-decoration: ${isDone === true ? 'line-through' : 'none'}
     `;
 
+    const InputCheckbox = styled.input`
+        margin: 10px;
+        width: 25px; /*Desired width*/
+        height: 25px; /*Desired height*/
+    `
+
     const DeleteBucketList = () => {
-        if (window.confirm("인생은 짧습니다.")) {
+        if (window.confirm("버킷리스트를 삭제하시겠습니까?")) {
             axios.delete(`http://localhost:80/bucket`, {
 
                 headers: {
@@ -108,7 +114,7 @@ const MyBucketList = (props) => {
     return (
         <Flex>
             <LineToText>
-                <input type="checkbox" checked={isDone} onChange={toggleCheckBox} />
+                <InputCheckbox type="checkbox" checked={isDone} onChange={toggleCheckBox} />
                 {props.description}
             </LineToText>
             <DeleteBtn onClick={DeleteBucketList}>삭제</DeleteBtn>

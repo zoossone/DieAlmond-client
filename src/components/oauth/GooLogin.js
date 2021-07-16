@@ -6,6 +6,30 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 import styled from 'styled-components';
 
+const Button = styled.div`
+    margin-right: 20px;
+    border-radius: 4px;
+    background-color: pink;
+    border: outset 2px pink;
+    color: white;
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    font-family: 'CookieRunOTF-Bold';
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 50px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-align: center;
+    padding-top: 10px;
+    
+    &:hover {
+        border: inset 2px white;
+        color: pink;
+        background-color: white;
+    }
+`
+
 const clientId = '709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
 
 const Div = styled.div`
@@ -75,9 +99,8 @@ const GooLogin = ({ addUserInfo }) => {
 
     const onLogoutSuccess = (res) => {
         console.log('Logout made successfully');
-        // const auth2 = gapi.auth2.getAuthInstance();
-        // auth2.disconnect()
-        alert('Logout made successfully ✌');
+        alert('로그아웃이 완료되었습니다!');
+        setIslogin(!isLogin)
         addUserInfo({ google: null })
         localStorage.clear()
         history.push('/')
@@ -88,35 +111,36 @@ const GooLogin = ({ addUserInfo }) => {
     }
 
     return (
-        <div>
+        <>
             {
                 isLogin === false ?
                         <GoogleLogin
                         clientId={clientId}
-                        buttonText='Login'
-                        icon={false}
+                        // buttonText='로그인'
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
                         isSignedIn={true} 
-                        style={{
-                            width: 50,
-                            height: 50
-                        }}/>
+                        render={renderProps => (
+                            <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>로그인</Button>
+                          )}
+                        />
                     :
                     <GoogleLogout
                         clientId={clientId}
                         icon={false}
-                        isSignedIn={false} 
-                        buttonText="Logout"
+                        // buttonText="로그아웃"
                         onLogoutSuccess={onLogoutSuccess}
-                        onFailure={onFailureLogout}
-                        style={{
-                            width: 50,
-                            height: 50
-                        }} />
+                        render={renderProps => (
+                            <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>로그아웃</Button>
+                          )}
+                        // style={{
+                        //     width: 50,
+                        //     height: 50
+                        // }} 
+                        />
             }
-        </div>
+        </>
     );
 };
 

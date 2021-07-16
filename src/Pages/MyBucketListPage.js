@@ -7,31 +7,18 @@ import styled from 'styled-components';
 import Footer from '../components/Footer'
 import { actionCreators } from '../store';
 
-const MyBucketText = styled.div`
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-    font-family: 'CookieRun-Regular';
-    color: pink;
-    text-align: center;
-    align-items: center;
-
-    // @media only screen and (max-width: 500px) {
-    //     flex-direction: column;
-    // }
+const Screen1 = styled.div`
+    height: 100vh;
+    width: 100vw;
 `
 
-const AllBucketText = styled.div`
+const Text = styled.div`
     margin-bottom: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
     text-align: center;
-    align-items: center;
-
-    @media only screen and (max-width: 500px) {
-        flex-direction: column;
-        margin-right: 200px;
-    }
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 `
 
 const MyPage = styled.span`
@@ -42,6 +29,7 @@ const MyPage = styled.span`
         margin: 0 auto;
         background-color: white;
         font-family: 'CookieRun-Regular';
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
         @media only screen and (max-width: 500px) {
             flex-direction: column;
@@ -86,6 +74,8 @@ const Input = styled.input`
         font-size: 2rem;
         font-family: 'CookieRun-Regular';
         color: pink;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
         :focus {
             outline: none;
         }
@@ -103,6 +93,7 @@ const AddButton = styled.button`
         transition: all 0.5s ease;
         font-family: 'CookieRun-Regular';
         color: white;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
         
         :hover {
             transform: scale(1.2);
@@ -118,6 +109,7 @@ const BucketUl = styled.ul`
 const ScrollBar = styled.div`
         width: 600px;
         height:600px;
+        border: 10px;
 
         overflow: scroll;
         overflow-x: hidden;
@@ -127,23 +119,23 @@ const ScrollBar = styled.div`
         }
 `;
 const Loader = styled.div`
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        z-index: 1;
-        width: 120px;
-        height: 120px;
-        margin: -76px 0 0 -76px;
-        border: 16px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 16px solid #35A88E;
-        -webkit-animation: spin 2s linear infinite;
-        animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #35A88E;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `
 
 const Div = styled.div`
@@ -238,34 +230,33 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
     return (
         <>
-        {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
-            <Inputform>
-                <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-                <AddButton onClick={addBucketListBtn}>버킷추가</AddButton>
-            </Inputform>
+            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <Screen1>
+                <Inputform>
+                    <Input type='text' onChange={(e) => setDesc(e.target.value)} />
+                    <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
+                </Inputform>
 
-            <MyPage>
-                <BucketList>
+                <MyPage>
+                    <BucketList>
+                        <div>
+                            <Text>나의 버킷리스트</Text>
+                            <ScrollBar>
+                                {objlist.filter(el => el.id !== undefined)
+                                    .map((list, i) => <MyBucketList key={i} description={list.bucketName}
+                                        id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
+                            </ScrollBar>
+                        </div>
+                    </BucketList>
+
+                    <AllBucket>
                     <div>
-                        <MyBucketText>나의 버킷리스트</MyBucketText>
-                        <ScrollBar>
-                            {objlist.filter(el => el.id !== undefined)
-                                .map((list, i) => <MyBucketList key={i} description={list.bucketName}
-                                    id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
-                        </ScrollBar>
-                    </div>
-                </BucketList>
-
-                <AllBucket>
-                <div>
-                    <AllBucketText>모든 사용자들의 버킷리스트</AllBucketText>
-                    <ScrollBar><AllBucketList render={render} /></ScrollBar>
-                    </div>
-                </AllBucket>
-            </MyPage>
-
-            <Footer />
-            </>}
+                        <Text>모든 사용자들의 버킷리스트</Text>
+                        <ScrollBar><AllBucketList render={render} /></ScrollBar>
+                        </div>
+                    </AllBucket>
+                </MyPage> 
+                </Screen1>  
+            }
         </>
     );
 };
