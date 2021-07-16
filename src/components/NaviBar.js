@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import GooLogin from './oauth/GooLogin';
@@ -54,8 +54,6 @@ const NaviBar = ({userInfo}) => {
         <Nav>
             <BucketBtn onClick={memberOnly}>my bucket</BucketBtn>
             {userInfo.snsLogin ? <GooLogin/> : null}
-            {/* {userInfo.kakao ? <KakaoLogin/> : null} */}
-            {/* {!userInfo.google && !userInfo.kakao ? <><GooLogin/><KakaoLogin/></> : null} */}
             <SettingBtn onClick={() => {
                 history.push('/mymy')
             }}>setting</SettingBtn>

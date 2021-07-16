@@ -7,33 +7,58 @@ import styled from 'styled-components';
 import Footer from '../components/Footer'
 import { actionCreators } from '../store';
 
-const Text = styled.div`
+const MyBucketText = styled.div`
     margin-bottom: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
     text-align: center;
+    align-items: center;
+
+    // @media only screen and (max-width: 500px) {
+    //     flex-direction: column;
+    // }
+`
+
+const AllBucketText = styled.div`
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-family: 'CookieRun-Regular';
+    color: pink;
+    text-align: center;
+    align-items: center;
+
+    @media only screen and (max-width: 500px) {
+        flex-direction: column;
+        margin-right: 200px;
+    }
 `
 
 const MyPage = styled.span`
         display:flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         flex-direction: row;
         width: 100%;
+        margin: 0 auto;
         background-color: white;
         font-family: 'CookieRun-Regular';
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 500px) {
             flex-direction: column;
         }
     `;
 
 const AllBucket = styled.div`
         display:flex;
+        margin: 0px;
         flex-direction: row;
         justify-content: center;
         width: 100%;
         font-family: 'CookieRun-Regular';
+
+        @media only screen and (max-width: 500px) {
+            margin-left: 110px;
+        }
 `;
 
 const BucketList = styled.div`
@@ -91,44 +116,45 @@ const BucketUl = styled.ul`
 `;
 
 const ScrollBar = styled.div`
-        width: 100%;
+        width: 600px;
         height:600px;
 
         overflow: scroll;
-        -webkit-overflow-style: none;
+        overflow-x: hidden;
+        -webkit-overflow-style: visible;
         &::-webkit-scrollbar {
-            display: none
+            display: visible
         }
 `;
 const Loader = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-z-index: 1;
-width: 120px;
-height: 120px;
-margin: -76px 0 0 -76px;
-border: 16px solid #f3f3f3;
-border-radius: 50%;
-border-top: 16px solid #35A88E;
--webkit-animation: spin 2s linear infinite;
-animation: spin 2s linear infinite;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #35A88E;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
 `
 
 const Div = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-z-index: 1;
-width: 120px;
-height: 120px;
-margin: 80px 0 0 -76px;
-font-weight: bold;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: 80px 0 0 -76px;
+        font-weight: bold;
 `
 
 const MyBucketListPage = ({ userInfo, addInfo }) => {
@@ -215,13 +241,13 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
         {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <>
             <Inputform>
                 <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-                <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
+                <AddButton onClick={addBucketListBtn}>버킷추가</AddButton>
             </Inputform>
 
             <MyPage>
                 <BucketList>
                     <div>
-                        <Text>나의 버킷리스트</Text>
+                        <MyBucketText>나의 버킷리스트</MyBucketText>
                         <ScrollBar>
                             {objlist.filter(el => el.id !== undefined)
                                 .map((list, i) => <MyBucketList key={i} description={list.bucketName}
@@ -232,7 +258,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
                 <AllBucket>
                 <div>
-                    <Text>모든 사용자들의 버킷리스트</Text>
+                    <AllBucketText>모든 사용자들의 버킷리스트</AllBucketText>
                     <ScrollBar><AllBucketList render={render} /></ScrollBar>
                     </div>
                 </AllBucket>

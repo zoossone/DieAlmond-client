@@ -4,19 +4,53 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
+import styled from 'styled-components';
 
 const clientId = '709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
+
+const Div = styled.div`
+        osition: absolute;
+        eft: 50%;
+        op: 50%;
+        -index: 1;
+        idth: 120px;
+        eight: 120px;
+        argin: 80px 0 0 -76px;
+        ont-weight: bold;
+`
+
+const Loader = styled.div`
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #35A88E;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+`
 
 const GooLogin = ({ addUserInfo }) => {
     const [token, setToken] = useState('')
     const [isLogin, setIslogin] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const history = useHistory()
 
-    const onSuccess = async(res) => {
+    const onSuccess = (res) => {
+        console.log(res)
         if(res.accessToken) {
             console.log(res.accessToken);
             console.log('[Login Success] currentUser:', res.profileObj);
-            await axios.post('http://localhost:80/google',{
+            axios.post('http://localhost:80/google',{
               
             }, {
                 headers: {
@@ -25,7 +59,6 @@ const GooLogin = ({ addUserInfo }) => {
                 }, withCredentials: true
             },
             ).then((res) => {
-                console.log('**************',res);
                 setIslogin(!isLogin)
                 const realToken = res.data.access_token
                 addUserInfo({ google: realToken.slice(7) })
@@ -41,17 +74,18 @@ const GooLogin = ({ addUserInfo }) => {
     }
 
     const onLogoutSuccess = (res) => {
-        console.log(res);
         console.log('Logout made successfully');
+        // const auth2 = gapi.auth2.getAuthInstance();
+        // auth2.disconnect()
         alert('Logout made successfully ✌');
-        setIslogin(!isLogin)
         addUserInfo({ google: null })
         localStorage.clear()
         history.push('/')
     }
 
-    // 구글 로그인되있으면 구글 로그아웃버튼
-    // 카카오로 들어갔으면 카카오 로그아웃버튼 뜨게
+    const onFailureLogout = (res) => {
+        console.log('[Logout failed] res:', res);
+    }
 
     return (
         <div>
@@ -60,16 +94,23 @@ const GooLogin = ({ addUserInfo }) => {
                         <GoogleLogin
                         clientId={clientId}
                         buttonText='Login'
+                        icon={false}
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
-                        isSignedIn={true} />
+                        isSignedIn={true} 
+                        style={{
+                            width: 50,
+                            height: 50
+                        }}/>
                     :
                     <GoogleLogout
                         clientId={clientId}
                         icon={false}
+                        isSignedIn={false} 
                         buttonText="Logout"
                         onLogoutSuccess={onLogoutSuccess}
+                        onFailure={onFailureLogout}
                         style={{
                             width: 50,
                             height: 50

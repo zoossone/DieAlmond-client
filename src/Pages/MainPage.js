@@ -85,15 +85,7 @@ const Section = styled.div`
 const MainPage = ({ userInfo, addInfo }) => {
 
     const history = useHistory();
-    const [isLoading, setIsLoading] = useState(true);
-
-    // let userSrc = JSON.parse(localStorage.getItem("state"))
-
-    // console.log(userSrc)
-
-    // if (typeof(userInfo.nickname) !== 'string') {
-    //     addInfo(userSrc)
-    // }
+    // const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 
@@ -107,12 +99,11 @@ const MainPage = ({ userInfo, addInfo }) => {
                 withCredentials: true
             })
                 .then((res) => {
-                    console.log(res.data.userinfo)
+                    console.log(res.data.msg)
                     if (typeof (res.data.userinfo.nickname) === 'string') {
                         addInfo(res.data.userinfo);
                         console.log(res.data.userinfo, userInfo)
                         localStorage.setItem("info", JSON.stringify(res.data.userinfo))
-                        setIsLoading(false);
                     } else {
                         history.push('/mymy');
                     }
@@ -122,26 +113,20 @@ const MainPage = ({ userInfo, addInfo }) => {
 
         if (localStorage.getItem("isLogin") === 'login' && localStorage.getItem("info")) {
             addInfo(JSON.parse(localStorage.getItem("info")))
-            setIsLoading(false);
+            // setIsLoading(false);
         } else {
             addInfo(JSON.parse(localStorage.getItem("info")))
-            setIsLoading(false);
+            // setIsLoading(false);
         }
-    }, [isLoading])
+    }, [])
 
-
-    const Gravestone = styled.img`
-        width: 40px;
-        position: fixed;
-        top: 53.25%;
-        right: 0%;
-    `
+    console.log(userInfo)
 
     // 삼항 연산자 추가
     return (
-        <div>
-            {isLoading === true ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> :
-                <>
+        <>
+            {userInfo.google === false ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> :
+                 <> 
                     <NaviBar />
 
                     <Title>
@@ -170,7 +155,7 @@ const MainPage = ({ userInfo, addInfo }) => {
 
                     <Footer />
                 </>}
-        </div>
+        </>
     );
 };
 
