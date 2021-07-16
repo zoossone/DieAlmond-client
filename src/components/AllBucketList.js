@@ -3,10 +3,11 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import styled, {keyframes} from 'styled-components';
 
+
 const AllList = styled.div`
     font-size: medium;
     margin: 25px;
-    width: 500px;
+    max-width: 100%;
     justify-content: center;
     height: 75px;
     font-size: 1.3em;
@@ -15,13 +16,16 @@ const AllList = styled.div`
     cursor: pointer;
     background: pink;
     color: white;
-    border: 2.5px solid pink;
 
     :hover {
         color: pink;
         transform: scale(1.05);
         transition: all 0.8s ease-out;
         background: white;
+    }
+
+    @media only screen and (max-width: 500px) {
+            width: 350px;
     }
 `;
 
@@ -64,7 +68,7 @@ const AllBucketList = ({ render, userInfo }) => {
     }
 
     return (
-        <div>
+        <section>
             {allList.map((li) => {
                 return (
                     <AllList key={li.id} id={li.id} onClick={handleLike}>
@@ -84,7 +88,7 @@ const AllBucketList = ({ render, userInfo }) => {
                     </AllList>
                 )
             })}
-        </div>
+        </section>
     );
 };
 

@@ -27,9 +27,11 @@ const MyBucketList = (props) => {
         background: white;
         }
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 500px) {
+            width: 350px;
             transform: translateY(15px);
-            margin-top: 30px;            
+            margin-top: 30px;   
+            margin-left: 130px;         
             border: 1px solid pink;
             transition: all 0.5s ease-in;
 

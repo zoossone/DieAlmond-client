@@ -23,24 +23,30 @@ const Text = styled.div`
 
 const MyPage = styled.span`
         display:flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         flex-direction: row;
         width: 100%;
+        margin: 0 auto;
         background-color: white;
         font-family: 'CookieRun-Regular';
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 500px) {
             flex-direction: column;
         }
     `;
 
 const AllBucket = styled.div`
         display:flex;
+        margin: 0px;
         flex-direction: row;
         justify-content: center;
         width: 100%;
         font-family: 'CookieRun-Regular';
+
+        @media only screen and (max-width: 500px) {
+            margin-left: 110px;
+        }
 `;
 
 const BucketList = styled.div`
@@ -101,14 +107,15 @@ const BucketUl = styled.ul`
 `;
 
 const ScrollBar = styled.div`
-        width: 100%;
+        width: 600px;
         height:600px;
         border: 10px;
 
         overflow: scroll;
-        -webkit-overflow-style: none;
+        overflow-x: hidden;
+        -webkit-overflow-style: visible;
         &::-webkit-scrollbar {
-            display: none
+            display: visible
         }
 `;
 const Loader = styled.div`
@@ -132,14 +139,14 @@ const Loader = styled.div`
 `
 
 const Div = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-z-index: 1;
-width: 120px;
-height: 120px;
-margin: 80px 0 0 -76px;
-font-weight: bold;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: 80px 0 0 -76px;
+        font-weight: bold;
 `
 
 const MyBucketListPage = ({ userInfo, addInfo }) => {

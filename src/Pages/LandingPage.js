@@ -22,19 +22,6 @@ const Landing1 = styled.div`
     }
 `
 
-const Landing2 = styled.div`
-    background-color: pink;
-    width: 100vw;
-    height: 100vh;
-`
-
-const Landing3 = styled.div`
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-`
-
 const Title = styled.div`
     position: center;
     margin-top: 20px;
@@ -245,15 +232,6 @@ const LandingPage = ({resetStore}) => {
                     </div> 
                 </Flex>
             </Landing1>
-
-
-            <Landing2>
-                랜딩페이지2
-            </Landing2>
-
-            <Landing3>
-                랜딩페이지3
-            </Landing3>
 
             <Footer />
         </div>

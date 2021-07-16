@@ -32,16 +32,49 @@ const Button = styled.div`
 
 const clientId = '709242535333-pl44ipg3ggctlk8ko6hgji008vgbl25s.apps.googleusercontent.com'
 
+const Div = styled.div`
+        osition: absolute;
+        eft: 50%;
+        op: 50%;
+        -index: 1;
+        idth: 120px;
+        eight: 120px;
+        argin: 80px 0 0 -76px;
+        ont-weight: bold;
+`
+
+const Loader = styled.div`
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #35A88E;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+`
+
 const GooLogin = ({ addUserInfo }) => {
     const [token, setToken] = useState('')
     const [isLogin, setIslogin] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const history = useHistory()
 
-    const onSuccess = async(res) => {
+    const onSuccess = (res) => {
+        console.log(res)
         if(res.accessToken) {
             console.log(res.accessToken);
             console.log('[Login Success] currentUser:', res.profileObj);
-            await axios.post('http://localhost:80/google',{
+            axios.post('http://localhost:80/google',{
               
             }, {
                 headers: {
@@ -50,7 +83,6 @@ const GooLogin = ({ addUserInfo }) => {
                 }, withCredentials: true
             },
             ).then((res) => {
-                console.log('**************',res);
                 setIslogin(!isLogin)
                 const realToken = res.data.access_token
                 addUserInfo({ google: realToken.slice(7) })
@@ -66,7 +98,6 @@ const GooLogin = ({ addUserInfo }) => {
     }
 
     const onLogoutSuccess = (res) => {
-        console.log(res);
         console.log('Logout made successfully');
         alert('로그아웃이 완료되었습니다!');
         setIslogin(!isLogin)
@@ -75,8 +106,9 @@ const GooLogin = ({ addUserInfo }) => {
         history.push('/')
     }
 
-    // 구글 로그인되있으면 구글 로그아웃버튼
-    // 카카오로 들어갔으면 카카오 로그아웃버튼 뜨게
+    const onFailureLogout = (res) => {
+        console.log('[Logout failed] res:', res);
+    }
 
     return (
         <>
