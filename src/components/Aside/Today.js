@@ -1,6 +1,11 @@
 import React, {useEffect} from 'react';
+import styled from 'styled-components';
 
-const today = () => {
+const Now = styled.div `
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+`
+
+const Today = () => {
     const today = new Date();
     const dateString = today.toLocaleDateString('ko-KR', {
         year: 'numeric',
@@ -10,10 +15,10 @@ const today = () => {
     });
 
     return (
-        <div>
+        <Now>
             🗓 {dateString}
-        </div>
+        </Now>
     );
 };
 
-export default today;
+export default Today;

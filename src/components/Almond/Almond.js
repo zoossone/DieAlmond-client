@@ -52,7 +52,7 @@ const Almond = ({userInfo}) => {
         padding: 0px;
         position: relative;
         /* 변수로 지정 필요 수명 퍼센티지 - 3 */
-        left: ${per - 3}%;
+        left: ${per - 4}%;
         cursor: pointer;
     `;
 

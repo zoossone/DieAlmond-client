@@ -18,6 +18,7 @@ const Div = styled.div`
 
 const Text = styled.div`
     font-family: 'CookieRun-Regular';
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `
 
 const useStyles = makeStyles({

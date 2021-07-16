@@ -1,13 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import font from '../../font.css'
 
-const Wise = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 2.4rem;
-    margin: 40px;
-    contents: 180px;
-    line-height: 2.5rem;
+const Wise = styled.p`
+    margin-top: 20px;
+    position: relative;
+    display: block;
+    color: pink;
+    border : solid 3px pink;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    max-width: 17rem;
+    line-height: 2rem;
+    font-family: 'CookieRunOTF-Black';
+    text-align: center;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `;
 
 const WiseSaying = () => {
@@ -26,9 +34,11 @@ const WiseSaying = () => {
     ]
 
     return (
-        <Wise>
-            {wiseSaying[Math.floor(Math.random() * 10)]}
-        </Wise>
+            <Wise>
+                ☠️ 명언 ☠️ 
+                <br/>
+                {wiseSaying[Math.floor(Math.random() * 10)]}
+            </Wise>
     )
 }
 

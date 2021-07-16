@@ -16,11 +16,13 @@ const BackButton = styled.button`
     margin: 10px;
     font-family: 'CookieRun-Regular';
     color: pink;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     :hover {
         color: rgba(255, 255, 255, 0.85);
         background-color: pink;
 	    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
 `;
 
@@ -28,6 +30,7 @@ const Nav = styled.nav`
     display: flex;
     flex-direction: reverse;
     font-family: 'CookieRun-Regular';
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `;
 
 const BucketListPage = () => {

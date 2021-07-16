@@ -12,36 +12,52 @@ import axios from 'axios';
 import { actionCreators } from '../store';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import font from '../font.css'
+
+const Screen1 = styled.div`
+    width: 100vw;
+    height: 70vh;
+`
+
+const Screen2 = styled.div`
+    width: 100vw;
+    height: 30vh;
+`
+
+const Section1 = styled.div`
+    position: relative;
+    bottom: 10px;
+`
 
 const Loader = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-z-index: 1;
-width: 120px;
-height: 120px;
-margin: -76px 0 0 -76px;
-border: 16px solid #f3f3f3;
-border-radius: 50%;
-border-top: 16px solid #35A88E;
--webkit-animation: spin 2s linear infinite;
-animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #35A88E;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 `
 
 const Div = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-z-index: 1;
-width: 120px;
-height: 120px;
-margin: 80px 0 0 -76px;
-font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: 80px 0 0 -76px;
+    font-weight: bold;
 `
 const Title = styled.div`
     display: flex;
@@ -49,38 +65,51 @@ const Title = styled.div`
     justify-content: space-between;
     margin: 20px;
     padding: 10px;
+    font-family: 'CookieRunOTF-Black';
     
     // border: 1px solid black;
 
     @media only screen and (max-width: 600px) {
         flex-direction: column;
+    }
 `;
 
 const Aside1 = styled.div`
+    font-family: 'CookieRunOTF-Black';
     font-size: 20px;
+    color: pink;
 `;
 
 const Header = styled.div`
+    font-family: 'CookieRunOTF-Black';
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
 const Nickname = styled.div`
-        margin: 0 0 50px 0;
-        font-size: 3rem;
-        color: #1565c0;
-        line-height: 3.2rem;
+    font-family: 'CookieRunOTF-Black';
+    margin: 0 0 50px 0;
+    font-size: 3rem;
+    color: pink;
+    line-height: 3.2rem;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 `;
 
 const Aside2 = styled.div`
+    font-family: 'CookieRunOTF-Black';
     font-size: 20px;
+    color: pink;
 `;
 
 const Section = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
+const Dot = styled.div`
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+`
 
 const MainPage = ({ userInfo, addInfo }) => {
 
@@ -142,12 +171,14 @@ const MainPage = ({ userInfo, addInfo }) => {
         <div>
             {isLoading === true ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> :
                 <>
+                <Screen1>
                     <NaviBar />
 
                     <Title>
 
                         <Aside1>
                             <Today />
+                            <WiseSaying />
                         </Aside1>
 
                         <Header>
@@ -156,19 +187,19 @@ const MainPage = ({ userInfo, addInfo }) => {
                         </Header>
 
                         <Aside2>
-                            My Bucket List..
-                <BucketLists userInfo={userInfo} />
+                            <Dot> 죽기전에 해봐야지 </Dot>
+                            <BucketLists userInfo={userInfo} />
                         </Aside2>
 
                     </Title>
+                </Screen1>
 
+                <Screen2>
                     <Section>
-                        <WiseSaying />
                         <Almond userInfo={userInfo} />
                         <ProgressBar userInfo={userInfo} />
                     </Section>
-
-                    <Footer />
+                </Screen2>                
                 </>}
         </div>
     );
