@@ -7,11 +7,6 @@ const Pr = styled.div`
     width: 100%;
     position: relative;
     flex-direction: column;
-    transform: translateY(-120%)
-
-    @media only screen and (max-width: 600px) {
-        margin-top:100px;
-    }
 `;
 
 const ProgressBar = ({userInfo}) => {

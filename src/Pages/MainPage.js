@@ -90,6 +90,7 @@ const Header = styled.div`
     font-family: 'CookieRunOTF-Black';
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
 
     @media only screen and (max-width: 600px) {
@@ -110,7 +111,7 @@ const Nickname = styled.div`
 const Aside2 = styled.div`
     display: flex;
     flex-direction: column;
-    
+    text-align: center;
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
     color: pink;
@@ -120,15 +121,10 @@ const Aside2 = styled.div`
     }
 `;
 
-const Section = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
 const Dot = styled.div`
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     @media only screen and (max-width: 600px) {
-        margin-left: 26px;
+        margin: 0 auto;
     }
 `
 
@@ -200,10 +196,8 @@ const MainPage = ({ userInfo, addInfo }) => {
                 </Screen1>
 
                 <Screen2>
-                    <Section>
                         <Almond userInfo={userInfo} />
                         <ProgressBar userInfo={userInfo} />
-                    </Section>
                 </Screen2>                
                 </>}
         </div>

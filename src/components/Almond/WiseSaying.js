@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wise = styled.p`
-    margin-top: 20px;
+    margin-top: 30px;
     color: pink;
     border : solid 3px pink;
     border-radius: 5px;
@@ -15,7 +15,8 @@ const Wise = styled.p`
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     @media only screen and (max-width: 600px) {
-        margin: 20px 0 0 75px;
+        margin: 0 auto;
+        margin-top: 20px;
     }
 `;
 

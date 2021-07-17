@@ -24,7 +24,7 @@ const AllList = styled.div`
         background: white;
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
             width: 350px;
     }
 `;

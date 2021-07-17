@@ -4,7 +4,6 @@ import MyBucketList from '../components/Bucket/MyBucketList';
 import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
-import Footer from '../components/Footer'
 import { actionCreators } from '../store';
 
 const Screen1 = styled.div`
@@ -42,7 +41,6 @@ const AllText = styled.div`
 
 const MyPage = styled.span`
         display:flex;
-        // justify-content: space-between;
         flex-direction: row;
         width: 100%;
         margin: 0 auto;
@@ -50,7 +48,7 @@ const MyPage = styled.span`
         font-family: 'CookieRun-Regular';
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 600px) {
             flex-direction: column;
         }
     `;
@@ -63,7 +61,7 @@ const AllBucket = styled.div`
         width: 100%;
         font-family: 'CookieRun-Regular';
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 600px) {
             margin-left: 110px;
         }
 `;
@@ -119,10 +117,6 @@ const AddButton = styled.button`
             color:pink;
             background-color: white;
         }
-`;
-
-const BucketUl = styled.ul`
-        padding:10px;
 `;
 
 const ScrollBar = styled.div`
