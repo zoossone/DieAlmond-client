@@ -3,7 +3,6 @@ import LandingPage from './Pages/LandingPage';
 import { Route } from "react-router-dom"
 import StartBtn from './components/StartBtn';
 import MyPage from './Pages/MyPage';
-import BucketListPage from './Pages/BucketListPage';
 import EasterEgg2 from './components/EasterEgg/EasterEgg2';
 import MyBucketListPage from './Pages/MyBucketListPage';
 

@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import GooLogin from './oauth/GooLogin';
-import KakaoLogin from './oauth/KakaoLogin';
 import {connect} from 'react-redux';
 
 const Nav = styled.div`

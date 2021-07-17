@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 
 
 const AllList = styled.div`
@@ -24,7 +24,7 @@ const AllList = styled.div`
         background: white;
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
             width: 350px;
     }
 `;
@@ -44,7 +44,6 @@ const AllBucketList = ({ render, userInfo }) => {
             withCredentials: true
         })
             .then(res => {
-                console.log(res)
                 setAllList([...res.data.bucketList]);
             })
             .catch(e => e);

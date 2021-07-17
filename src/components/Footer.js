@@ -4,8 +4,9 @@ import font from '../font.css'
 
 const Foot = styled.footer`
         display: flex;
-        bottom:0px;
         width: 100%;
+        bottom: 0px;
+        position: fixed;
         flex-direction: column;
         align-items: center;
         background-color: #BF78E4;

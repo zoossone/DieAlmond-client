@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GooLogin from './oauth/GooLogin';
-import KakaoLogin from './oauth/KakaoLogin';
-import font from '../font.css'
 
 const Modalcontainer = styled.div`
     display: flex;
@@ -41,7 +39,7 @@ const LoginModal = (props) => {
     return (
             <Modalcontainer onClick={() => props.handleLoginModal()}>
                 <Modal onClick={(e) => e.stopPropagation()}>
-                    <Div>로그인 / 회원가입</Div>
+                    <Div>로그인 /<br/> 회원가입</Div>
                     <br/>
                 <GooLogin />
                 </Modal>

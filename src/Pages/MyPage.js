@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from '../components/SettingModal/Calendar'
 import SleepSlider from '../components/SettingModal/SleepSlider';
@@ -6,39 +6,9 @@ import SmokingSlider from '../components/SettingModal/SmokingSlider'
 import AlcoholSlider from '../components/SettingModal/AlcoholSlider'
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
-import { Route, Router } from 'react-router';
-import MainPage from './MainPage';
 import axios from 'axios';
-import { Component } from 'react';
 import { useHistory } from 'react-router-dom';
 import font from '../font.css'
-import { GoogleLogin, GoogleLogout, useGoogleLogout } from 'react-google-login';
-
-// const Modalcontainer = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     background: #00000080;
-//     z-index: 10000;
-// `
-// const Modal = styled.span`
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-//     position: fixed;
-//     width: 350px;
-//     height: 500px;
-//     background: white;
-//     z-index: 10000;
-//     border-radius: 5px;
-// `
 
 const Container = styled.div`
     padding: 20px;
@@ -157,7 +127,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(birth))
         if (nickname === '' || gender === '' || birth.length === 0 || sleep === 0) {
             return alert("모든 항목을 빠짐없이 기입해주세요 :)")
         } else {
@@ -211,8 +180,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                     .then((res) => {
                         addUserInfo({ restLife: parseInt(res.data.life) })
                         alert('변경 완료 :)')
-                        // console.log(res)
-                        // console.log(userInfo)
                         localStorage.setItem("info", JSON.stringify({
                             'nickname': nickname,
                             'gender': gender,
@@ -251,7 +218,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                     .then((res) => {
                         addUserInfo({ restLife: parseInt(res.data.life) })
                         alert('변경을 완료했습니다 :)')
-                        // console.log(res)
                         localStorage.setItem("info", JSON.stringify({
                             'nickname': nickname,
                             'gender': gender,
@@ -308,9 +274,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 <Input type='text' placeholder='닉네임을 입력하세요.' onChange={onChange} value={nickname}></Input>
                 {/* <Input /> */}
                 <hr />
-                {console.log(userInfo)}
-                {console.log(nickname)}
-
                 {/* radio : gender */}
                 <Div>성별 선택</Div>
                 <Radio type='radio' id='male' name='gender' value='male' checked={gender === 'male'} onChange={onChangeSex} />
@@ -318,7 +281,6 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 <Radio type='radio' id='female' name='gender' value='female' checked={gender === 'female'} onChange={onChangeSex} />
                 <Span>여성</Span>
                 <hr />
-                {console.log(gender)}
 
                 {/* DatePicker : Birth Day */}
                 <Div>생년월일 입력</Div>
@@ -328,15 +290,11 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                             dateFormat = "yyyy.MM.dd"
                         /> */}
                 <Calendar setBirth={setBirth} birth={birth} />
-                {console.log(birth)}
                 <hr />
                 {/* Parameter : Sleep, Alchol, Smoking */}
                 <SleepSlider setSleep={setSleep} />
-                {console.log(sleep)}
                 <SmokingSlider setSmoking={setSmoking} />
-                {console.log(smoking)}
                 <AlcoholSlider setAlcohol={setAlcohol} />
-                {console.log(alcohol)}
                 <hr />
                 <Button>완료</Button>
                 {typeof (userInfo.nickname) === 'string' ?

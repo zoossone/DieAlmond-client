@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import styled, {css, keyframes} from 'styled-components';
-import almond from './img/almond.gif'
+import styled, { keyframes} from 'styled-components';
 import devil from './img/devil.png'
 
 const EasterEgg = () => {
@@ -82,7 +81,6 @@ const EasterEgg = () => {
     //         left:${life - 3}%;
     //         animation: ${jumpUp} 0.5s infinite linear;
     //     `
-    //     console.log('쩜프')
     // }
 
     // document.addEventListener("keydown", () => {

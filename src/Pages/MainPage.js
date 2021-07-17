@@ -4,29 +4,29 @@ import BucketLists from '../components/Aside/BucketLists';
 import CountDown from '../components/CountDownTimer/CountDown';
 import ProgressBar from '../components/ProgressBar'
 import NaviBar from '../components/NaviBar'
-import Footer from '../components/Footer'
 import Almond from '../components/Almond/Almond'
 import WiseSaying from '../components/Almond/WiseSaying'
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { actionCreators } from '../store';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
-import font from '../font.css'
+import styled, {createGlobalStyle} from 'styled-components';
+
+const Global = createGlobalStyle`
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+`;
 
 const Screen1 = styled.div`
-    width: 100vw;
-    height: 70vh;
+    min-width: 100%;
+    height: auto;
 `
 
 const Screen2 = styled.div`
     width: 100vw;
-    height: 30vh;
-`
-
-const Section1 = styled.div`
-    position: relative;
-    bottom: 10px;
+    height: 50vh;
 `
 
 const Loader = styled.div`
@@ -66,8 +66,6 @@ const Title = styled.div`
     margin: 20px;
     padding: 10px;
     font-family: 'CookieRunOTF-Black';
-    
-    // border: 1px solid black;
 
     @media only screen and (max-width: 600px) {
         flex-direction: column;
@@ -75,16 +73,27 @@ const Title = styled.div`
 `;
 
 const Aside1 = styled.div`
+    display: flex;
+    flex-direction: column;
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
     color: #BF78E4;
+
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 20px;
+    }
 `;
 
 const Header = styled.div`
     font-family: 'CookieRunOTF-Black';
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 1rem;
+    }
 `;
 
 const Nickname = styled.div`
@@ -94,21 +103,27 @@ const Nickname = styled.div`
     color: #BF78E4;
     line-height: 3.2rem;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+
 `;
 
 const Aside2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
     color: #BF78E4;
-`;
 
-const Section = styled.div`
-    display: flex;
-    flex-direction: column;
+    @media only screen and (max-width: 600px) {
+        text-align: center;
+    }
 `;
 
 const Dot = styled.div`
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    @media only screen and (max-width: 600px) {
+        margin: 0 auto;
+    }
 `
 
 const MainPage = ({ userInfo, addInfo }) => {
@@ -128,10 +143,8 @@ const MainPage = ({ userInfo, addInfo }) => {
                 withCredentials: true
             })
                 .then((res) => {
-                    console.log(res.data.msg)
                     if (typeof (res.data.userinfo.nickname) === 'string') {
                         addInfo(res.data.userinfo);
-                        console.log(res.data.userinfo, userInfo)
                         localStorage.setItem("info", JSON.stringify(res.data.userinfo))
                     } else {
                         history.push('/mymy');
@@ -152,6 +165,7 @@ const MainPage = ({ userInfo, addInfo }) => {
     // 삼항 연산자 추가
     return (
         <div>
+            <Global/>
             {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> :
                 <>
                 <Screen1>
@@ -178,10 +192,8 @@ const MainPage = ({ userInfo, addInfo }) => {
                 </Screen1>
 
                 <Screen2>
-                    <Section>
                         <Almond userInfo={userInfo} />
                         <ProgressBar userInfo={userInfo} />
-                    </Section>
                 </Screen2>                
                 </>}
         </div>

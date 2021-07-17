@@ -2,6 +2,15 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import EasterEgg from '../EasterEgg/EasterEgg'
 
+const Al = styled.div`
+    display: flex;
+    width: 100%;
+    bottom: 0px;
+    position: relative;
+    flex-direction: column;
+    transform: translateY(0%)
+`;
+
 const Almond = ({userInfo}) => {
 
     const [start, setStart] = useState(false);
@@ -136,10 +145,10 @@ const Almond = ({userInfo}) => {
 
     // 정상
     return (
-        <div>
+        <Al>
             <Img onClick={handleEasterEgg} src={require("../../img/almond.gif").default}/>
             {start === false ? null : <EasterEgg />}
-        </div>
+        </Al>
     );
 };
 
