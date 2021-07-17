@@ -1,6 +1,4 @@
-import React,{useState} from 'react';
-import axios from 'axios';
-import {connect} from 'react-redux';
+import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
@@ -13,7 +11,7 @@ const ShowRandom = styled.div`
     width:100%;
     line-height: 1.8rem;
     padding: 2px;
-    background-color: pink;
+    background-color: #BF78E4;
     color: white;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -25,8 +23,8 @@ const BucketAdd = styled.button`
     justify-content: center;
     border-radius: 4px;
     background-color: white;
-    border: outset 4px pink;
-    color: pink;
+    border: outset 4px #BF78E4;
+    color: #BF78E4;
     cursor: pointer;
     width: 15rem;
     height: 50px;
@@ -38,7 +36,11 @@ const BucketAdd = styled.button`
     &:hover {
         border: inset 4px white;
         color: white;
-        background-color: pink;
+        background-color: #BF78E4;
+    }
+
+    @media only screen and (max-width: 600px) {
+        margin: 0 auto;
     }
 
     @media only screen and (max-width: 600px) {

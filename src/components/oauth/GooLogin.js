@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,8 +9,8 @@ import styled from 'styled-components';
 const Button = styled.div`
     margin-right: 20px;
     border-radius: 4px;
-    background-color: pink;
-    border: outset 2px pink;
+    background-color: #BF78E4;
+    border: outset 2px #BF78E4;
     color: white;
     cursor: pointer;
     width: 65px;
@@ -24,7 +24,7 @@ const Button = styled.div`
     
     &:hover {
         border: inset 2px white;
-        color: pink;
+        color: #BF78E4;
         background-color: white;
     }
 `
@@ -32,8 +32,9 @@ const Button = styled.div`
 const ButtonLogout = styled.div`
     margin-right: 20px;
     border-radius: 4px;
-    background-color: pink;
-    border: outset 2px pink;
+    background-color: #BF78E4;
+    border: outset 2px #BF78E4;
+
     color: white;
     cursor: pointer;
     width: 65px;
@@ -48,7 +49,7 @@ const ButtonLogout = styled.div`
     
     &:hover {
         border: inset 2px white;
-        color: pink;
+        color: #BF78E4;
         background-color: white;
     }
 `
@@ -60,10 +61,7 @@ const GooLogin = ({ addUserInfo }) => {
     const history = useHistory()
 
     const onSuccess = (res) => {
-        console.log(res)
         if(res.accessToken) {
-            console.log(res.accessToken);
-            console.log('[Login Success] currentUser:', res.profileObj);
             axios.post('http://localhost:80/google',{
               
             }, {
@@ -84,11 +82,11 @@ const GooLogin = ({ addUserInfo }) => {
 
 
     const onFailure = (res) => {
-        console.log('[Login failed] res:', res);
+        // console.log('[Login failed] res:', res);
     }
 
     const onLogoutSuccess = (res) => {
-        console.log('Logout made successfully');
+
         alert('로그아웃이 완료되었습니다!');
         setIslogin(!isLogin)
         addUserInfo({ google: null })

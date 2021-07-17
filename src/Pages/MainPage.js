@@ -4,7 +4,6 @@ import BucketLists from '../components/Aside/BucketLists';
 import CountDown from '../components/CountDownTimer/CountDown';
 import ProgressBar from '../components/ProgressBar'
 import NaviBar from '../components/NaviBar'
-import Footer from '../components/Footer'
 import Almond from '../components/Almond/Almond'
 import WiseSaying from '../components/Almond/WiseSaying'
 import { connect } from 'react-redux';
@@ -41,7 +40,7 @@ const Loader = styled.div`
     margin: -76px 0 0 -76px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #35A88E;
+    border-top: 16px solid #BF78E4;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 
@@ -79,7 +78,7 @@ const Aside1 = styled.div`
     flex-direction: column;
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
-    color: pink;
+    color: #BF78E4;
 
     @media only screen and (max-width: 600px) {
         margin-bottom: 20px;
@@ -102,7 +101,7 @@ const Nickname = styled.div`
     font-family: 'CookieRunOTF-Black';
     margin: 0 0 50px 0;
     font-size: 3rem;
-    color: pink;
+    color: #BF78E4;
     line-height: 3.2rem;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 
@@ -114,7 +113,7 @@ const Aside2 = styled.div`
     text-align: center;
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
-    color: pink;
+    color: #BF78E4;
 
     @media only screen and (max-width: 600px) {
         text-align: center;
@@ -145,10 +144,8 @@ const MainPage = ({ userInfo, addInfo }) => {
                 withCredentials: true
             })
                 .then((res) => {
-                    console.log(res.data.msg)
                     if (typeof (res.data.userinfo.nickname) === 'string') {
                         addInfo(res.data.userinfo);
-                        console.log(res.data.userinfo, userInfo)
                         localStorage.setItem("info", JSON.stringify(res.data.userinfo))
                     } else {
                         history.push('/mymy');

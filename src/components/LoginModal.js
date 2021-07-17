@@ -26,12 +26,12 @@ const Modal = styled.span`
     height: 300px;
     background: white;
     border-radius: 20px;
-    border: 3px solid pink;
+    border: 3px solid #BF78E4;
     margin: 10px;
 `;
 
 const Div = styled.div`
-    color: pink;
+    color: #BF78E4;
 `
 
 const LoginModal = (props) => {

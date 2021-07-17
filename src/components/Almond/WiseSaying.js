@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Wise = styled.p`
     margin-top: 30px;
-    color: pink;
-    border : solid 3px pink;
+    color: #BF78E4;
+    border : solid 3px #BF78E4;
     border-radius: 5px;
     padding: 10px;
     font-size: 1rem;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+
 
 const ReverseTimer = styled.div`
     display: flex;
@@ -93,7 +94,6 @@ const CountDown = ({ userInfo }) => {
         return () => clearInterval(timer);
     });
 
-    // console.log(day, hrs, mins, secs, mss);
     // padaytart : 스트링.padaytart(스트링의 길이, 채울 스트링)
     return (
         <ReverseTimer>
