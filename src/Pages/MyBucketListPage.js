@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
 import { actionCreators } from '../store';
+import { useHistory } from 'react-router-dom';
 
 const Screen1 = styled.div`
     height: 100vh;
@@ -15,7 +16,7 @@ const Text = styled.div`
     margin: 0 35px 20px 0;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
-    color: pink;
+    color: #BF78E4;
     text-align: center;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 
@@ -28,7 +29,7 @@ const AllText = styled.div`
     margin-bottom: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
-    color: pink;
+    color: #BF78E4;
     text-align: center;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 
@@ -87,10 +88,10 @@ const Input = styled.input`
         height: 50px;
         margin: 10px;
         border-radius: 4px;
-        border: 2px solid pink;
+        border: 2px solid #BF78E4;
         font-size: 2rem;
         font-family: 'CookieRun-Regular';
-        color: pink;
+        color: #BF78E4;
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
         :focus {
@@ -105,8 +106,8 @@ const AddButton = styled.button`
         font-size: 1.3rem;
         cursor: pointer;
         border-radius: 4px;
-        background-color: pink;
-        border: 2px solid pink;
+        background-color: #BF78E4;
+        border: 2px solid #BF78E4;
         transition: all 0.5s ease;
         font-family: 'CookieRun-Regular';
         color: white;
@@ -114,7 +115,7 @@ const AddButton = styled.button`
         
         :hover {
             transform: scale(1.2);
-            color:pink;
+            color:#BF78E4;
             background-color: white;
         }
 `;
@@ -141,7 +142,7 @@ const Loader = styled.div`
     margin: -76px 0 0 -76px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #35A88E;
+    border-top: 16px solid #BF78E4;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 
@@ -162,6 +163,36 @@ const Div = styled.div`
         font-weight: bold;
 `
 
+const BackButton = styled.button`
+    -webkit-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 0.8s cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    max-width: 180px;
+    text-decoration: none;
+    border-radius: 30px;
+    border-color: #BF78E4;
+    background-color: white;
+    padding: 10px 30px;
+    margin: 10px;
+    font-family: 'CookieRun-Regular';
+    color: #BF78E4;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+    :hover {
+        color: rgba(255, 255, 255, 0.85);
+        background-color: #BF78E4;
+	    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    }
+`;
+
+const Nav = styled.nav`
+    display: flex;
+    flex-direction: reverse;
+    font-family: 'CookieRun-Regular';
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+`;
+
 const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [desc, setDesc] = useState('')
     const [objlist, setObjList] = useState([{}])
@@ -169,6 +200,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     const [render, setRender] = useState(true)
     const [allBucket, setAllbucket] = useState(true)
     const [isLoading, setIsLoading] = useState(true);
+    const history = useHistory()
 
     if (typeof (userInfo.nickname) !== 'string') {
         addInfo(JSON.parse(localStorage.getItem("info")))
@@ -244,7 +276,12 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     console.log(objlist)
     return (
         <>
-            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <Screen1>
+            {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : 
+            <>
+            <Nav>
+                <BackButton onClick={() => history.push('/main')}>메인 화면</BackButton>
+            </Nav>
+            <Screen1>
                 <Inputform>
                     <Input type='text' onChange={(e) => setDesc(e.target.value)} />
                     <AddButton onClick={addBucketListBtn}>버킷 추가</AddButton>
@@ -269,7 +306,8 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                         </div>
                     </AllBucket>
                 </MyPage> 
-                </Screen1>  
+                </Screen1>
+                </>
             }
         </>
     );

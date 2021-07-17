@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const ReverseTimer = styled.div`
     display: flex;
@@ -30,6 +30,16 @@ const Timer = styled.div `
         padding: 0px;
     }
 `
+
+const FontSize = styled.div`
+    font-size: 7rem;
+    margin-top: 30px;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 5rem;
+        margin-top: -10px;
+    }
+`;
 
 const CountDown = ({ userInfo }) => {
     let { sleep, smoking, alcohol, restLife } = userInfo
@@ -93,7 +103,6 @@ const CountDown = ({ userInfo }) => {
         return () => clearInterval(timer);
     });
 
-    // console.log(day, hrs, mins, secs, mss);
     // padaytart : 스트링.padaytart(스트링의 길이, 채울 스트링)
     return (
         <ReverseTimer>
@@ -107,10 +116,16 @@ const CountDown = ({ userInfo }) => {
                     `
                         ${hrs.toString().padStart(2, '0')} 시간        
                         ${mins.toString().padStart(2, '0')} 분        
-                        ${secs.toString().padStart(2, '0')} 초        
+                        ${secs.toString().padStart(2, '0')} 초 `
+                }
+                <br/>
+                <FontSize>
+                {
+                        `
                         ${mss.toString().padStart(2, '0')}
                     `
                 }
+                </FontSize>
             </Timer>
         </ReverseTimer>
     );
