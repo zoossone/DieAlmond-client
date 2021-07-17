@@ -11,6 +11,7 @@ const Nav = styled.div`
     padding: 10px;
 `;
 
+
 const SettingBtn = styled.button`
     margin-right: 20px;
     border-radius: 4px;

@@ -64,6 +64,7 @@ const EasterEgg = () => {
         }
     `
 
+
     const [start, setStart] = useState(false);
 
     const toggleModal = () => {
