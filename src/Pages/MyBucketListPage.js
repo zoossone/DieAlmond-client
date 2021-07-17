@@ -17,6 +17,7 @@ const Text = styled.div`
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: #BF78E4;
+
     text-align: center;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 
@@ -273,6 +274,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
         setRender(!render)
     }
 
+    console.log(objlist)
     return (
         <>
             {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : 

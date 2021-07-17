@@ -42,6 +42,10 @@ const BucketAdd = styled.button`
     @media only screen and (max-width: 600px) {
         margin: 0 auto;
     }
+
+    @media only screen and (max-width: 600px) {
+        margin: 0 auto;
+    }
 `
 
 const Div = styled.div`
