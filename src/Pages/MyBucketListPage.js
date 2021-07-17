@@ -4,7 +4,6 @@ import MyBucketList from '../components/Bucket/MyBucketList';
 import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
 import styled from 'styled-components';
-import Footer from '../components/Footer'
 import { actionCreators } from '../store';
 
 const Screen1 = styled.div`
@@ -13,17 +12,35 @@ const Screen1 = styled.div`
 `
 
 const Text = styled.div`
+    margin: 0 35px 20px 0;
+    font-size: 2.5rem;
+    font-family: 'CookieRun-Regular';
+    color: pink;
+    text-align: center;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+
+    @media only screen and (max-width: 600px) {
+        margin: 20px 0 20px 20px;
+    }
+`
+
+const AllText = styled.div`
     margin-bottom: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: pink;
     text-align: center;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+    }
 `
 
 const MyPage = styled.span`
         display:flex;
-        // justify-content: space-between;
         flex-direction: row;
         width: 100%;
         margin: 0 auto;
@@ -31,7 +48,7 @@ const MyPage = styled.span`
         font-family: 'CookieRun-Regular';
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 600px) {
             flex-direction: column;
         }
     `;
@@ -44,7 +61,7 @@ const AllBucket = styled.div`
         width: 100%;
         font-family: 'CookieRun-Regular';
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 600px) {
             margin-left: 110px;
         }
 `;
@@ -61,7 +78,7 @@ const BucketList = styled.div`
 const Inputform = styled.div`
         display: flex;
         justify-content: center;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         font-family: 'CookieRun-Regular';
 `;
 
@@ -100,10 +117,6 @@ const AddButton = styled.button`
             color:pink;
             background-color: white;
         }
-`;
-
-const BucketUl = styled.ul`
-        padding:10px;
 `;
 
 const ScrollBar = styled.div`
@@ -228,12 +241,13 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
         setRender(!render)
     }
 
+    console.log(objlist)
     return (
         <>
             {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : <Screen1>
                 <Inputform>
                     <Input type='text' onChange={(e) => setDesc(e.target.value)} />
-                    <AddButton onClick={addBucketListBtn}>버킷리스트 추가</AddButton>
+                    <AddButton onClick={addBucketListBtn}>버킷 추가</AddButton>
                 </Inputform>
 
                 <MyPage>
@@ -242,7 +256,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
                             <Text>나의 버킷리스트</Text>
                             <ScrollBar>
                                 {objlist.filter(el => el.id !== undefined)
-                                    .map((list, i) => <MyBucketList key={i} description={list.bucketName}
+                                    .map((list) => <MyBucketList key={list.id} description={list.bucketName}
                                         id={list.id} isChecked={list.isChecked} userInfo={userInfo} renderDelete={renderDelete} />)}
                             </ScrollBar>
                         </div>
@@ -250,7 +264,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
 
                     <AllBucket>
                     <div>
-                        <Text>모든 사용자들의 버킷리스트</Text>
+                        <AllText>모든 사용자들의 버킷리스트</AllText>
                         <ScrollBar><AllBucketList render={render} /></ScrollBar>
                         </div>
                     </AllBucket>
