@@ -15,8 +15,8 @@ const Nav = styled.div`
 const BucketBtn = styled.button`
     margin-right: 20px;
     border-radius: 10px;
-    background-color: pink;
-    border: outset 2px pink;
+    background-color: #BF78E4;
+    border: outset 2px #BF78E4;
     color: white;
     cursor: pointer;
     width: 150px;
@@ -32,8 +32,8 @@ const BucketBtn = styled.button`
     border-radius: 4px;
     
     &:hover {
-        border: inset 2px pink;
-        color: pink;
+        border: inset 2px #BF78E4;
+        color: #BF78E4;
         background-color: white;
         box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
     }
@@ -42,8 +42,8 @@ const BucketBtn = styled.button`
 const SettingBtn = styled.button`
     margin-right: 20px;
     border-radius: 4px;
-    background-color: pink;
-    border: outset 2px pink;
+    background-color: ;
+    border: outset 2px #BF78E4;
     color: white;
     cursor: pointer;
     width: 60px;
@@ -56,7 +56,7 @@ const SettingBtn = styled.button`
     
     &:hover {
         border: inset 2px white;
-        color: pink;
+        color: #BF78E4;
         background-color: white;
     }
 `;

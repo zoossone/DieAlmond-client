@@ -5,6 +5,7 @@ import StartBtn from './components/StartBtn';
 import MyPage from './Pages/MyPage';
 import BucketListPage from './Pages/BucketListPage';
 import EasterEgg2 from './components/EasterEgg/EasterEgg2';
+import MyBucketListPage from './Pages/MyBucketListPage';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
 
       <Route path="/bucket"
         render={() => (
-          <BucketListPage />
+          <MyBucketListPage />
         )} />
 
       <StartBtn />

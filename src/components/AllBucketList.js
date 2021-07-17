@@ -14,11 +14,11 @@ const AllList = styled.div`
     padding: 8px;
     border-radius: 15px;
     cursor: pointer;
-    background: pink;
+    background: #BF78E4;
     color: white;
 
     :hover {
-        color: pink;
+        color: #BF78E4;
         transform: scale(1.05);
         transition: all 0.8s ease-out;
         background: white;

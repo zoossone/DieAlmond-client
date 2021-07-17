@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import landingImg from '../img/imgTest.png'
 import img1 from '../img/gameover.jpg'
 import img2 from '../img/end.jpg'
+import devilLanding from '../img/devilLanding.png'
 import SettingModal from '../components/SettingModal/SettingModal'
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -28,7 +29,7 @@ const Title = styled.div`
     font-size: 40px;
     font-family: 'CookieRunOTF-Black';
     text-align: center;
-    color: pink;
+    color: #BF78E4;
     text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
 
     @media screen and (max-width: 780px) {
@@ -63,7 +64,7 @@ const IntroTitle = styled.div`
     line-height: 75px;
     text-align: right;
 
-    color: pink;
+    color: #BF78E4;
     text-shadow: -3.5px 0 black, 0 3.5px black, 3.5px 0 black, 0 -3.5px black;
 
     @media screen and (max-width: 780px) {
@@ -96,7 +97,7 @@ const IntroSubTitle = styled.div`
 `
 
 const B = styled.b`
-    color: pink;
+    color: #BF78E4;
 `
 
 const NavBtn = styled.div`
@@ -116,8 +117,8 @@ const LoginModalBtn1 = styled.button`
     margin-right: 20px;
     border-radius: 25px;
     background-color: white;
-    border-color: pink;
-    color: pink;
+    border-color: #BF78E4;
+    color: #BF78E4;
     cursor: pointer;
     width: 150px;
     height: 50px;
@@ -129,7 +130,7 @@ const LoginModalBtn1 = styled.button`
     
     &:hover {
         color: white;
-        background-color: pink;
+        background-color: #BF78E4;
     }
 
     @media screen and (max-width: 780px) {
@@ -141,8 +142,8 @@ const LoginModalBtn1 = styled.button`
 const LoginModalBtn2 = styled.button`
     border-radius: 25px;
     background-color: white;
-    border-color: pink;
-    color: pink;
+    border-color: #BF78E4;
+    color: #BF78E4;
     cursor: pointer;
     width: 150px;
     height: 50px;
@@ -153,7 +154,7 @@ const LoginModalBtn2 = styled.button`
     
     &:hover {
         color: white;
-        background-color: pink;
+        background-color: #BF78E4;
     }
 
     @media screen and (max-width: 780px) {
@@ -198,7 +199,7 @@ const LandingPage = ({resetStore}) => {
                 
 
                 <Flex>
-                    <Img src={img1}></Img>   
+                    <Img src={devilLanding}></Img>   
                     <div>
                         <IntroTitle>
                             죽음은 지금 이 순간에도 

@@ -8,7 +8,7 @@ const Foot = styled.footer`
         width: 100%;
         flex-direction: column;
         align-items: center;
-        background-color: pink;
+        background-color: #BF78E4;
         text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
     `;
 

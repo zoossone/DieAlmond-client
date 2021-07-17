@@ -9,8 +9,8 @@ import styled from 'styled-components';
 const Button = styled.div`
     margin-right: 20px;
     border-radius: 4px;
-    background-color: pink;
-    border: outset 2px pink;
+    background-color: #BF78E4;
+    border: outset 2px #BF78E4;
     color: white;
     cursor: pointer;
     width: 60px;
@@ -25,7 +25,7 @@ const Button = styled.div`
     
     &:hover {
         border: inset 2px white;
-        color: pink;
+        color: #BF78E4;
         background-color: white;
     }
 `

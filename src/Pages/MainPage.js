@@ -39,7 +39,7 @@ const Loader = styled.div`
     margin: -76px 0 0 -76px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #35A88E;
+    border-top: 16px solid #BF78E4;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 
@@ -77,7 +77,7 @@ const Title = styled.div`
 const Aside1 = styled.div`
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
-    color: pink;
+    color: #BF78E4;
 `;
 
 const Header = styled.div`
@@ -91,7 +91,7 @@ const Nickname = styled.div`
     font-family: 'CookieRunOTF-Black';
     margin: 0 0 50px 0;
     font-size: 3rem;
-    color: pink;
+    color: #BF78E4;
     line-height: 3.2rem;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 `;
@@ -99,7 +99,7 @@ const Nickname = styled.div`
 const Aside2 = styled.div`
     font-family: 'CookieRunOTF-Black';
     font-size: 20px;
-    color: pink;
+    color: #BF78E4;
 `;
 
 const Section = styled.div`

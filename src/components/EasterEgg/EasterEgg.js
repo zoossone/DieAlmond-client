@@ -67,8 +67,8 @@ const EasterEgg = () => {
         position: relative;
         top: 72.5%;
         background-image: url(${devil});
-        background-size: 50px 50px;
-        animation: ${block} 5s infinite linear;
+        background-size: 60px 50px;
+        animation: ${block} 2s infinite linear;
     `
 
     // const jump = () => {

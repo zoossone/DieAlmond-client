@@ -36,7 +36,7 @@ const Modal = styled.span`
 `
 
 const Label = styled.div`
-    color: pink;
+    color: #BF78E4;
 `
 
 const SettingModal =  ({userInfo, addUserInfo}) => {

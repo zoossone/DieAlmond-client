@@ -8,7 +8,7 @@ const ShowRandom = styled.div`
     max-width: 15rem;
     line-height: 1.8rem;
     padding: 2px;
-    background-color: pink;
+    background-color: #BF78E4;
     color: white;
     text-align: center;
     margin-bottom: 10px;
@@ -20,8 +20,8 @@ const BucketAdd = styled.button`
     margin-right: 20px;
     border-radius: 4px;
     background-color: white;
-    border: outset 4px pink;
-    color: pink;
+    border: outset 4px #BF78E4;
+    color: #BF78E4;
     cursor: pointer;
     width: 15rem;
     height: 50px;
@@ -33,7 +33,7 @@ const BucketAdd = styled.button`
     &:hover {
         border: inset 4px white;
         color: white;
-        background-color: pink;
+        background-color: #BF78E4;
     }
 `
 

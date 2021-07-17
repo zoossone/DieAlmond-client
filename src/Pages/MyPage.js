@@ -54,7 +54,7 @@ const Container = styled.div`
 const Title = styled.h1`
     font-size: 2rem;
     text-align: center;
-    color: pink;
+    color: #BF78E4;
     font-family: 'CookieRun-Regular';
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 `;
@@ -62,11 +62,11 @@ const Title = styled.h1`
 const Input = styled.input`
     width: 200px;
     height: 3rem;
-    color: pink;
+    color: #BF78E4;
     margin: 1rem;
     font-size: 1.5rem;
     text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
-    border: solid 5px pink;
+    border: solid 5px #BF78E4;
     border-radius: 5px;
 
     :focus {
@@ -92,20 +92,20 @@ const Radio = styled.input`
 
 const Div = styled.div`
     font-weight: bold;
-    color: pink;
+    color: #BF78E4;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `
 
 const Span = styled.span`
     font-weight: bold;
-    color: pink;
+    color: #BF78E4;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `
 
 const Button = styled.button`
     margin: 30px;
     text-align:center;
-    background:pink;
+    background:#BF78E4;
     color:white;
     border:none;
     position:relative;
@@ -123,13 +123,13 @@ const Button = styled.button`
 
     :hover{
         background: white;
-        color: pink;
-        border: solid 2px pink;
+        color: #BF78E4;
+        border: solid 2px #BF78E4;
 }
 `
 
 const Form = styled.form`
-    border: 3px solid pink;
+    border: 3px solid #BF78E4;
     padding: 3rem;
     border-radius: 60px;
 `
