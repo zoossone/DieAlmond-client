@@ -3,7 +3,6 @@ import LoginModal from '../components/LoginModal';
 import Footer from '../components/Footer'
 import styled from 'styled-components';
 import devilLanding from '../img/devilLanding.png'
-
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';

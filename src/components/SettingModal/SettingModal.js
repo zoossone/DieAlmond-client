@@ -79,24 +79,6 @@ const SettingModal =  ({userInfo, addUserInfo}) => {
                 smoking: parseInt(smoking),
                 alcohol: parseInt(alcohol)
             })
-
-            // axios.patch('http://localhost:4000/mypage', {
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "Authentication": "@@@@@@token"
-            //     },
-            //     withCredentials: true,
-            //     nickName: nickName,
-            //     gender: gender,
-            //     birth: date,
-            //     year: year,
-            //     month: month,
-            //     day: day,
-            //     sleep: parseInt(sleep),
-            //     smoking: parseInt(smoking),
-            //     alcohol: parseInt(alcohol)
-            // })
-            // .catch(e => e)
         }
 
     }

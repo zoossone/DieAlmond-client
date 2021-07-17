@@ -17,7 +17,6 @@ const Text = styled.div`
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: #BF78E4;
-
     text-align: center;
     text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 

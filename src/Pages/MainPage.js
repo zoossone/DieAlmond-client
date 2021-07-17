@@ -11,7 +11,6 @@ import axios from 'axios';
 import { actionCreators } from '../store';
 import { useHistory } from 'react-router';
 import styled, {createGlobalStyle} from 'styled-components';
-import font from '../font.css'
 
 const Global = createGlobalStyle`
     margin: 0;
@@ -163,7 +162,6 @@ const MainPage = ({ userInfo, addInfo }) => {
         }
     }, [])
 
-    // 삼항 연산자 추가
     return (
         <div>
             <Global/>

@@ -99,7 +99,6 @@ const MyBucketList = (props) => {
         axios.patch(`http://localhost:80/bucket/check`, {
             id: props.id,
             isChecked: !isDone
-            // 백으로 보내줄때 id값도 보내주기?? 아이디랑 ischecked
         }, {
             headers: {
                 "sns": "google",

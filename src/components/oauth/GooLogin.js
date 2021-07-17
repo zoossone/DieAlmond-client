@@ -34,7 +34,6 @@ const ButtonLogout = styled.div`
     border-radius: 4px;
     background-color: #BF78E4;
     border: outset 2px #BF78E4;
-
     color: white;
     cursor: pointer;
     width: 65px;

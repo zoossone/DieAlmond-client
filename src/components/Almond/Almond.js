@@ -55,7 +55,7 @@ const Almond = ({userInfo}) => {
         display: flex;
         flex-direction: column;
         position: fixed;
-        max-width: 50px;
+        max-width: 200px;
         height : auto;
         margin : 0px;
         padding: 0px;
@@ -63,14 +63,11 @@ const Almond = ({userInfo}) => {
         /* 변수로 지정 필요 수명 퍼센티지 - 3 */
         left: ${per - 4}%;
         cursor: pointer;
-    `;
 
-    // Dummy Data
-    // const userInfo = {
-    //     sleep : 8,
-    //     smoking : 0,
-    //     alcohol: 0
-    // }
+        @media only screen and (max-width: 600px) {
+            max-width: 130px;
+        }
+    `;
 
     // 흡연 x 음주 x 수면
     if(userInfo.smoking > 0 && userInfo.alcohol > 0 && (userInfo.sleep > 9 || userInfo.sleep < 7)) {

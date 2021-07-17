@@ -10,7 +10,6 @@ const Pr = styled.div`
 `;
 
 const ProgressBar = ({userInfo}) => {
-    //props로 수명을 받아서 스테이트로 표시해줌
     
     let { age, sleep, smoking, alcohol, restLife  } = userInfo
 

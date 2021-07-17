@@ -282,16 +282,9 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
                 <Span>여성</Span>
                 <hr />
 
-                {/* DatePicker : Birth Day */}
                 <Div>생년월일 입력</Div>
-                {/* <DatePicker 
-                            selected={startDate} 
-                            onChange={(date) => setStartDate(date)} 
-                            dateFormat = "yyyy.MM.dd"
-                        /> */}
                 <Calendar setBirth={setBirth} birth={birth} />
                 <hr />
-                {/* Parameter : Sleep, Alchol, Smoking */}
                 <SleepSlider setSleep={setSleep} />
                 <SmokingSlider setSmoking={setSmoking} />
                 <AlcoholSlider setAlcohol={setAlcohol} />

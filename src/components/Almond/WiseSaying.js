@@ -7,15 +7,16 @@ const Wise = styled.p`
     border : solid 3px #BF78E4;
     border-radius: 5px;
     padding: 10px;
-    font-size: 1rem;
-    max-width: 17rem;
-    line-height: 2rem;
+    font-size: 2rem;
+    max-width: 20rem;
+    line-height: 3rem;
     font-family: 'CookieRunOTF-Black';
     text-align: center;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     @media only screen and (max-width: 600px) {
         margin: 0 auto;
+        max-width: 17rem;
         margin-top: 20px;
     }
 `;
