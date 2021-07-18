@@ -81,6 +81,10 @@ const Inputform = styled.div`
         justify-content: center;
         margin-bottom: 30px;
         font-family: 'CookieRun-Regular';
+
+        @media only screen and (max-width: 600px) {
+            flex-direction:column;
+        }
 `;
 
 const Input = styled.input`
@@ -96,6 +100,13 @@ const Input = styled.input`
 
         :focus {
             outline: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            justify-content: center;
+            margin: 0 auto;
+            width: 360px;
+            margin-bottom: 20px;
         }
 `;
 
@@ -117,6 +128,11 @@ const AddButton = styled.button`
             transform: scale(1.2);
             color:#BF78E4;
             background-color: white;
+        }
+
+        @media only screen and (max-width: 600px) {
+            justify-contetn: center;
+            margin: 0 auto;
         }
 `;
 

@@ -10,14 +10,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { actionCreators } from '../store';
 import { useHistory } from 'react-router';
-import styled, {createGlobalStyle} from 'styled-components';
-
-const Global = createGlobalStyle`
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-`;
+import styled from 'styled-components';
 
 const Screen1 = styled.div`
     min-width: 100%;
@@ -164,7 +157,6 @@ const MainPage = ({ userInfo, addInfo }) => {
 
     return (
         <div>
-            <Global/>
             {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> :
                 <>
                 <Screen1>
