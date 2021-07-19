@@ -60,6 +60,7 @@ const GooLogin = ({ addUserInfo }) => {
     const history = useHistory()
 
     const onSuccess = (res) => {
+        console.log(res)
         if(res.accessToken) {
             axios.post('http://localhost:80/google',{
               

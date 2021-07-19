@@ -44,7 +44,7 @@ const ProgressBar = ({userInfo}) => {
     
     return (
         <Pr>
-        <Progress percent={Math.round(per)} active progress color='black'/>
+        <Progress percent={Math.round(per)} active progress color='white'/>
         </Pr>
     );
 };
