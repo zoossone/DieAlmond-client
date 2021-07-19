@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import Calendar from '../components/SettingModal/Calendar'
 import SleepSlider from '../components/SettingModal/SleepSlider';
 import SmokingSlider from '../components/SettingModal/SmokingSlider'
@@ -9,6 +9,20 @@ import { actionCreators } from '../store';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import font from '../font.css'
+import star from "../img/main.jpg"
+
+const Global = createGlobalStyle`
+    body {
+        height: 100%;
+        margin: 0;
+        background: no-repeat url(${star});
+        background-size: cover; 
+    }
+    html {
+        height: 100%;
+    }
+   
+`;
 
 const Container = styled.div`
     padding: 20px;
@@ -267,6 +281,7 @@ const MyPage = ({ userInfo, addUserInfo, resetStore }) => {
 
     return (
         <Container>
+            <Global/>
             <Form onSubmit={onSubmit}>
                 <Title>정보를 입력해서 기대 수명을 확인해보세요 🙌</Title>
                 {/* input text */}

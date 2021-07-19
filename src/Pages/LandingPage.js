@@ -6,11 +6,14 @@ import devilLanding from '../img/devilLanding.png'
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
+import star from "../img/main.jpg"
 
 const Global = createGlobalStyle`
     body {
         height: 100%;
         margin: 0;
+        background: no-repeat url(${star});
+        background-size: cover; 
     }
     html {
         height: 100%;

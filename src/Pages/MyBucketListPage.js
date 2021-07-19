@@ -3,9 +3,23 @@ import React, { useEffect, useState } from 'react';
 import MyBucketList from '../components/Bucket/MyBucketList';
 import { connect } from 'react-redux';
 import AllBucketList from '../components/AllBucketList';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import { actionCreators } from '../store';
 import { useHistory } from 'react-router-dom';
+import star from "../img/bucket.jpeg"
+
+const Global = createGlobalStyle`
+    body {
+        height: 100%;
+        margin: 0;
+        background: no-repeat url(${star});
+        background-size: cover; 
+    }
+    html {
+        height: 100%;
+    }
+   
+`;
 
 const Screen1 = styled.div`
     height: 100vh;
@@ -13,7 +27,7 @@ const Screen1 = styled.div`
 `
 
 const Text = styled.div`
-    margin: 0 35px 20px 0;
+    margin: 20px 35px 20px 0;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: #BF78E4;
@@ -27,6 +41,7 @@ const Text = styled.div`
 
 const AllText = styled.div`
     margin-bottom: 20px;
+    margin-top: 20px;
     font-size: 2.5rem;
     font-family: 'CookieRun-Regular';
     color: #BF78E4;
@@ -292,6 +307,7 @@ const MyBucketListPage = ({ userInfo, addInfo }) => {
     console.log(objlist)
     return (
         <>
+        <Global/>
             {isLoading ? <div><Loader /><Div>잠시만 기다려주세요.</Div></div> : 
             <>
             <Nav>
